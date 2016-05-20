@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - intro
   - products
+  - storeviews
 
 search: true
 ---
