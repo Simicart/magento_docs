@@ -21,6 +21,7 @@ final_price | string | sale price of product
 description | string | product description
 short_description | string | product short description
 images | JSON Array | list images of product
+is_salable | string | product is salable
 
 ## View A Product
 

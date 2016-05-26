@@ -11,6 +11,11 @@ toc_footers:
 includes:
   - intro
   - products
+  - apps1
+  - apps2
+  - apps3
+  - apps4
+  - apps5
   - stores
   - storeviews
   - customers
