@@ -1012,15 +1012,42 @@ You must replace <code>token</code> with your OAuth2.0 API token.
 <td>json object</td>
 <td>label and price</td>
 </tr>
+<tr>
+<td>app_options.custom_options</td>
+<td>json array object</td>
+<td>list custom options in product</td>
+</tr>
+<tr>
+<td>app_options.custom_options.id</td>
+<td>string</td>
+<td>custom option id</td>
+</tr>
+<tr>
+<td>app_options.custom_options.title</td>
+<td>string</td>
+<td>custom option title</td>
+</tr>
+<tr>
+<td>app_options.custom_options.type</td>
+<td>string</td>
+<td>custom option type</td>
+</tr>
+<tr>
+<td>app_options.custom_options.position</td>
+<td>string</td>
+<td>custom option position</td>
+</tr>
+<tr>
+<td>app_options.custom_options.isRequired</td>
+<td>string</td>
+<td>custom option is required</td>
+</tr>
+<tr>
+<td>app_options.custom_options.values</td>
+<td>json object</td>
+<td>list values (label and price) in custom option</td>
+</tr>
 </tbody></table>
-
-<p>app_options.custom_options | json array object | list custom options in product
-app_options.custom_options.id | string | custom option id
-app_options.custom_options.title | string | custom option title
-app_options.custom_options.type | string | custom option type
-app_options.custom_options.position | string | custom option position
-app_options.custom_options.isRequired | string | custom option is required
-app_options.custom_options.values | json object | list values (label and price) in custom option</p>
 
 <h2 id="both-exclude-tax-and-include-tax">Both Exclude Tax and Include Tax</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/166"</span> <span class="se">\</span>
@@ -1224,18 +1251,52 @@ app_options.custom_options.values | json object | list values (label and price) 
 <td>json object</td>
 <td>label and price</td>
 </tr>
+<tr>
+<td>app_options.configurable_options</td>
+<td>json object</td>
+<td>configurable options in product</td>
+</tr>
+<tr>
+<td>app_options.configurable_options.attributes</td>
+<td>json object</td>
+<td>list attributes options in product</td>
+</tr>
+<tr>
+<td>app_options.custom_options</td>
+<td>json array object</td>
+<td>list custom options in product</td>
+</tr>
+<tr>
+<td>app_options.custom_options.id</td>
+<td>string</td>
+<td>custom option id</td>
+</tr>
+<tr>
+<td>app_options.custom_options.title</td>
+<td>string</td>
+<td>custom option title</td>
+</tr>
+<tr>
+<td>app_options.custom_options.type</td>
+<td>string</td>
+<td>custom option type</td>
+</tr>
+<tr>
+<td>app_options.custom_options.position</td>
+<td>string</td>
+<td>custom option position</td>
+</tr>
+<tr>
+<td>app_options.custom_options.isRequired</td>
+<td>string</td>
+<td>custom option is required</td>
+</tr>
+<tr>
+<td>app_options.custom_options.values</td>
+<td>json object</td>
+<td>list values (label and price) in custom option</td>
+</tr>
 </tbody></table>
-
-<p>app_options.configurable_options | json object |  configurable options in product
-app_options.configurable_options.attributes | json object | list attributes options in product</p>
-
-<p>app_options.custom_options | json array object | list custom options in product
-app_options.custom_options.id | string | custom option id
-app_options.custom_options.title | string | custom option title
-app_options.custom_options.type | string | custom option type
-app_options.custom_options.position | string | custom option position
-app_options.custom_options.isRequired | string | custom option is required
-app_options.custom_options.values | json object | list values (label and price) in custom option</p>
 
 <h2 id="both-exclude-tax-and-include-tax">Both Exclude Tax and Include Tax</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/83"</span> <span class="se">\</span>
@@ -1587,11 +1648,22 @@ app_options.custom_options.values | json object | list values (label and price) 
 <td>json object</td>
 <td>object to set price when choosing options</td>
 </tr>
+<tr>
+<td>app_options.bundle_options</td>
+<td>json object</td>
+<td>bundle options in product</td>
+</tr>
+<tr>
+<td>app_options.configurable_options.options</td>
+<td>json object</td>
+<td>list options in product</td>
+</tr>
+<tr>
+<td>app_options.configurable_options.selected</td>
+<td>json object</td>
+<td>list options are the default</td>
+</tr>
 </tbody></table>
-
-<p>app_options.bundle_options | json object |  bundle options in product
-app_options.configurable_options.options | json object | list options in product
-app_options.configurable_options.selected | json object | list options are the default</p>
 
 <h2 id="both-exclude-tax-and-include-tax">Both Exclude Tax and Include Tax</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/165"</span> <span class="se">\</span>
@@ -2308,16 +2380,47 @@ app_options.configurable_options.selected | json object | list options are the d
 <td>json object</td>
 <td>label and price</td>
 </tr>
+<tr>
+<td>app_options.grouped_options</td>
+<td>json object</td>
+<td>list grouped options in product</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.id</td>
+<td>string</td>
+<td>option id</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.name</td>
+<td>string</td>
+<td>custom option title</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.is_salable</td>
+<td>string</td>
+<td>is salable (1 or 0)</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.has_special_price</td>
+<td>int</td>
+<td>is special price (1 or 0)</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.special_price_label</td>
+<td>string</td>
+<td>special label</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.price_excluding_tax</td>
+<td>json object</td>
+<td>object (label and price)</td>
+</tr>
+<tr>
+<td>app_options.grouped_options.price_including_tax</td>
+<td>json object</td>
+<td>object (label and price)</td>
+</tr>
 </tbody></table>
-
-<p>app_options.grouped_options | json object | list grouped options in product
-app_options.grouped_options.id | string |  option id
-app_options.grouped_options.name | string | custom option title
-app_options.grouped_options.is_salable | string | is salable (1 or 0)
-app_options.grouped_options.has_special_price | int | is special price (1 or 0)
-app_options.grouped_options.special_price_label | string | special label
-app_options.grouped_options.price_excluding_tax | json object | object (label and price)
-app_options.grouped_options.price_including_tax | json object | object (label and price)</p>
 
 <h2 id="both-exclude-tax-and-include-tax">Both Exclude Tax and Include Tax</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/54"</span> <span class="se">\</span>
@@ -2478,18 +2581,52 @@ app_options.grouped_options.price_including_tax | json object | object (label an
 <td>json object</td>
 <td>label and price</td>
 </tr>
+<tr>
+<td>app_options.download_sample</td>
+<td>json array object</td>
+<td>list samples to download file in product</td>
+</tr>
+<tr>
+<td>app_options.download_options</td>
+<td>json array object</td>
+<td>list download options in product</td>
+</tr>
+<tr>
+<td>app_options.custom_options</td>
+<td>json array object</td>
+<td>list custom options in product</td>
+</tr>
+<tr>
+<td>app_options.custom_options.id</td>
+<td>string</td>
+<td>custom option id</td>
+</tr>
+<tr>
+<td>app_options.custom_options.title</td>
+<td>string</td>
+<td>custom option title</td>
+</tr>
+<tr>
+<td>app_options.custom_options.type</td>
+<td>string</td>
+<td>custom option type</td>
+</tr>
+<tr>
+<td>app_options.custom_options.position</td>
+<td>string</td>
+<td>custom option position</td>
+</tr>
+<tr>
+<td>app_options.custom_options.isRequired</td>
+<td>string</td>
+<td>custom option is required</td>
+</tr>
+<tr>
+<td>app_options.custom_options.values</td>
+<td>json object</td>
+<td>list values (label and price) in custom option</td>
+</tr>
 </tbody></table>
-
-<p>app_options.download_sample | json array object  | list samples to download file in product
-app_options.download_options | json array object  | list download options in product</p>
-
-<p>app_options.custom_options | json array object | list custom options in product
-app_options.custom_options.id | string | custom option id
-app_options.custom_options.title | string | custom option title
-app_options.custom_options.type | string | custom option type
-app_options.custom_options.position | string | custom option position
-app_options.custom_options.isRequired | string | custom option is required
-app_options.custom_options.values | json object | list values (label and price) in custom option</p>
 
 <h2 id="both-exclude-tax-and-include-tax">Both Exclude Tax and Include Tax</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/166"</span> <span class="se">\</span>

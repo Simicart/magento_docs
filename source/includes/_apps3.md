@@ -13,7 +13,6 @@ app_prices.from_price_including_tax | json object | label and price
 app_prices.to_price_excluding_tax | json object | label and price
 app_prices.to_price_including_tax | json object | label and price
 app_prices.configure | json object | object to set price when choosing options
-
 app_options.bundle_options | json object |  bundle options in product
 app_options.configurable_options.options | json object | list options in product
 app_options.configurable_options.selected | json object | list options are the default

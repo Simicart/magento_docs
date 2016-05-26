@@ -8,7 +8,6 @@ app_prices.price_label | string | label price in product
 app_prices.show_ex_in_price | int | show exclude tax and include tax in product
 app_prices.price_excluding_tax | json object | label and price
 app_prices.price_including_tax | json object | label and price
-
 app_options.grouped_options | json object | list grouped options in product
 app_options.grouped_options.id | string |  option id
 app_options.grouped_options.name | string | custom option title

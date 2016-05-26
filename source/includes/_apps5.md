@@ -8,10 +8,8 @@ app_prices.has_special_price | int | is special price in product
 app_prices.show_ex_in_price | int | show exclude tax and include tax in product
 app_prices.price_excluding_tax | json object | label and price
 app_prices.price_including_tax | json object | label and price
-
 app_options.download_sample | json array object  | list samples to download file in product
 app_options.download_options | json array object  | list download options in product
-
 app_options.custom_options | json array object | list custom options in product
 app_options.custom_options.id | string | custom option id
 app_options.custom_options.title | string | custom option title
