@@ -19,6 +19,7 @@ includes:
   - stores
   - storeviews
   - customers
+  - addresses
 
 search: true
 ---
