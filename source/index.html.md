@@ -18,6 +18,11 @@ includes:
   - apps5
   - stores
   - storeviews
+  - cmspages
+  - homes
+  - homeproductlists
+  - homebanners
+  - homecategories
   - customers
   - addresses
 
