@@ -16,6 +16,7 @@ includes:
   - apps3
   - apps4
   - apps5
+  - devices
   - stores
   - storeviews
   - cmspages
