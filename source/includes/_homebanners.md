@@ -14,6 +14,8 @@ category_id | int | Category to be Opened
 product_id | int | Products to be Opened
 width | int | Banner width
 height | int | Banner height
+cat_name | string | Category Name (when type = 2)
+has_children | boolean | Category Has Children Or Not (when type = 2)
 
 
 ## View Home screen Banners
@@ -48,7 +50,9 @@ curl GET "https://abc.com/simiconnector/rest/v2/homebanners" \
          "item_id":"1",
          "store_view_id":"1",
          "width":1170,
-         "height":759
+         "height":759,
+         "has_children":true,
+         "cat_name":"Women"
       },
       {  
          "banner_id":"2",
