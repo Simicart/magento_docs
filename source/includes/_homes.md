@@ -14,7 +14,7 @@ homeproductlists | array | Home Product Lists
 ## View Home Screen Items with Product Lists Details
 
 ```shell
-curl GET "https://abc.com/simiconnector/rest/v2/homes/default" \
+curl GET "https://abc.com/simiconnector/rest/v2/homes" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -1081,3 +1081,120 @@ curl GET "https://abc.com/simiconnector/rest/v2/homes/default" \
 ```
 
 This API return Home screen detail with product lists items.
+
+## View Home Screen Items
+
+```shell
+curl GET "https://abc.com/simiconnector/rest/v2/homes/lite" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "home":{  
+      "homebanners":{  
+         "all_ids":[  
+            "1"
+         ],
+         "homebanners":[  
+            {  
+               "banner_id":"1",
+               "banner_name":"http:\/\/dev-vn.magestore.com\/simicart\/new\/magento\/media\/simi\/simicart\/banner\/banner.jpg",
+               "banner_url":null,
+               "banner_title":"Hello",
+               "status":"1",
+               "website_id":"0",
+               "type":"1",
+               "category_id":"0",
+               "product_id":"16",
+               "sort_order":"0",
+               "entity_id":"8",
+               "content_type":"2",
+               "item_id":"1",
+               "store_view_id":"3",
+               "width":960,
+               "height":480
+            }
+         ],
+         "total":1,
+         "page_size":15,
+         "from":0
+      },
+      "homecategories":{  
+         "all_ids":[  
+            "1"
+         ],
+         "homecategories":[  
+            {  
+               "simicategory_id":"1",
+               "simicategory_name":"Furniture",
+               "simicategory_filename":"http:\/\/dev-vn.magestore.com\/simicart\/new\/magento\/media\/simi\/simicart\/simicategory\/demo.jpg",
+               "category_id":"10",
+               "status":"1",
+               "website_id":"0",
+               "storeview_id":"Array",
+               "sort_order":"0",
+               "entity_id":"5",
+               "content_type":"3",
+               "item_id":"1",
+               "store_view_id":"3",
+               "width":400,
+               "height":400,
+               "has_children":true,
+               "cat_name":"Furniture"
+            }
+         ],
+         "total":1,
+         "page_size":15,
+         "from":0
+      },
+      "homeproductlists":{  
+         "all_ids":[  
+            "1",
+            "2"
+         ],
+         "homeproductlists":[  
+            {  
+               "productlist_id":"1",
+               "list_title":"New Products",
+               "list_image":"",
+               "list_type":"5",
+               "list_products":null,
+               "list_status":"1",
+               "sort_order":"0",
+               "entity_id":"2",
+               "content_type":"4",
+               "item_id":"1",
+               "store_view_id":"3",
+               "width":null,
+               "height":null,
+               "type_name":"Recently Added"
+            },
+            {  
+               "productlist_id":"2",
+               "list_title":"Supper Pro",
+               "list_image":"",
+               "list_type":"1",
+               "list_products":"18, 19, 42, 41, 45, 46, 53",
+               "list_status":"1",
+               "sort_order":"0",
+               "entity_id":"11",
+               "content_type":"4",
+               "item_id":"2",
+               "store_view_id":"3",
+               "width":null,
+               "height":null,
+               "type_name":"Custom Product List"
+            }
+         ],
+         "total":2,
+         "page_size":15,
+         "from":0
+      }
+   }
+}
+```
+
+This API return Home screen detail with no Product list included.
