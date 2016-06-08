@@ -26,6 +26,7 @@ includes:
   - homecategories
   - customers
   - addresses
+  - quoteitems
 
 search: true
 ---
