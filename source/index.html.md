@@ -27,6 +27,7 @@ includes:
   - customers
   - addresses
   - quoteitems
+  - orders
 
 search: true
 ---
