@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - intro
+  - categories
   - products
   - apps1
   - apps2
