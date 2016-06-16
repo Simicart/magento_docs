@@ -29,6 +29,7 @@ includes:
   - addresses
   - quoteitems
   - orders
+  - totals
 
 search: true
 ---
