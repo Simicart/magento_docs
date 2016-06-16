@@ -399,4 +399,24 @@ This endpoint retrieves a list of products.
 
 `GET /rest/products`
 
+Params with and height for images (image_width, image_height)
 
+Search products
+
+`GET /rest/products?filter[q]=nokia&image_height=100&image_width=100`
+
+Get products via category
+
+`GET /rest/products?filter[cat_id]=10`
+
+Get products with layers
+
+`GET /rest/products?filter[layer][{attribute}]={value}&filter[layer][{attribute}]={value}`
+
+{attribute} = layers.layer_filter[index].attribute
+
+{value} = layers.layer_filter[0].filter[index].10
+
+Ex
+
+`GET /rest/products?filter[layer][cat]=10&filter[layer][contrast_ratio]=106`
