@@ -405,6 +405,10 @@ Search products
 
 `GET /rest/products?filter[q]=nokia&image_height=100&image_width=100`
 
+Get products that related to a product by Id
+
+`GET /rest/products?filter[related_to_id]=392`
+
 Get products via category
 
 `GET /rest/products?filter[cat_id]=10`
