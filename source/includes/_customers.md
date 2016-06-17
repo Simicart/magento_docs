@@ -249,9 +249,6 @@ curl -X PUT "https://abc.com/simiconnector/rest/v2/customers" \
 
 This API is to edit Customer Profile.
 
-### HTTP Request
-
-`GET /rest/products/<id>`
 
 
 ## Forget Password
@@ -276,3 +273,21 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/customers/forgetpassword?emai
 
 This API is to Send Password reset Email
 
+## Renew Customer Session
+
+```shell
+curl -X POST "https://abc.com/simiconnector/rest/v2/addresses?email=test@simicart.com&password=123456" \
+  -H "Authorization: Bearer <token>" \
+```
+
+> The above command returns JSON structured like the normal request with no user name/password.
+
+```json
+
+```
+
+Add customer email and password to request to renew customer session with any request.
+
+### HTTP Request
+
+`GET /rest/products/<id>`
