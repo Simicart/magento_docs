@@ -43,7 +43,7 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
          "custom_rows":[  
             {  
                "title":"Nachnahmegeb\u00fchr",
-               "sort_order":4,
+               "sort_order":"31",
                "value":12
             }
          ]
@@ -81,7 +81,21 @@ Grand Total: tax_cart_display_grandtotal
 
 - If 2: Display  grand_total_incl_tax with Label "Grand Total"
 
-Custom Rows: Sort Order calculated by counting from Top (with Top count as 1) and under the row with sort order value, for example:
+All these above Rows are sorted by storeview.sales setting array (from Store View Configuration request)
 
-Show  Subtotal(1), Shipping Excl. Tax (2), Shipping Incl. Tax (3), Discount (4), GrandTotal (5).
-if Sort Order = 4, then it's under Discount. Then add The new row to that array and go to next Custom Row until there's no Custom Row left.
+eg. 
+{  
+   "storeview":{  
+      "sales":{  
+         "sales_reorder_allow":"1",
+         "sales_totals_sort_subtotal":"10",
+         "sales_totals_sort_discount":"20",
+         "sales_totals_sort_shipping":"30",
+         "sales_totals_sort_weee":"50",
+         "sales_totals_sort_tax":"40",
+         "sales_totals_sort_grand_total":"100"
+      }
+   }
+}
+
+Custom Rows: Sort Order counted the same with other Total Items, for Example it's 31, it'd be below Shipping row
