@@ -22,6 +22,115 @@ telephone | string | Telephone
 fax | string | Fax Number
 telephone | string | Telephone
 
+## Address Fields Managements (Checkout Information Management)
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
+  -H "Authorization: Bearer <token>" \
+  "
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "storeview":{  
+      "customer":{  
+         "address_option":{  
+            "prefix_show":"",
+            "suffix_show":"",
+            "dob_show":"",
+            "taxvat_show":"opt",
+            "gender_show":"",
+            "gender_value":[  
+               {  
+                  "label":"Male",
+                  "value":"1"
+               },
+               {  
+                  "label":"Female",
+                  "value":"2"
+               }
+            ]
+         },
+         "account_option":{  
+            "taxvat_show":"0"
+         },
+         "address_fields_config":{  
+            "company":"req",
+            "street":"opt",
+            "country_id":"opt",
+            "region_id":"opt",
+            "city":"opt",
+            "zipcode":"",
+            "telephone":"opt",
+            "fax":"opt",
+            "prefix":"opt",
+            "suffix":"opt",
+            "birthday":"opt",
+            "gender":"opt",
+            "taxvat":"opt",
+            "custom_fields":[  
+               {  
+                  "code":"text_field_sample",
+                  "title":"Text Field",
+                  "type":"text"
+               },
+               {  
+                  "code":"number_field_sample",
+                  "title":"Number Field",
+                  "type":"number"
+               },
+               {  
+                  "code":"single_option_sample",
+                  "title":"Sample Field Single Option",
+                  "type":"single_option",
+                  "option_array":[  
+                     "Option Single 1",
+                     "Option Single 2",
+                     "Option Single 3"
+                  ]
+               },
+               {  
+                  "code":"multi_option_sample",
+                  "title":"Sample Field Multi Option",
+                  "type":"multi_option",
+                  "option_array":[  
+                     "Option Multi 1",
+                     "Option Multi 2",
+                     "Option Multi 3",
+                     "Option Multi 4",
+                     "Option Multi 5"
+                  ],
+                  "separated_by":"%"
+               }
+            ]
+         }
+      }
+}
+```
+
+Address fields is configured on the Storeview Config setting result. (storeview.customer.address_option)
+
+If customer chooses to hide some fields, there will be one more field named storeview.customer.address_fields_config :
+
+1. "opt" - Optional
+
+2. "" - Hidden
+
+3. "req" - Required
+
+If there's Custom Address Fields, there'd be one more arrray at storeview.customer.address_fields_config.custom_fields
+
+1. text : Show Text field, send with address adding/editing request, use value added with key is 'code', e g. "text_field_sample":"What Customer Type In"
+
+2. Number Field : Show Number field, send with address adding/editing request, use value added with key is 'code', e g. "number_field_sample":"0987654321"
+
+3. single_option : Show Single Choice Option, send with address adding/editing request, use value added with key is 'code', e g. "single_option_sample":"Option Single 1"
+
+4. multi_option : Show Multi Choice Option, send with address adding/editing request, use value added with key is 'code', separated by the "separated_by" value, e g. "multi_option_sample":"Option Multi 1%Option Multi 3%Option Multi 5"
+
 
 
 ## Add Addresses

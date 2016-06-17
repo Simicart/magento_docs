@@ -1579,6 +1579,39 @@ curl "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 This endpoint Return Order Onepage (Checkout) information.
 
 
+## Checkout Terms and Conditions
+
+```shell
+curl "https://abc.com/simiconnector/rest/v2/storeviews/1" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "storeview":{  
+      "checkout":{  
+         "enable_guest_checkout":"1",
+         "is_reload_payment_method":"0",
+         "enable_agreements":"0",
+         "checkout_terms_and_conditions":{  
+            "title":"Title",
+            "content":"Content"
+         }
+      }
+   }
+}
+```
+
+If there's Terms and condition for Checking Out, there'd be one more value at key storeview.checkout.checkout_terms_and_conditions while getting storeview configuration. 
+
+- title: Term and condition Title (show on Order screen)
+
+- content: Term and condition Detailed (show on Webview HTML)
+
+
+
 ## Checkout as New Customer
 
 
