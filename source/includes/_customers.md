@@ -288,6 +288,78 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/addresses?email=test@simicar
 
 Add customer email and password to request to renew customer session with any request.
 
-### HTTP Request
+## Get Customer By Email
 
-`GET /rest/products/<id>`
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/customers/test@simicart.com" \
+  -H "Authorization: Bearer <token>" 
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "customer":{  
+      "website_id":"1",
+      "entity_id":"137",
+      "entity_type_id":"1",
+      "attribute_set_id":"0",
+      "email":"test@simicart.com",
+      "group_id":"1",
+      "increment_id":null,
+      "store_id":"1",
+      "created_at":"2016-05-23T20:22:30-07:00",
+      "updated_at":"2016-06-16 04:47:22",
+      "is_active":"1",
+      "disable_auto_group_change":"0",
+      "created_in":"English",
+      "firstname":"Cody",
+      "lastname":"Nguyen",
+      "password_hash":"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ",
+      "default_billing":"93",
+      "default_shipping":"93",
+      "gender":"2",
+      "dob":"2016-05-18 00:00:00"
+   }
+}
+```
+
+This API is to Get Customer by Email (Check if Customer with that email is Existed or Not)
+
+## Social Platform Login/Register
+
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/customers/sociallogin?email=test15@simicart.com&firstname=InputFirstname&lastname=InputLastname" \
+  -H "Authorization: Bearer <token>" 
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "customer":{  
+      "firstname":"InputFirstname",
+      "lastname":"InputLastname",
+      "email":"test15@simicart.com",
+      "password":"Nq27_eQH",
+      "password_hash":"630b71585d737391417a9cb2afc8e579:DPVroAo3PdHdHwxMDwzJtKRC6LkABA70",
+      "password_confirmation":null,
+      "store_id":"1",
+      "group_id":"1",
+      "entity_type_id":"1",
+      "parent_id":0,
+      "created_at":"2016-06-18 03:34:41",
+      "updated_at":"2016-06-18 03:34:41",
+      "created_in":"English",
+      "website_id":"1",
+      "disable_auto_group_change":"0",
+      "confirmation":null,
+      "entity_id":"151"
+   }
+}
+```
+
+This API is to Login Customer By Email get From Social Platforms
+
+
