@@ -9,6 +9,8 @@ user_email | email | Customer Email
 is_demo | int | 1 - Demo app, 0 - Live App
 latitude | string | Device Latitude
 longitude | string | Device Longtitude
+app_id | string | Application Id (Package Id)
+build_version | string | Application Build Version
 
 
 ## Register
@@ -21,7 +23,9 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/devices" \
 "is_demo":"1",
 "latitude":"10.100",
 "longitude":"20.10",
-"user_email":"test123123@jkjkj.com"
+"user_email":"test123123@jkjkj.com",
+"build_version":"1.0.1",
+"app_id":"com.simicart.demo"
 }
 "
 ```
