@@ -30,6 +30,7 @@ includes:
   - quoteitems
   - orders
   - totals
+  - simibarcodes
 
 search: true
 ---

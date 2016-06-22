@@ -35,7 +35,7 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/devices" \
 ```json
 {  
    "device":{  
-      "device_id":"1",
+      "device_id":"2",
       "address":"",
       "city":"\u0633\u0644\u0645\u0627\u062a",
       "state":"Barh Azoum",
@@ -46,8 +46,10 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/devices" \
       "website_id":"1",
       "latitude":"10.100",
       "longitude":"20.10",
-      "created_time":"2016-06-02 08:46:30",
+      "created_time":"2016-06-20 07:18:57",
       "user_email":"test123123@jkjkj.com",
+      "app_id":"com.simicart.demo",
+      "build_version":"1.0.1",
       "is_demo":"1"
    }
 }

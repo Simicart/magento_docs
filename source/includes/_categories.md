@@ -15,7 +15,7 @@ has_children | boolean | Has Chidren Or Not
 ## View Children Categoríe of Root Category
 
 ```shell
-curl "https://abc.com/simiconnector/rest/v2/simiconnector/rest/v2/categories" \
+curl "https://abc.com/simiconnector/rest/v2/categories" \
   -H "Authorization: Bearer <token>"
 ```
 
