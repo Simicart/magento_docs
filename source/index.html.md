@@ -31,6 +31,7 @@ includes:
   - orders
   - totals
   - simibarcodes
+  - simivideos
 
 search: true
 ---
