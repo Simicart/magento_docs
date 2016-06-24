@@ -11,6 +11,7 @@ latitude | string | Device Latitude
 longitude | string | Device Longtitude
 app_id | string | Application Id (Package Id)
 build_version | string | Application Build Version
+plaform_id | int | Platform: 1- iPhone, 2- iPad, 3- Android
 
 
 ## Register
@@ -25,6 +26,7 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/devices" \
 "longitude":"20.10",
 "user_email":"test123123@jkjkj.com",
 "build_version":"1.0.1",
+"plaform_id":"1",
 "app_id":"com.simicart.demo"
 }
 "

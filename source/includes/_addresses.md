@@ -75,12 +75,14 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
                {  
                   "code":"text_field_sample",
                   "title":"Text Field",
-                  "type":"text"
+                  "type":"text",
+                  "position":"7"
                },
                {  
                   "code":"number_field_sample",
                   "title":"Number Field",
-                  "type":"number"
+                  "type":"number",
+                  "position":"8"
                },
                {  
                   "code":"single_option_sample",
@@ -90,7 +92,8 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
                      "Option Single 1",
                      "Option Single 2",
                      "Option Single 3"
-                  ]
+                  ],
+                  "position":"9"
                },
                {  
                   "code":"multi_option_sample",
@@ -103,11 +106,13 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
                      "Option Multi 4",
                      "Option Multi 5"
                   ],
-                  "separated_by":"%"
+                  "separated_by":"%",
+                  "position":"10"
                }
             ]
          }
       }
+   }
 }
 ```
 
