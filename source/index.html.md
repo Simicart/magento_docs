@@ -32,6 +32,7 @@ includes:
   - totals
   - simibarcodes
   - simivideos
+  - wishlistitems
 
 search: true
 ---
