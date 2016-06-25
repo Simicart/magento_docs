@@ -1,4 +1,4 @@
-# Introduction Testing
+# Introduction
 
 Welcome to the MAGENTO API from SIMICART TEAM! You can use our API to access MAGENTO API endpoints, which can get information on various products, customers, sales, and so on.
 

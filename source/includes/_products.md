@@ -389,7 +389,33 @@ curl "https://abc.com/simiconnector/rest/v2/products" \
 				"label": "Tennis"
 			}]
 		}]
-	}
+	},
+	"orders": [{
+    		"key": "position",
+    		"value": "Position",
+    		"direction": "desc",
+    		"default": "1"
+    	}, {
+    		"key": "name",
+    		"value": "Name",
+    		"direction": "asc",
+    		"default": "0"
+    	}, {
+    		"key": "name",
+    		"value": "Name",
+    		"direction": "desc",
+    		"default": "0"
+    	}, {
+    		"key": "price",
+    		"value": "Price",
+    		"direction": "asc",
+    		"default": "0"
+    	}, {
+    		"key": "price",
+    		"value": "Price",
+    		"direction": "desc",
+    		"default": "0"
+    	}]
 }
 ```
 
@@ -424,3 +450,11 @@ Get products with layers
 Ex
 
 `GET /rest/products?filter[layer][cat]=10&filter[layer][contrast_ratio]=106`
+
+Get products with sort by order
+
+`GET /rest/products?dir={direction}&order={key}`
+
+Note that if default = "1", please up them with this API
+
+`GET /rest/v2/products?filter[q]=no&dir=asc&order=price`
