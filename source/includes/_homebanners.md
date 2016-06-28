@@ -14,6 +14,8 @@ category_id | int | Category to be Opened
 product_id | int | Products to be Opened
 width | int | Banner width
 height | int | Banner height
+width_tablet | int | Banner width Tablet
+height_tablet | int | Banner height Tablet
 cat_name | string | Category Name (when type = 2)
 has_children | boolean | Category Has Children Or Not (when type = 2)
 
@@ -37,6 +39,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/homebanners" \
       {  
          "banner_id":"1",
          "banner_name":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/banner\/cat5.jpg",
+		 "banner_name_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/banner\/3784368_cv.jpg",               
          "banner_url":null,
          "banner_title":"Banner1",
          "status":"1",
@@ -49,14 +52,17 @@ curl GET "https://abc.com/simiconnector/rest/v2/homebanners" \
          "content_type":"2",
          "item_id":"1",
          "store_view_id":"1",
-         "width":1170,
-         "height":759,
+         "width":960,
+         "height":358,
+         "width_tablet":2048,
+         "height_tablet":893,
          "has_children":true,
          "cat_name":"Women"
       },
       {  
          "banner_id":"2",
          "banner_name":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/banner\/cat6.jpg",
+		 "banner_name_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/banner\/3784368_cv.jpg",               
          "banner_url":null,
          "banner_title":"2",
          "status":"1",
@@ -69,8 +75,10 @@ curl GET "https://abc.com/simiconnector/rest/v2/homebanners" \
          "content_type":"2",
          "item_id":"2",
          "store_view_id":"1",
-         "width":1170,
-         "height":759
+         "width":960,
+         "height":358,
+         "width_tablet":2048,
+         "height_tablet":893
       }
    ],
    "total":2,

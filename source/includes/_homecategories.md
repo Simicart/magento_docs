@@ -11,6 +11,8 @@ category_id | int | Home Category ID
 status | int | Home Category Status
 width | int | Category Image Width
 height | int | Category Image Height
+width_tablet | int | Category Image Width Tablet
+height_tablet | int | Category Image Height Tablet
 cat_name | string | Category Name
 has_children | boolean | Category Has Child Or Not
 
@@ -33,6 +35,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/homecategories" \
          "simicategory_id":"1",
          "simicategory_name":"Women",
          "simicategory_filename":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/simicategory\/cat6.jpg",
+		 "simicategory_filename_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/simicategory\/3784554_CV-Grimsel.jpg",
          "category_id":"4",
          "status":"1",
          "website_id":"0",
@@ -42,8 +45,10 @@ curl GET "https://abc.com/simiconnector/rest/v2/homecategories" \
          "content_type":"3",
          "item_id":"1",
          "store_view_id":"1",
-         "width":1170,
-         "height":759,
+		 "width":2048,
+         "height":893,
+         "width_tablet":960,
+         "height_tablet":358,
          "has_children":true,
          "cat_name":"Women"
       }
@@ -75,6 +80,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/homecategories?get_child_cat=1" 
          "simicategory_id":"1",
          "simicategory_name":"Women",
          "simicategory_filename":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/simicategory\/cat6.jpg",
+		 "simicategory_filename_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/simicategory\/3784554_CV-Grimsel.jpg",
          "category_id":"4",
          "status":"1",
          "website_id":"0",
@@ -84,8 +90,10 @@ curl GET "https://abc.com/simiconnector/rest/v2/homecategories?get_child_cat=1" 
          "content_type":"3",
          "item_id":"1",
          "store_view_id":"1",
-         "width":1170,
-         "height":759,
+		 "width":2048,
+         "height":893,
+         "width_tablet":960,
+         "height_tablet":358,
          "cat_name":"Women",
          "has_children":true,
          "children":[  

@@ -10,6 +10,10 @@ list_image | string | Product list Image URL
 list_status | int | Product list Status
 list_products | array | Products of this List
 product_array | array | Products Details Listed
+width | int | Product List width
+height | int | Product List height
+width_tablet | int | Product List width Tablet
+height_tablet | int | Product List height Tablet
 
 ## View Product Lists
 
@@ -31,6 +35,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/homeproductlists" \
          "productlist_id":"5",
          "list_title":"Recently Added",
          "list_image":"",
+		 "list_image_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/productlist\/3784554_CV-Grimsel@2x.jpg",
          "list_type":"5",
          "list_products":null,
          "list_status":"0",
@@ -41,6 +46,8 @@ curl GET "https://abc.com/simiconnector/rest/v2/homeproductlists" \
          "store_view_id":"1",
          "width":null,
          "height":null,
+		 "width_tablet":960,
+         "height_tablet":358,
          "type_name":"Recently Added",
          "product_array":{  
             "all_ids":[  
@@ -862,6 +869,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/homeproductlists" \
          "productlist_id":"1",
          "list_title":"Product List",
          "list_image":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/productlist\/cat6@2x.jpg",
+		 "list_image_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/productlist\/3784554_CV-Grimsel@2x.jpg",
          "list_type":"1",
          "list_products":"372, 379, 382",
          "list_status":"1",
@@ -872,6 +880,8 @@ curl GET "https://abc.com/simiconnector/rest/v2/homeproductlists" \
          "store_view_id":"1",
          "width":1170,
          "height":759,
+		 "width_tablet":960,
+         "height_tablet":358,
          "type_name":"Custom Product List",
          "product_array":{  
             "all_ids":[  
@@ -1021,12 +1031,15 @@ curl GET "https://abc.com/simiconnector/rest/v2/homeproductlists/3" \
       "productlist_id":"1",
       "list_title":"Product List",
       "list_image":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/productlist\/cat6@2x.jpg",
+	  "list_image_tablet":"http:\/\/localhost.com\/magento19\/media\/simi\/simicart\/productlist\/3784554_CV-Grimsel@2x.jpg",
       "list_type":"1",
       "list_products":"372, 379, 382",
       "list_status":"1",
       "sort_order":"1",
       "width":1170,
       "height":759,
+	  "width_tablet":960,
+      "height_tablet":358,
       "type_name":"Custom Product List",
       "product_array":{  
          "all_ids":[  
