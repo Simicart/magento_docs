@@ -58,3 +58,50 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/devices" \
 ```
 This API is to register a device.
 
+## Show Notification List
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/notifications?device_token=45646546546545623" \
+  -H "Authorization: Bearer <token>" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "all_ids": [
+        "1"
+    ],
+    "notifications": [
+        {
+            "notice_id": "1",
+            "notice_title": "First One",
+            "notice_url": null,
+            "notice_content": "Message Test",
+            "notice_sanbox": "2",
+            "website_id": "1",
+            "device_id": "0",
+            "type": "1",
+            "category_id": "0",
+            "product_id": "1",
+            "image_url": "simi/simicart/notification/images/0fdf1e42cc46e5ca1cf5e33b9501655c.png",
+            "location": "",
+            "distance": "",
+            "address": "",
+            "city": "",
+            "country": "",
+            "zipcode": "",
+            "state": "",
+            "show_popup": "0",
+            "created_time": "2016-07-04 09:23:19",
+            "devices_pushed": "8, 9, 10, 11",
+            "storeview_id": "3"
+        }
+    ],
+    "total": 1,
+    "page_size": 15,
+    "from": 0
+}
+```
+This API is to show Notification list
+
