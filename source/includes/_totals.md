@@ -45,6 +45,12 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
                "title":"Nachnahmegeb\u00fchr",
                "sort_order":"31",
                "value":12
+            },
+			{
+				"title": "You will earn",
+				"sort_order": 6,
+				"value": 145,
+				"value_string": "145 Codypoints"
             }
          ]
       }
@@ -99,3 +105,5 @@ eg.
 }
 
 Custom Rows: Sort Order counted the same with other Total Items, for Example it's 31, it'd be below Shipping row
+
+If there's no "value_string" on custom row, show the "value" with Store currency format

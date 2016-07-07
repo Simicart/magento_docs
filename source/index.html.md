@@ -33,6 +33,7 @@ includes:
   - simibarcodes
   - simivideos
   - wishlistitems
+  - simirewardpoints
 
 search: true
 ---
