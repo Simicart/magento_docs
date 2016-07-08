@@ -2801,3 +2801,42 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 ```
 
 If there's notification to be shown, the result of order placing request would contain 'notification' value as array.
+
+## Cancel Order
+
+```shell
+curl -X PUT "https://abc.com/simiconnector/rest/v2/orders/145000013" \
+  -H "Authorization: Bearer <token>" \
+  -d '{  
+"status":"cancel"
+}'
+  "
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "order":{  
+      "invoice_number":"302000002",
+      "payment_method":"checkmo",
+      "notification":{  
+         "show_popup":"1",
+         "title":"title",
+         "url":null,
+         "message":"order message",
+         "notice_sanbox":0,
+         "type":"2",
+         "productID":"1",
+         "categoryID":"6",
+         "categoryName":"Accessories",
+         "has_children":1,
+         "created_time":"2016-06-16 04:47:33",
+         "notice_type":3
+      }
+   }
+}
+```
+
+This API is to Cancel an existing Order (resource_id can be Encrement Id or Order Id)
