@@ -19,7 +19,7 @@ custom_rows.value | float | Custom Row value
 custom_rows.sort_order | int | Sort Order on Total Row
 
 
-## View Default Store View
+## Display Total Row
 
 ```shell
 curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
@@ -30,7 +30,7 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
 
 ```json
 {
-	"total":{  
+   "total":{  
          "subtotal_excl_tax":340,
          "subtotal_incl_tax":340,
          "shipping_hand_incl_tax":25.27,
@@ -46,11 +46,11 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
                "sort_order":"31",
                "value":12
             },
-			{
-				"title": "You will earn",
-				"sort_order": 6,
-				"value": 145,
-				"value_string": "145 Codypoints"
+         {
+            "title": "You will earn",
+            "sort_order": 6,
+            "value": 145,
+            "value_string": "145 Codypoints"
             }
          ]
       }
@@ -85,7 +85,7 @@ Grand Total: tax_cart_display_grandtotal
 
 - If 1: Display both grand_total_excl_tax and grand_total_incl_tax with Labels "Grand Total Excl. Tax" and "Grand Total Incl. Tax"
 
-- If 2: Display  grand_total_incl_tax with Label "Grand Total"
+- If 0: Display  grand_total_incl_tax with Label "Grand Total"
 
 All these above Rows are sorted by storeview.sales setting array (from Store View Configuration request)
 
@@ -114,7 +114,7 @@ eg.
       }
 
    }
-   
+
 }
 
 Custom Rows: Sort Order counted the same with other Total Items, for Example it's 31, it'd be below Shipping row
