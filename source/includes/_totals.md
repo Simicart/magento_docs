@@ -66,7 +66,7 @@ Subtotal: tax_cart_display_subtotal
 
 - If 2: Show subtotal_incl_tax with Label "Subtotal".
 
-- If 3: Show both subtotal_excl_tax and subtotal_incl_tax with Labels "SUBTOTAL (EXCL. TAX)" and "SUBTOTAL (INCL. TAX)".
+- If 3: Show both subtotal_excl_tax and subtotal_incl_tax with Labels "Subtotal (Excl. Tax)" and "Subtotal (Incl. Tax)".
 
 Shipping and Handling: tax_cart_display_shipping
 
@@ -74,16 +74,16 @@ Shipping and Handling: tax_cart_display_shipping
 
 - If 2: Show shipping_hand_incl_tax with Label "Shipping".
 
-- If 3: Show both shipping_hand_excl_tax and shipping_hand_incl_tax with Labels "SHIPPING EXCL. TAX" and "SHIPPING INCL. TAX".
+- If 3: Show both shipping_hand_excl_tax and shipping_hand_incl_tax with Labels "Shipping Excl. Tax" and "Shipping Incl. Tax".
 
 
 Discount: Label: "Discount"
 
-Tax: If there's tax value included, show it with label "TAX"
+Tax: If there's tax value included, show it with label "Tax"
 
 Grand Total: tax_cart_display_grandtotal
 
-- If 1: Display both grand_total_excl_tax and grand_total_incl_tax with Labels "GRAND TOTAL EXCL. TAX" and "GRAND TOTAL INCL. TAX"
+- If 1: Display both grand_total_excl_tax and grand_total_incl_tax with Labels "Grand Total Excl. Tax" and "Grand Total Incl. Tax"
 
 - If 2: Display  grand_total_incl_tax with Label "Grand Total"
 
@@ -107,3 +107,40 @@ eg.
 Custom Rows: Sort Order counted the same with other Total Items, for Example it's 31, it'd be below Shipping row
 
 If there's no "value_string" on custom row, show the "value" with Store currency format
+
+
+If Store Configuration for tax on Cart (tax_cart_display_full_summary) is '1', and there's tax_summary on total information, then the Summary needs to be shown:
+
+{  
+   "all_ids":[  
+      "2602"
+   ],
+   "total":{  
+      "subtotal_excl_tax":295,
+      "subtotal_incl_tax":321.55,
+      "tax":26.26,
+      "tax_summary":[  
+         {  
+            "title":"US-CA-*-Rate 1 (9%)",
+            "amount":26.26
+         }
+      ],
+      "discount":3.25,
+      "grand_total_excl_tax":291.75,
+      "grand_total_incl_tax":318.01,
+      "custom_rows":[  
+         {  
+            "title":"You will earn",
+            "sort_order":6,
+            "value":146,
+            "value_string":"146 Codypoints"
+         }
+      ]
+   },
+   "page_size":15,
+   "from":0,
+   "loyalty":{  
+      "loyalty_image":"http:\/\/localhost.com\/magento19\/skin\/frontend\/base\/default\/images\/simirewardpoints\/point.png",
+      "loyalty_label":"Checkout now and earn 146 Codypoints in rewards"
+   }
+}

@@ -408,7 +408,16 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems" \
    "from":0
 }
 ```
-Base on Store View Tax Config to Show Row Price and Total Information.
+Base on Store View Tax Config to Show Row Price and Total Information:
+
+If tax_cart_display_price is:
+
+- 1: Excluding Tax  - Show Excluded tax value (row_total) with No title
+ 
+- 2: Including Tax - Show Included Tax value (row_total_incl_tax) with No title
+
+- 3: Including and Excluding Tax - Show both Including tax (with Title "Incl. Tax") and Excluding Tax (with title "Excl. Tax")
+
 
 
 ## Apply Coupon Code
