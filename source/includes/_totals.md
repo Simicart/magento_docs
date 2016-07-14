@@ -89,19 +89,32 @@ Grand Total: tax_cart_display_grandtotal
 
 All these above Rows are sorted by storeview.sales setting array (from Store View Configuration request)
 
-eg. 
-{  
+eg.
+
+{
+
    "storeview":{  
+
       "sales":{  
+
          "sales_reorder_allow":"1",
+
          "sales_totals_sort_subtotal":"10",
+
          "sales_totals_sort_discount":"20",
+
          "sales_totals_sort_shipping":"30",
+
          "sales_totals_sort_weee":"50",
+
          "sales_totals_sort_tax":"40",
+
          "sales_totals_sort_grand_total":"100"
+
       }
+
    }
+   
 }
 
 Custom Rows: Sort Order counted the same with other Total Items, for Example it's 31, it'd be below Shipping row
@@ -109,8 +122,16 @@ Custom Rows: Sort Order counted the same with other Total Items, for Example it'
 If there's no "value_string" on custom row, show the "value" with Store currency format
 
 
-If Store Configuration for tax on Cart (tax_cart_display_full_summary) is '1', and there's tax_summary on total information, then the Summary needs to be shown:
+## Tax Summary
 
+```shell
+curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
 {  
    "all_ids":[  
       "2602"
@@ -144,3 +165,9 @@ If Store Configuration for tax on Cart (tax_cart_display_full_summary) is '1', a
       "loyalty_label":"Checkout now and earn 146 Codypoints in rewards"
    }
 }
+```
+
+If Store Configuration for tax on Cart (tax_cart_display_full_summary) is '1', and there's tax_summary on total information, then the Summary needs to be shown.
+
+The 'amount' can be empty, in that case, the value row is blank.
+
