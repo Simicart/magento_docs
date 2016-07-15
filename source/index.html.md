@@ -34,6 +34,7 @@ includes:
   - simivideos
   - wishlistitems
   - simirewardpoints
+  - productlabels
 
 search: true
 ---
