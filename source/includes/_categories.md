@@ -349,3 +349,81 @@ curl "https://abc.com/simiconnector/rest/v2/categories/4" \
 ```
 
 This one return Category list of A Category.
+
+
+## Category as CMS Page
+
+```shell
+curl "https://abc.com/simiconnector/rest/v2/categories/4" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "all_ids":[  
+      "10",
+      "11",
+      "12",
+      "13"
+   ],
+   "categories":[  
+      {  
+         "entity_id":"10",
+         "entity_type_id":"3",
+         "attribute_set_id":"3",
+         "parent_id":"4",
+         "created_at":"2013-01-25 17:56:08",
+         "updated_at":"2016-06-15 06:22:39",
+         "path":"1\/2\/4\/10",
+         "position":"1",
+         "level":"3",
+         "children_count":"0",
+         "description":null,
+         "meta_keywords":null,
+         "meta_description":null,
+         "custom_layout_update":null,
+         "available_sort_by":null,
+         "is_active":"1",
+         "landing_page":null,
+         "is_anchor":"1",
+         "include_in_menu":"1",
+         "custom_use_parent_settings":"0",
+         "custom_apply_to_products":"0",
+         "name":"New Arrivals",
+         "url_key":"new-arrivals",
+         "image":"plp-w-newarrivals_1.jpg",
+         "meta_title":null,
+         "display_mode":"PRODUCTS",
+         "url_path":"women\/new-arrivals.html",
+         "custom_design":null,
+         "page_layout":"three_columns",
+         "custom_design_from":null,
+         "custom_design_to":null,
+         "filter_price_range":null,
+         "has_children":false
+      }
+   ],
+   "total":4,
+   "page_size":15,
+   "from":0,
+   "cms":{  
+      "cms_id":"1",
+      "cms_title":"title",
+      "cms_image":"http:\/\/localhost.com\/magento19\/media\/simi\/simiconnector\/cms\/bppro-main@2x.jpg",
+      "cms_content":"123123",
+      "cms_status":"1",
+      "website_id":"0",
+      "type":"2",
+      "category_id":"4",
+      "sort_order":"5",
+      "entity_id":"240",
+      "content_type":"1",
+      "item_id":"1",
+      "store_view_id":"1"
+   }
+}
+```
+
+If category is displayed as Webview content, there will be 'cms' value for category result 
