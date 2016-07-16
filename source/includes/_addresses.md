@@ -354,3 +354,30 @@ curl -X PUT "https://abc.com/simiconnector/rest/v2/addresses" \
 ```
 
 This API is to edit Customer Address.
+
+## Geocoding (Address Autofill)
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/addresses/geocoding?longitude=-99.9&latitude=38.1" \
+  -H "Authorization: Bearer <token>" \
+  "
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "address":{  
+      "street":" U.S. 283, Jetmore",
+      "city":"Hodgeman County",
+      "region":"Kansas",
+      "region_id":"KS",
+      "country_name":"United States",
+      "country_id":"US",
+      "postcode":"67854"
+   }
+}
+```
+
+This API is to get Address Information from Longtitude and Latitude
