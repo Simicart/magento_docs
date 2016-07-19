@@ -406,6 +406,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems" \
    },
    "page_size":15,
    "from":0,
+   "cart_total":2,
    "quote_id": "729"
 }
 ```
@@ -629,6 +630,7 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems" \
    },
    "page_size":15,
    "from":0,
+   "cart_total":2,
    "quote_id": "729",
    "message":[  
       "Coupon code \"MYCOUPON\" was applied."
@@ -842,6 +844,7 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems" \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729",
    "message":[  
       "Coupon code was canceled."
@@ -1061,6 +1064,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729",
    "message":[  
       "Test Custom Option Simple Product was added to your shopping cart."
@@ -1373,6 +1377,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729",
    "message":[  
       "Linen Blazer was added to your shopping cart."
@@ -1766,6 +1771,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729",
    "message":[  
       "Pearl Necklace Set was added to your shopping cart."
@@ -2075,6 +2081,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729",
    "message":[  
       "Pillow and Throw Set was added to your shopping cart."
@@ -2284,6 +2291,7 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id": "729"
 }
 ```
@@ -2536,6 +2544,7 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems?quote_id=729 " \
    },
    "page_size":15,
    "from":0,
+   "cart_total":1,
    "quote_id":"729",
    "loyalty":{  
       "loyalty_image":"http:\/\/localhost.com\/magento19\/skin\/frontend\/base\/default\/images\/simirewardpoints\/point.png",
