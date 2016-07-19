@@ -405,7 +405,8 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems" \
       "coupon_code":"MYCOUPON"
    },
    "page_size":15,
-   "from":0
+   "from":0,
+   "quote_id": "729"
 }
 ```
 Base on Store View Tax Config to Show Row Price and Total Information:
@@ -628,6 +629,7 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems" \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Coupon code \"MYCOUPON\" was applied."
    ]
@@ -840,6 +842,7 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems" \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Coupon code was canceled."
    ]
@@ -1058,6 +1061,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Test Custom Option Simple Product was added to your shopping cart."
    ]
@@ -1369,6 +1373,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Linen Blazer was added to your shopping cart."
    ]
@@ -1761,6 +1766,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Pearl Necklace Set was added to your shopping cart."
    ]
@@ -2069,6 +2075,7 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
    },
    "page_size":15,
    "from":0,
+   "quote_id": "729",
    "message":[  
       "Pillow and Throw Set was added to your shopping cart."
    ]
@@ -2276,7 +2283,8 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems " \
       "tax":0
    },
    "page_size":15,
-   "from":0
+   "from":0,
+   "quote_id": "729"
 }
 ```
 Edit Quote Item Qty.
@@ -2313,3 +2321,226 @@ curl PUT "https://abc.com/simiconnector/rest/v2/quoteitems " \
 }
 ```
 Remove Quote Item.
+
+## Continue Cart Session with Quote Id
+
+```shell
+curl GET "https://abc.com/simiconnector/rest/v2/quoteitems?quote_id=729 " \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "all_ids":[  
+      "2603"
+   ],
+   "quoteitems":[  
+      {  
+         "item_id":"2603",
+         "quote_id":"729",
+         "created_at":"2016-07-19 03:11:15",
+         "updated_at":"2016-07-19 03:11:15",
+         "product_id":"888",
+         "store_id":"1",
+         "parent_item_id":null,
+         "is_virtual":"0",
+         "sku":"testcustom-option1",
+         "name":"Test Custom Option Simple Product",
+         "description":null,
+         "applied_rule_ids":"44",
+         "additional_data":null,
+         "free_shipping":false,
+         "is_qty_decimal":"0",
+         "no_discount":"0",
+         "weight":"1.0000",
+         "qty":1,
+         "price":2,
+         "base_price":2,
+         "custom_price":null,
+         "discount_percent":1.1,
+         "discount_amount":0.02,
+         "base_discount_amount":0.02,
+         "tax_percent":0,
+         "tax_amount":0,
+         "base_tax_amount":0,
+         "row_total":2,
+         "base_row_total":2,
+         "row_total_with_discount":"0.0000",
+         "row_weight":1,
+         "product_type":"simple",
+         "base_tax_before_discount":null,
+         "tax_before_discount":null,
+         "original_custom_price":null,
+         "redirect_url":null,
+         "base_cost":null,
+         "price_incl_tax":2,
+         "base_price_incl_tax":2,
+         "row_total_incl_tax":2,
+         "base_row_total_incl_tax":2,
+         "hidden_tax_amount":0,
+         "base_hidden_tax_amount":0,
+         "gift_message_id":null,
+         "weee_tax_disposition":0,
+         "weee_tax_row_disposition":0,
+         "base_weee_tax_disposition":0,
+         "base_weee_tax_row_disposition":0,
+         "weee_tax_applied":"a:0:{}",
+         "weee_tax_applied_amount":0,
+         "weee_tax_applied_row_amount":0,
+         "base_weee_tax_applied_amount":0,
+         "base_weee_tax_applied_row_amnt":null,
+         "event_id":null,
+         "giftregistry_item_id":null,
+         "gw_id":null,
+         "gw_base_price":null,
+         "gw_price":null,
+         "gw_base_tax_amount":null,
+         "gw_tax_amount":null,
+         "qty_options":[  
+
+         ],
+         "product":{  
+            "entity_id":"888",
+            "entity_type_id":"4",
+            "attribute_set_id":"4",
+            "type_id":"simple",
+            "sku":"testcustom",
+            "has_options":"1",
+            "required_options":"1",
+            "created_at":"2016-06-07 07:49:15",
+            "updated_at":"2016-06-17 06:59:04",
+            "name":"Test Custom Option Simple Product",
+            "small_image":"no_selection",
+            "thumbnail":"no_selection",
+            "url_key":"test-custom-option-simple-product",
+            "url_path":"test-custom-option-simple-product.html",
+            "msrp_enabled":"2",
+            "msrp_display_actual_price_type":"4",
+            "gift_message_available":null,
+            "status":"1",
+            "visibility":"4",
+            "tax_class_id":"0",
+            "is_recurring":"0",
+            "price":"1.0000",
+            "special_price":null,
+            "weight":"1.0000",
+            "msrp":null,
+            "special_from_date":null,
+            "special_to_date":null,
+            "is_salable":"1",
+            "stock_item":{  
+               "item_id":"1867",
+               "product_id":"888",
+               "stock_id":"1",
+               "qty":"88884.0000",
+               "min_qty":"0.0000",
+               "use_config_min_qty":"1",
+               "is_qty_decimal":"0",
+               "backorders":"0",
+               "use_config_backorders":"1",
+               "min_sale_qty":"1.0000",
+               "use_config_min_sale_qty":"1",
+               "max_sale_qty":"0.0000",
+               "use_config_max_sale_qty":"1",
+               "is_in_stock":"1",
+               "low_stock_date":null,
+               "notify_stock_qty":null,
+               "use_config_notify_stock_qty":"1",
+               "manage_stock":"0",
+               "use_config_manage_stock":"1",
+               "stock_status_changed_auto":"0",
+               "stock_status_changed_automatically":"0",
+               "use_config_qty_increments":"1",
+               "qty_increments":"0.0000",
+               "use_config_enable_qty_inc":"1",
+               "use_config_enable_qty_increments":"1",
+               "enable_qty_increments":"0",
+               "is_decimal_divided":"0",
+               "type_id":"simple",
+               "stock_status":"1",
+               "product_name":"Test Custom Option Simple Product",
+               "store_id":"1",
+               "product_type_id":"simple",
+               "product_status_changed":true,
+               "product_changed_websites":null,
+               "ordered_items":1
+            },
+            "do_not_use_category_id":true,
+            "request_path":"test-custom-option-simple-product.html",
+            "tier_price":[  
+
+            ],
+            "is_in_stock":"1",
+            "store_id":"1",
+            "customer_group_id":"0",
+            "final_price":null,
+            "group_price":[  
+
+            ],
+            "group_price_changed":0,
+            "quote_item_qty":1,
+            "quote_item_price":2,
+            "quote_item_row_total":2
+         },
+         "tax_class_id":"0",
+         "is_recurring":"0",
+         "has_error":false,
+         "is_nominal":false,
+         "simirewardpoints_base_discount":0,
+         "simirewardpoints_discount":0,
+         "simi_base_discount":0,
+         "simirewardpoints_spent":0,
+         "base_calculation_price":2,
+         "calculation_price":2,
+         "converted_price":2,
+         "base_original_price":2,
+         "taxable_amount":2,
+         "base_taxable_amount":2,
+         "is_price_incl_tax":false,
+         "base_weee_tax_applied_row_amount":0,
+         "original_price":2,
+         "applied_rates":[  
+
+         ],
+         "original_discount_amount":0.022,
+         "base_original_discount_amount":0.022,
+         "discount_tax_compensation":0,
+         "simirewardpoints_earn":1,
+         "option":[  
+            {  
+               "option_title":"mydropdownoption",
+               "option_value":"option1 title",
+               "option_price":0
+            }
+         ],
+         "image":"http:\/\/localhost.com\/magento19\/media\/catalog\/product\/cache\/1\/small_image\/600x600\/040ec09b1e35df139433887a97daa66f\/images\/catalog\/product\/placeholder\/small_image.jpg"
+      }
+   ],
+   "total":{  
+      "subtotal_excl_tax":2,
+      "subtotal_incl_tax":2,
+      "tax":0,
+      "discount":0.02,
+      "grand_total_excl_tax":1.98,
+      "grand_total_incl_tax":1.98,
+      "custom_rows":[  
+         {  
+            "title":"You will earn",
+            "sort_order":6,
+            "value":1,
+            "value_string":"1 Codypoint"
+         }
+      ]
+   },
+   "page_size":15,
+   "from":0,
+   "quote_id":"729",
+   "loyalty":{  
+      "loyalty_image":"http:\/\/localhost.com\/magento19\/skin\/frontend\/base\/default\/images\/simirewardpoints\/point.png",
+      "loyalty_label":"Checkout now and earn 1 Codypoint in rewards"
+   }
+}
+```
+This API is to Continue Cart Session with Quote Id
