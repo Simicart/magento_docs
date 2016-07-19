@@ -1,5 +1,12 @@
 # Quote Items (Cart)
 
+## Quote Properties
+
+Attributes| Type| Description
+--------- | ------- | -----------
+quote_id | id | Quote Id
+cart_total | int | Total Cart Items (show on Cart icon Badge)
+
 ## Items Properties
 
 Attributes| Type| Description
