@@ -35,6 +35,7 @@ includes:
   - wishlistitems
   - simirewardpoints
   - productlabels
+  - storelocations
 
 search: true
 ---
