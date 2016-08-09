@@ -6,6 +6,7 @@ Attributes| Type| Description
 --------- | ------- | -----------
 store_id | string | Store View id <code>read only</code>
 code | string | Store View code
+base_url | string | Store View Base URL
 website_id | int | id of the Website that Store View belongs to
 group_id | int | id of the Store (Group) that Store View belongs to
 name | string | Store View name
@@ -43,6 +44,8 @@ curl "https://abc.com/simiconnector/rest/v2/storeviews/default" \
          "store_name":"French",
          "store_code":"french",
          "use_store":"0",
+		 "group_id":"1",
+		 "base_url":"http:\/\/dev-vn.magestore.com\/simicart\/new\/magento\/en",
          "is_rtl":"0",
          "is_show_sample_data":"1",
          "android_sender":"518903118242",
