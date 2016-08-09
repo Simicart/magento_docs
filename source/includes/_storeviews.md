@@ -135,7 +135,8 @@ curl "https://abc.com/simiconnector/rest/v2/storeviews/default" \
       },
       "customer":{  
          "address_option":{  
-            "prefix_show":"",
+            "prefix_show":"",			
+            "middlename_show":"1",
             "suffix_show":"",
             "dob_show":"",
             "taxvat_show":"opt",
