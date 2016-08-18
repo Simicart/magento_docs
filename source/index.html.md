@@ -12,6 +12,7 @@ includes:
   - intro
   - categories
   - products
+  - reviews
   - apps1
   - apps2
   - apps3
