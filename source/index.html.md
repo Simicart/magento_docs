@@ -37,6 +37,7 @@ includes:
   - simirewardpoints
   - productlabels
   - storelocations
+  - paypalmobile
 
 search: true
 ---
