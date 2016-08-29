@@ -68,39 +68,93 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/notifications?device_token=45
 > The above command returns JSON structured like this:
 
 ```json
-{
-    "all_ids": [
-        "1"
-    ],
-    "notifications": [
-        {
-            "notice_id": "1",
-            "notice_title": "First One",
-            "notice_url": null,
-            "notice_content": "Message Test",
-            "notice_sanbox": "2",
-            "website_id": "1",
-            "device_id": "0",
-            "type": "1",
-            "category_id": "0",
-            "product_id": "1",
-            "image_url": "simi/simicart/notification/images/0fdf1e42cc46e5ca1cf5e33b9501655c.png",
-            "location": "",
-            "distance": "",
-            "address": "",
-            "city": "",
-            "country": "",
-            "zipcode": "",
-            "state": "",
-            "show_popup": "0",
-            "created_time": "2016-07-04 09:23:19",
-            "devices_pushed": "8, 9, 10, 11",
-            "storeview_id": "3"
-        }
-    ],
-    "total": 1,
-    "page_size": 15,
-    "from": 0
+{  
+   "all_ids":[  
+      "1",
+      "2",
+      "3"
+   ],
+   "notifications":[  
+      {  
+         "notice_id":"1",
+         "notice_title":"Test Notification iOS 01",
+         "notice_url":null,
+         "notice_content":"Customize your mobile store design in just a few clicks. Make your app completely stand out with two beautiful themes inspired by modern & flat design. Each button optimized. Seeing is believing - give customers that extra vote of confidence in your business.",
+         "notice_sanbox":"1",
+         "storeview_id":"1",
+         "device_id":"1",
+         "type":"1",
+         "category_id":"0",
+         "product_id":"107",
+         "image_url":"http:\/\/demo.magestore.com\/simicart\/simipos1\/media\/simi\/simiconnector\/notification\/images\/6bdede43932e3564de8f55685d42d943.png",
+         "location":"",
+         "distance":"",
+         "address":"",
+         "city":"",
+         "country":"",
+         "zipcode":"",
+         "state":"",
+         "show_popup":"1",
+         "devices_pushed":"1",
+         "created_time":"2016-08-29 03:31:01",
+         "width":500,
+         "height":500,
+         "product_name":"CLOUDY NIGHT"
+      },
+      {  
+         "notice_id":"2",
+         "notice_title":"Test Notification iOS 02",
+         "notice_url":null,
+         "notice_content":"Customize your mobile store design in just a few clicks. Make your app completely stand out with two beautiful themes inspired by modern & flat design. Each button optimized. Seeing is believing - give customers that extra vote of confidence in your business.",
+         "notice_sanbox":"1",
+         "storeview_id":"1",
+         "device_id":"1",
+         "type":"2",
+         "category_id":"5",
+         "product_id":"0",
+         "image_url":"http:\/\/demo.magestore.com\/simicart\/simipos1\/media\/simi\/simiconnector\/notification\/images\/0f61cda55910f0dd54e983d8c87ff319.png",
+         "location":"",
+         "distance":"",
+         "address":"",
+         "city":"",
+         "country":"",
+         "zipcode":"",
+         "state":"",
+         "show_popup":"1",
+         "devices_pushed":"1",
+         "created_time":"2016-08-29 03:41:41",
+         "width":500,
+         "height":500,
+         "category_name":"Shoes",
+         "has_child":1
+      },
+      {  
+         "notice_id":"3",
+         "notice_title":"Test Notification iOS 03",
+         "notice_url":"https:\/\/www.simicart.com\/",
+         "notice_content":"Understand your customer insights and get more engagement through optimization with Real-time mobile app Analytics!\r\n\r\nGet close to potential customers in multichannel. You can promote your social media marketing activities and run promotional campaign together to assist sales.",
+         "notice_sanbox":"1",
+         "storeview_id":"1",
+         "device_id":"1",
+         "type":"3",
+         "category_id":"0",
+         "product_id":"0",
+         "image_url":"",
+         "location":"",
+         "distance":"",
+         "address":"",
+         "city":"",
+         "country":"",
+         "zipcode":"",
+         "state":"",
+         "show_popup":"0",
+         "devices_pushed":"1, 2",
+         "created_time":"2016-08-29 03:42:22"
+      }
+   ],
+   "total":3,
+   "page_size":"24",
+   "from":0
 }
 ```
 This API is to show Notification list

@@ -16,7 +16,7 @@ product_sku | string | Product SKU
 ## Get Information of a QR Code/Barcode
 
 ```shell
-curl "https://abc.com/simiconnector/rest/v2/simibarcodes/QRBNSLD40CDY" \
+curl "https://abc.com/simiconnector/rest/v2/simibarcodes/QRBNSLD40CDY?type=1" \
   -H "Authorization: Bearer <token>"
 ```
 
