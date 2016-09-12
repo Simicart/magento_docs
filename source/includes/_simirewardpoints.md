@@ -218,102 +218,86 @@ curl "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 > The above command returns JSON structured like this:
 
 ```json
-{  
-   "order":{  
-      "billing_address":{           
-         "latlng":""
-      },
-      "shipping_address":{           
-         "latlng":""
-      },
-      "shipping":[           
-         {  
-            "s_method_id":"17051",
-            "s_method_code":"flatrate_flatrate",
-            "s_method_title":"Flat Rate",
-            "s_method_fee":10,
-            "s_method_name":"Fixed",
-            "s_method_selected":false
-         }
-      ],
-      "payment":[  
-         
-      ],
-      "total":{  
-         "subtotal_excl_tax":295,
-         "subtotal_incl_tax":295,
-         "tax":0,
-         "discount":3.25,
-         "grand_total_excl_tax":266.35,
-         "grand_total_incl_tax":266.35,
-         "custom_rows":[  
-            {  
-               "title":"You will spend",
-               "sort_order":5,
-               "value":254,
-               "value_string":"254 Codypoints"
-            },
-            {  
-               "title":"You will earn",
-               "sort_order":6,
-               "value":133,
-               "value_string":"133 Codypoints"
-            },
-            {  
-               "title":"Use point",
-               "sort_order":7,
-               "value":25.4
-            }
-         ]
-      }
-   },
-   "loyalty":{  
-      "loyalty_rules":[  
-         {  
-            "id":"rate",
-            "minPoints":0,
-            "pointStep":1,
-            "maxPoints":789,
-            "pointStepLabel":"1 Codypoint",
-            "pointStepDiscount":"$0.10",
-            "optionType":"slider"
-         }
-      ]
-   }
-}
-```
-
-On Order Detail, there will be Loyalty rules for Spending if available
-
-
-## Send Point on Order Screen
-
-```shell
-curl PUT "https://abc.com/simiconnector/rest/v2/simirewardpoints/spend" \
-  -H "Authorization: Bearer <token>"
-  -d "{  
-"usepoint":"8",
-"ruleid":"rate"
-}"
-```
-
-> The above command returns JSON structured like this:
-
-```json
 {
     "order": {
-        "billing_address": {            
+        "billing_address": {
+            "firstname": "Liam",
+            "lastname": "Đào",
+            "prefix": null,
+            "suffix": null,
+            "vat_id": null,
+            "street": "Hoang Van Thai",
+            "city": "Ha Noi",
+            "region": "Alabama",
+            "region_id": "1",
+            "region_code": "AL",
+            "postcode": "100000",
+            "country_name": "United States",
+            "country_id": "US",
+            "telephone": "098866655",
+            "email": "s@e.com",
+            "company": "Simicart",
+            "fax": null,
             "latlng": ""
         },
-        "shipping_address": {            
+        "shipping_address": {
+            "firstname": "Liam",
+            "lastname": "Đào",
+            "prefix": null,
+            "suffix": null,
+            "vat_id": null,
+            "street": "Hoang Van Thai",
+            "city": "Ha Noi",
+            "region": "Alabama",
+            "region_id": "1",
+            "region_code": "AL",
+            "postcode": "100000",
+            "country_name": "United States",
+            "country_id": "US",
+            "telephone": "098866655",
+            "email": "s@e.com",
+            "company": "Simicart",
+            "fax": null,
             "latlng": ""
         },
-        "shipping": [            
+        "shipping": [
             {
-                "s_method_id": "17061",
+                "s_method_id": "16491",
+                "s_method_code": "ups_GND",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 0,
+                "s_method_name": "Ground",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16492",
+                "s_method_code": "ups_3DS",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 71.08,
+                "s_method_name": "3 Day Select",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16493",
+                "s_method_code": "ups_1DA",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 166.52,
+                "s_method_name": "Next Day Air",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16490",
+                "s_method_code": "freeshipping_freeshipping",
+                "s_method_title": "Free Shipping",
+                "s_method_fee": 0,
+                "s_method_name": "Free",
+                "s_method_selected": true
+            },
+            {
+                "s_method_id": "16489",
                 "s_method_code": "flatrate_flatrate",
                 "s_method_title": "Flat Rate",
-                "s_method_fee": 10,
+                "s_method_fee": 0,
                 "s_method_name": "Fixed",
                 "s_method_selected": false
             }
@@ -346,45 +330,227 @@ curl PUT "https://abc.com/simiconnector/rest/v2/simirewardpoints/spend" \
             }
         ],
         "total": {
-            "subtotal_excl_tax": 295,
-            "subtotal_incl_tax": 295,
-            "tax": 0,
-            "discount": 3.25,
-            "grand_total_excl_tax": 290.95,
-            "grand_total_incl_tax": 290.95,
+            "shipping_hand_incl_tax": 0,
+            "shipping_hand_excl_tax": 0,
+            "subtotal_excl_tax": 2850,
+            "subtotal_incl_tax": 2850,
+            "grand_total_excl_tax": 2750,
+            "grand_total_incl_tax": 2750,
             "custom_rows": [
                 {
                     "title": "You will spend",
                     "sort_order": 5,
-                    "value": 8,
-                    "value_string": "8 Codypoints"
+                    "value": 100,
+                    "value_string": "100 Points"
                 },
                 {
                     "title": "You will earn",
                     "sort_order": 6,
-                    "value": 145,
-                    "value_string": "145 Codypoints"
+                    "value": 275,
+                    "value_string": "275 Points"
                 },
                 {
                     "title": "Use point",
                     "sort_order": 7,
-                    "value": 0.8
+                    "value": 100
+                }
+            ]
+        },
+        "loyalty": {
+            "loyalty_spend": 100,
+            "loyalty_discount": 100,
+            "loyalty_earn": 275,
+            "loyalty_spending": "100 Points",
+            "loyalty_earning": "275 Points",
+            "loyalty_rules": [
+                {
+                    "id": "rate",
+                    "minPoints": 0,
+                    "pointStep": 1,
+                    "maxPoints": 240,
+                    "pointStepLabel": "1 Point",
+                    "pointStepDiscount": "$1.00",
+                    "optionType": "slider"
                 }
             ]
         }
-    },
-    "loyalty": {
-        "loyalty_rules": [
+    }
+}
+```
+
+On Order Detail, there will be Loyalty rules for Spending if available
+
+
+## Send Point on Order Screen
+
+```shell
+curl PUT "https://abc.com/simiconnector/rest/v2/simirewardpoints/spend" \
+  -H "Authorization: Bearer <token>"
+  -d "{  
+"usepoint":"100",
+"ruleid":"rate"
+}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "order": {
+        "billing_address": {
+            "firstname": "Liam",
+            "lastname": "Đào",
+            "prefix": null,
+            "suffix": null,
+            "vat_id": null,
+            "street": "Hoang Van Thai",
+            "city": "Ha Noi",
+            "region": "Alabama",
+            "region_id": "1",
+            "region_code": "AL",
+            "postcode": "100000",
+            "country_name": "United States",
+            "country_id": "US",
+            "telephone": "098866655",
+            "email": "s@e.com",
+            "company": "Simicart",
+            "fax": null,
+            "latlng": ""
+        },
+        "shipping_address": {
+            "firstname": "Liam",
+            "lastname": "Đào",
+            "prefix": null,
+            "suffix": null,
+            "vat_id": null,
+            "street": "Hoang Van Thai",
+            "city": "Ha Noi",
+            "region": "Alabama",
+            "region_id": "1",
+            "region_code": "AL",
+            "postcode": "100000",
+            "country_name": "United States",
+            "country_id": "US",
+            "telephone": "098866655",
+            "email": "s@e.com",
+            "company": "Simicart",
+            "fax": null,
+            "latlng": ""
+        },
+        "shipping": [
             {
-                "id": "rate",
-                "minPoints": 0,
-                "pointStep": 1,
-                "maxPoints": 789,
-                "pointStepLabel": "1 Codypoint",
-                "pointStepDiscount": "$0.10",
-                "optionType": "slider"
+                "s_method_id": "16491",
+                "s_method_code": "ups_GND",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 0,
+                "s_method_name": "Ground",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16492",
+                "s_method_code": "ups_3DS",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 71.08,
+                "s_method_name": "3 Day Select",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16493",
+                "s_method_code": "ups_1DA",
+                "s_method_title": "United Parcel Service",
+                "s_method_fee": 166.52,
+                "s_method_name": "Next Day Air",
+                "s_method_selected": false
+            },
+            {
+                "s_method_id": "16490",
+                "s_method_code": "freeshipping_freeshipping",
+                "s_method_title": "Free Shipping",
+                "s_method_fee": 0,
+                "s_method_name": "Free",
+                "s_method_selected": true
+            },
+            {
+                "s_method_id": "16489",
+                "s_method_code": "flatrate_flatrate",
+                "s_method_title": "Flat Rate",
+                "s_method_fee": 0,
+                "s_method_name": "Fixed",
+                "s_method_selected": false
             }
-        ]
+        ],
+        "payment": [
+            {
+                "cc_types": [
+                    {
+                        "cc_code": "AE",
+                        "cc_name": "American Express"
+                    },
+                    {
+                        "cc_code": "VI",
+                        "cc_name": "Visa"
+                    },
+                    {
+                        "cc_code": "MC",
+                        "cc_name": "MasterCard"
+                    },
+                    {
+                        "cc_code": "DI",
+                        "cc_name": "Discover"
+                    }
+                ],
+                "payment_method": "CCSAVE",
+                "title": "Credit Card (saved)",
+                "useccv": "0",
+                "show_type": 1,
+                "p_method_selected": false
+            }
+        ],
+        "total": {
+            "shipping_hand_incl_tax": 0,
+            "shipping_hand_excl_tax": 0,
+            "subtotal_excl_tax": 2850,
+            "subtotal_incl_tax": 2850,
+            "grand_total_excl_tax": 2750,
+            "grand_total_incl_tax": 2750,
+            "custom_rows": [
+                {
+                    "title": "You will spend",
+                    "sort_order": 5,
+                    "value": 100,
+                    "value_string": "100 Points"
+                },
+                {
+                    "title": "You will earn",
+                    "sort_order": 6,
+                    "value": 275,
+                    "value_string": "275 Points"
+                },
+                {
+                    "title": "Use point",
+                    "sort_order": 7,
+                    "value": 100
+                }
+            ]
+        },
+        "loyalty": {
+            "loyalty_spend": 100,
+            "loyalty_discount": 100,
+            "loyalty_earn": 275,
+            "loyalty_spending": "100 Points",
+            "loyalty_earning": "275 Points",
+            "loyalty_rules": [
+                {
+                    "id": "rate",
+                    "minPoints": 0,
+                    "pointStep": 1,
+                    "maxPoints": 240,
+                    "pointStepLabel": "1 Point",
+                    "pointStepDiscount": "$1.00",
+                    "optionType": "slider"
+                }
+            ]
+        }
     }
 }
 ```

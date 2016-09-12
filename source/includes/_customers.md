@@ -330,7 +330,7 @@ This API is to Get Customer by Email (Check if Customer with that email is Exist
 
 
 ```shell
-curl -X GET "https://abc.com/simiconnector/rest/v2/customers/sociallogin?email=test15@simicart.com&firstname=InputFirstname&lastname=InputLastname" \
+curl -X GET "https://abc.com/simiconnector/rest/v2/customers/sociallogin?email=test15@simicart.com&firstname=InputFirstname&lastname=InputLastname&password=f5bb0c8de146c67b44babbf4e6584cc0" \
   -H "Authorization: Bearer <token>" 
 ```
 
