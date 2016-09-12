@@ -12,6 +12,7 @@ includes:
   - intro
   - categories
   - products
+  - productsmagento2
   - reviews
   - apps1
   - apps2
