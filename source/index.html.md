@@ -39,6 +39,7 @@ includes:
   - productlabels
   - storelocations
   - paypalmobile
+  - downloadableproducts
 
 search: true
 ---
