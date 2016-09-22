@@ -10,36 +10,36 @@ toc_footers:
 
 includes:
   - intro
-  - categories
-  - products
-  - productsmagento2
-  - reviews
-  - apps1
-  - apps2
+  - addresses
   - apps3
-  - apps4
-  - apps5
-  - devices
-  - stores
-  - storeviews
+  - totals
+  - categories
   - cmspages
-  - homes
-  - homeproductlists
+  - apps2
+  - customers
+  - devices
+  - downloadableproducts
+  - apps5
+  - apps4
   - homebanners
   - homecategories
-  - customers
-  - addresses
-  - quoteitems
+  - homeproductlists
+  - homes
   - orders
-  - totals
-  - simibarcodes
-  - simivideos
-  - wishlistitems
-  - simirewardpoints
-  - productlabels
-  - storelocations
   - paypalmobile
-  - downloadableproducts
+  - productlabels
+  - productsmagento2
+  - simivideos
+  - products
+  - simibarcodes
+  - quoteitems
+  - reviews
+  - simirewardpoints
+  - apps1
+  - storeviews
+  - storelocations
+  - stores
+  - wishlistitems
 
 search: true
 ---

@@ -1,4 +1,4 @@
-# Downloadable Products
+# Downloadable Items
 
 ## Downloadable Item Properties
 
