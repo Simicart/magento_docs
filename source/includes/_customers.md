@@ -38,7 +38,8 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/customers" \
 	"taxvat":"mytaxvat",
 	"gender":"",
 	"prefix":"My Prefix",
-	"suffix":"My Suffix"
+	"suffix":"My Suffix",
+	"news_letter":"1"
 }"
 ```
 
