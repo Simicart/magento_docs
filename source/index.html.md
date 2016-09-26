@@ -26,6 +26,7 @@ includes:
   - homeproductlists
   - homes
   - orders
+  - paypalexpress
   - paypalmobile
   - productlabels
   - productsmagento2
