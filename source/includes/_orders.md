@@ -1843,6 +1843,7 @@ curl -X PUT "https://abc.com/simiconnector/rest/v2/orders/onepage" \
         "company":"Company",
         "telephone":"0987123456",
         "fax":"123456",
+		"email":"mail12@mail.com",
         "vat_id":"123"
     }
 }
