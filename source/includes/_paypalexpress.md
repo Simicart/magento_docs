@@ -14,12 +14,12 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/ppexpressapis/start" \
 
 ```json
 {  
-   "ppexpressapi":[  
+   "ppexpressapi": 
       {  
          "url":"https:\/\/www.sandbox.paypal.com\/cgi-bin\/webscr?cmd=_express-checkout&token=EC-4PS62653C2068842V&useraction=commit",
          "review_address":"1"
       }
-   ]
+   
 }
 ```
 This API is to Start Paypal express payment
@@ -43,7 +43,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/ppexpressapis/checkout_addres
 
 ```json
 {  
-   "ppexpressapi":[  
+   "ppexpressapi":  
       {  
          "billing_address":{  
             "firstname":"Cody",
@@ -87,7 +87,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/ppexpressapis/checkout_addres
             "latlng":""
          }
       }
-   ]
+   
 }
 ```
 It's the same with Address editing from Onepage/Checkout as guest screen.
@@ -141,7 +141,7 @@ It's the same with Address editing from Onepage/Checkout as guest screen.
 
 ```json
 {
-    "ppexpressapi": [
+    "ppexpressapi": 
         {
             "billing_address": {
                 "firstname": "My First NameB",
@@ -185,7 +185,7 @@ It's the same with Address editing from Onepage/Checkout as guest screen.
                 "latlng": ""
             }
         }
-    ]
+    
 }
 
 ```
