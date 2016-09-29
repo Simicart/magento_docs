@@ -58,36 +58,39 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
             "taxvat_show":"0"
          },
          "address_fields_config":{  
-            "company":"req",
-            "street":"opt",
-            "country_id":"opt",
-            "region_id":"opt",
-            "city":"opt",
-            "zipcode":"",
-            "telephone":"opt",
-            "fax":"opt",
-            "prefix":"opt",
-            "suffix":"opt",
-            "birthday":"opt",
-            "gender":"opt",
-            "taxvat":"opt",
+            "company_show":"opt",
+            "street_show":"opt",
+            "country_id_show":"opt",
+            "region_id_show":"opt",
+            "city_show":"opt",
+            "zipcode_show":"opt",
+            "telephone_show":"opt",
+            "fax_show":"opt",
+            "prefix_show":"opt",
+            "suffix_show":"opt",
+            "dob_show":"opt",
+            "gender_show":"opt",
+            "taxvat_show":"opt",
             "custom_fields":[  
                {  
                   "code":"text_field_sample",
                   "title":"Text Field",
                   "type":"text",
+                  "required":"opt",
                   "position":"7"
                },
                {  
                   "code":"number_field_sample",
                   "title":"Number Field",
                   "type":"number",
+                  "required":"req",
                   "position":"8"
                },
                {  
                   "code":"single_option_sample",
                   "title":"Sample Field Single Option",
                   "type":"single_option",
+                  "required":"",
                   "option_array":[  
                      "Option Single 1",
                      "Option Single 2",
@@ -99,6 +102,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
                   "code":"multi_option_sample",
                   "title":"Sample Field Multi Option",
                   "type":"multi_option",
+                  "required":"opt",
                   "option_array":[  
                      "Option Multi 1",
                      "Option Multi 2",

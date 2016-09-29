@@ -2,6 +2,29 @@
 
 ## PayPal Express Properties
 
+## Start Paypal Express Checkout
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/default" \
+  -H "Authorization: Bearer <token>" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "storeview":{  
+      "base":{
+      },
+      "paypal_express_config":{  
+         "show_on_product_detail":"0",
+         "show_on_cart":"1"
+      }
+   }
+}
+```
+if paypal_express_config.show_on_product_detail = 1, then show on product detail screen, hide it otherwise.
+if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it otherwise.
 
 ## Start Paypal Express Checkout
 
