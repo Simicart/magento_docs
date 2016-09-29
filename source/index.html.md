@@ -13,6 +13,7 @@ includes:
   - twout
   - addresses
   - apps3
+  - custompayment
   - totals
   - categories
   - cmspages
