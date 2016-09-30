@@ -16,6 +16,7 @@ includes:
   - custompayment
   - totals
   - categories
+  - ccavenue
   - cmspages
   - apps2
   - customers
