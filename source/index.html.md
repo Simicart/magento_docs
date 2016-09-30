@@ -30,6 +30,8 @@ includes:
   - orders
   - paypalexpress
   - paypalmobile
+  - payuindia
+  - payuinternational
   - productlabels
   - productsmagento2
   - simivideos
