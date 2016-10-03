@@ -13,6 +13,7 @@ includes:
   - twout
   - addresses
   - apps3
+  - braintree
   - custompayment
   - totals
   - categories
