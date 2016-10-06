@@ -24,6 +24,17 @@ curl POST "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 
 Open the url on url_action
 
+Check the url opened on webview:
+
+“onepage/success” -> Show Thank you pop up. Back to home screen.
+
+“onepage/review” -> Show Thank you and let customer know that rewiew would be required pop up. Back to home screen.
+
+“onepage/failure” -> Show error pop up. Back to home screen.
+
+“simiavenue/api/index” -> Show error pop up. Back to home screen.
+
+
 ### HTTP Request
 
 

@@ -74,7 +74,7 @@ Use the params with the url_back.
 
 Eg. https://sandbox.2checkout.com/checkout/purchase?sid=901328799&purchase_step=payment-method&merchant_order_id=100000007
 
-when URL of webview contain order_number, use that for transaction_id for the next API (update Order transaction)
+when URL of webview contain jsessionid, use that for transaction_id for the next API (update Order transaction)
 
 ## Update Order and Transation
 

@@ -14,13 +14,13 @@ includes:
   - addresses
   - apps3
   - braintree
-  - custompayment
   - totals
   - categories
   - ccavenue
   - cmspages
   - apps2
   - customers
+  - custompayment
   - devices
   - downloadableproducts
   - apps5
