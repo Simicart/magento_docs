@@ -55,7 +55,7 @@ Use url_back for the following action
 ## After Order placed
 
 ```shell
-curl -X POST "https://abc.com/simiconnector/rest/v2/orders/onepage" \
+curl -X PUT "https://abc.com/simiconnector/rest/v2/orders/onepage" \
   -H "Authorization: Bearer <token>" \
 ```
 

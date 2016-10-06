@@ -29,6 +29,7 @@ includes:
   - homecategories
   - homeproductlists
   - homes
+  - klarna
   - orders
   - paypalexpress
   - paypalmobile
