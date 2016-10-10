@@ -50,7 +50,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/orders/onepage" \
    }
 }
 ```
-Use url_back for the following action
+Use is_sandbox for the following action
 
 ## After Order placed
 
@@ -70,7 +70,11 @@ curl -X PUT "https://abc.com/simiconnector/rest/v2/orders/onepage" \
     }
 }
 ```
-Use the params with the url_back.
+If is_sandbox is 1, use url: https://sandbox.2checkout.com/checkout/purchase
+
+otherwise, use url: https://2checkout.com/checkout/purchase
+
+Use returned params for parameters
 
 Eg. https://sandbox.2checkout.com/checkout/purchase?sid=901328799&purchase_step=payment-method&merchant_order_id=100000007
 

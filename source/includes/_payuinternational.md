@@ -32,7 +32,7 @@ Sercure key: 6u39nqhq8ftd0hlvnjfs66eh8c
 
 Account Id: 509171
 
-Gateway URL: https://stg.gateway.payulatam.com/ppp-web-gateway
+Gateway URL: https://sandbox.gateway.payulatam.com/ppp-web-gateway
 
 ### HTTP Request
 

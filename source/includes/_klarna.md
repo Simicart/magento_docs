@@ -2,7 +2,7 @@
 
 ## Klarna Checkout Properties
 
-## Save Payment via PayPal Mobile
+## Klarna Parameters Getting
 
 ```shell
 curl -X GET "https://abc.com/simiconnector/rest/v2/simiklarnaapis/get_params" \
@@ -31,6 +31,8 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/simiklarnaapis/get_params" \
     ]
 }
 ```
+After customer clicked "place order" button, send this request and open the webview if this request return Data.
+
 Use this json for Data on the webview content. Under the 'data' param
 (https://abc.com/simiklarna/api/checkout)
 
