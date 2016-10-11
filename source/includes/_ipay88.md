@@ -1,13 +1,6 @@
-# Checkout.com Payment
+# Ipay88 Payment
 
-## Checkout.com Payment Properties
-
-
-Attributes| Type| Description
---------- | ------- | -----------
-public_key | string | Public Key
-private_key | string | Private (Secret) Key
-is_sandbox | string | 1 - sanbox, 0 - live
+## Ipay88 Payment Properties
 
 ## Onepage Payment Info
 
@@ -22,12 +15,14 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 {
     "order": {
         "billing_address": {
+           
         },
         "shipping_address": {
+           
         },
         "shipping": [
             {
-                "s_method_id": "345",
+                "s_method_id": "375",
                 "s_method_code": "freeshipping_freeshipping",
                 "s_method_title": "Free Shipping",
                 "s_method_fee": 0,
@@ -35,7 +30,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/orders/onepage" \
                 "s_method_selected": true
             },
             {
-                "s_method_id": "344",
+                "s_method_id": "374",
                 "s_method_code": "flatrate_flatrate",
                 "s_method_title": "Flat Rate",
                 "s_method_fee": 5,
@@ -45,34 +40,22 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/orders/onepage" \
         ],
         "payment": [
             {
-                "payment_method": "SIMIAVENUE",
-                "title": "CC Avenue",
-                "show_type": 3,
-                "p_method_selected": false
-            },
-            {
-                "payment_method": "SIMICHECKOUTCOM",
-                "title": "Checkout.com",
-                "show_type": 3,
+                "is_sandbox": "1",
+                "payment_method": "SIMIIPAY88",
+                "title": "iPay88 Checkout",
+                "show_type": 2,
                 "p_method_selected": false,
-                "public_key": "pk_test_SPECIMEN-111",
-                "private_key": "sk_093F4C8D-E608-4B8D-9B39-8C2491345864",
-                "is_sandbox": "1"
-            },
-            {
-                "payment_method": "SIMIPAYU",
-                "title": "PayU",
-                "show_type": 3,
-                "p_method_selected": false
+                "merchant_key": "54xlV4aIf4",
+                "merchant_code": "M05268"
             }
         ],
         "total": {
             "shipping_hand_incl_tax": 0,
             "shipping_hand_excl_tax": 0,
-            "subtotal_excl_tax": 399.99,
-            "subtotal_incl_tax": 399.99,
-            "grand_total_excl_tax": 399.99,
-            "grand_total_incl_tax": 399.99
+            "subtotal_excl_tax": 15,
+            "subtotal_incl_tax": 15,
+            "grand_total_excl_tax": 15,
+            "grand_total_incl_tax": 15
         },
         "loyalty": {
             "loyalty_spend": 0,
@@ -86,12 +69,37 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/orders/onepage" \
 }
 ```
 
-Use the provided information for checking out
-
-## After Payment completed
+## After Order Placed
 
 ```shell
-curl -X GET "https://abc.com/simiconnector/rest/v2/checkoutcomapis/update_payment?invoice_number=100000041&transaction_id=1102" \
+curl -X POST "https://abc.com/simiconnector/rest/v2/orders/onepage" \
+  -H "Authorization: Bearer <token>" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "order": {
+        "invoice_number": "100000043",
+        "payment_method": "simiipay88",
+        "amount": 399.99,
+        "currency_code": "INR",
+        "name": "abc Company",
+        "contact": "66784318",
+        "email": "test@simicart.com",
+        "product_des": "sw810i,",
+        "country_id": "IN"
+    }
+}
+```
+
+Use those information for iPay88 checkout.
+
+## Update Payment
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/simiipay88apis/update_payment?order_id=100000043&transaction_id=1102&status=processing&auth_code=xyz&ref_no=123" \
   -H "Authorization: Bearer <token>" \
 ```
 
@@ -107,5 +115,5 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/checkoutcomapis/update_paymen
     }
 }
 ```
-Use this API to update payment with invoice number and checkout.com transaction_id.
+Use this API to update payment.
 

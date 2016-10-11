@@ -30,6 +30,7 @@ includes:
   - homecategories
   - homeproductlists
   - homes
+  - ipay88
   - klarna
   - orders
   - paypalexpress
