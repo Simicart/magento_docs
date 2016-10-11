@@ -17,6 +17,7 @@ includes:
   - totals
   - categories
   - ccavenue
+  - checkoutcom
   - cmspages
   - apps2
   - customers
