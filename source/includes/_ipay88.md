@@ -107,7 +107,7 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/simiipay88apis/update_payment
 
 ```json
 {
-    "checkoutcomapi": {
+    "simiipay88api": {
         "status": "SUCCESS",
         "message": [
             "Thank you for your purchase!"
