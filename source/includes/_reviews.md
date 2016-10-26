@@ -123,7 +123,7 @@ curl "https://abc.com/simiconnector/rest/v2/products/83" \
                 "form_review": {
                     "key_1": "nickname",
                     "key_2": "title",
-                    "key_3": "detail"
+                    "key_3": "detail",
                     "form_key": [
                         {
                             "key": "nickname",
