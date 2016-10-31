@@ -60,7 +60,7 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
 Base on Store View Configuration:
 
 
-Subtotal: tax_cart_display_subtotal
+Subtotal: tax_cart_display_subtotal (tax_sales_display_subtotal on order history screen)
 
 - If 1: Show subtotal_excl_tax with Label "Subtotal".
 
@@ -68,7 +68,7 @@ Subtotal: tax_cart_display_subtotal
 
 - If 3: Show both subtotal_excl_tax and subtotal_incl_tax with Labels "Subtotal (Excl. Tax)" and "Subtotal (Incl. Tax)".
 
-Shipping and Handling: tax_cart_display_shipping
+Shipping and Handling: tax_cart_display_shipping (tax_sales_display_shipping on order history screen)
 
 - If 1: Show shipping_hand_excl_tax with Label "Shipping".
 
@@ -81,7 +81,7 @@ Discount: Label: "Discount"
 
 Tax: If there's tax value included, show it with label "Tax"
 
-Grand Total: tax_cart_display_grandtotal
+Grand Total: tax_cart_display_grandtotal (tax_sales_display_grandtotal on order history screen)
 
 - If 1: Display both grand_total_excl_tax and grand_total_incl_tax with Labels "Grand Total Excl. Tax" and "Grand Total Incl. Tax"
 
@@ -167,7 +167,7 @@ curl "https://abc.com/simiconnector/rest/v2/quoteitems" \
 }
 ```
 
-If Store Configuration for tax on Cart (tax_cart_display_full_summary) is '1', and there's tax_summary on total information, then the Summary needs to be shown.
+If Store Configuration for tax on Cart (tax_cart_display_full_summary) or on Order (tax_sales_display_full_summary) is '1', and there's tax_summary on total information, then the Summary needs to be shown.
 
 The 'amount' can be empty, in that case, the value row is blank.
 

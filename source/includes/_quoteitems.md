@@ -427,7 +427,7 @@ If tax_cart_display_price is:
 
 - 3: Including and Excluding Tax - Show both Including tax (with Title "Incl. Tax") and Excluding Tax (with title "Excl. Tax")
 
-
+(On order history screen, the products is displayed the same way using tax_sales_display_price config value)
 
 ## Apply Coupon Code
 
