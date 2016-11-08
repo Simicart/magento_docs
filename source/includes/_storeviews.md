@@ -62,7 +62,8 @@ curl "https://abc.com/simiconnector/rest/v2/storeviews/default" \
                "title":"US Dollar"
             }
          ],
-         "is_show_home_title":"1"
+         "is_show_home_title":"1",
+         "cust_group": "1"
       },
       "sales":{  
          "sales_reorder_allow":"1",

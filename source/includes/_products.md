@@ -76,6 +76,15 @@ curl "https://abc.com/simiconnector/rest/v2/products/166" \
 		],
 		"group_price_changed":0,
 		"tier_price":[
+			{
+            "price_id": "11",
+            "website_id": "0",
+            "all_groups": "1",
+            "cust_group": 32000,
+            "price": "12.0000",
+            "price_qty": "12.0000",
+            "website_price": "12.0000"
+            },
 		],
 		"tier_price_changed":0,
 		"media_gallery":{
