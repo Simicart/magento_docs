@@ -169,6 +169,10 @@ curl "https://abc.com/simiconnector/rest/v2/products/166" \
 				"url":"https://abc.com/thumbnail.jpg",
 				"position":"1"																															       
 			}
+		],
+		"app_tier_prices": [
+			"Buy 1 for €92.38 (€92.38 incl. tax) each and save 94% ",
+			"Buy 4 for €73.90 (€73.90 incl. tax) each and save 95% "
 		]
 	}
 }
@@ -227,11 +231,7 @@ curl "https://abc.com/simiconnector/rest/v2/products" \
 		"images": [{
 			"url": "http:\/\/localhost.com:90\/magento\/media\/catalog\/product\/cache\/1\/small_image\/600x600\/040ec09b1e35df139433887a97daa66f\/images\/catalog\/product\/placeholder\/small_image.jpg",
 			"position": 1
-		}],
-		"app_tier_prices": [
-			"Buy 1 for €92.38 (€92.38 incl. tax) each and save 94% ",
-			"Buy 4 for €73.90 (€73.90 incl. tax) each and save 95% "
-        ]
+		}]
 	}],
 	"total": 61,
 	"page_size": "1",
