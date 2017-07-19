@@ -37,22 +37,25 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
 {  
    "storeview":{  
       "customer":{  
-         "address_option":{  
-            "prefix_show":"",
-            "suffix_show":"",
-            "dob_show":"",
-            "taxvat_show":"opt",
-            "gender_show":"",
-            "gender_value":[  
-               {  
-                  "label":"Male",
-                  "value":"1"
+         "address_option": {
+            "prefix_show": "",
+            "middlename_show": "",
+            "suffix_show": "",
+            "dob_show": "",
+            "taxvat_show": null,
+            "gender_show": "",
+            "gender_value": [
+               {
+                  "label": "Male",
+                  "value": "123"
                },
-               {  
-                  "label":"Female",
-                  "value":"2"
+               {
+                  "label": "Female",
+                  "value": "124"
                }
-            ]
+            ],
+            "region_state_required": "AT,CA,CH,DE,EE,ES,FI,FR,LT,LV,RO,US",
+            "region_display_all": "1"
          },
          "account_option":{  
             "taxvat_show":"0"
@@ -119,6 +122,12 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/storeviews/1" \
    }
 }
 ```
+Value of region_state_required:
+
+-  If Country Id is one of the listed Values, show the state fields and make it required.
+
+-  If not, if the value of region_display_all is 1: show the state (optional) else: hide the state field
+
 
 Address fields is configured on the Storeview Config setting result. (storeview.customer.address_option)
 

@@ -10,7 +10,7 @@ payment_list | array | Payment List
 apple_merchant | string | Apple Merchant
 google_merchant | string | Goole Merchant
 
-## Save Payment via PayPal Mobile
+## Save Payment via Braintree
 
 ```shell
 curl -X POST "https://abc.com/simiconnector/rest/v2/braintreeapis" \

@@ -95,23 +95,25 @@ curl "https://abc.com/simiconnector/rest/v2/storeviews/default" \
          "google_analytics_anonymization":null
       },
       "customer":{  
-         "address_option":{  
-            "prefix_show":"",
-            "middlename_show":"",
-            "suffix_show":"",
-            "dob_show":"",
-            "taxvat_show":null,
-            "gender_show":"",
-            "gender_value":[  
-               {  
-                  "label":"Male",
-                  "value":"123"
+         "address_option": {
+            "prefix_show": "",
+            "middlename_show": "",
+            "suffix_show": "",
+            "dob_show": "",
+            "taxvat_show": null,
+            "gender_show": "",
+            "gender_value": [
+               {
+                  "label": "Male",
+                  "value": "123"
                },
-               {  
-                  "label":"Female",
-                  "value":"124"
+               {
+                  "label": "Female",
+                  "value": "124"
                }
-            ]
+            ],
+            "region_state_required": "AT,CA,CH,DE,EE,ES,FI,FR,LT,LV,RO,US",
+            "region_display_all": "1"
          },
          "account_option":{  
             "taxvat_show":"0"
