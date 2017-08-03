@@ -25,6 +25,10 @@ includes:
   - devices
   - downloadableproducts
   - apps5
+  - giftcard
+  - giftcard1
+  - giftcard2
+  - giftcard3
   - apps4
   - homebanners
   - homecategories

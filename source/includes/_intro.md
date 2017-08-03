@@ -22,7 +22,7 @@ curl -X POST "api_endpoint_here" \
 
 > Make sure to replace `token` with your OAuth2.0 API token.
 
-SimiCart uses [OAuth2.0](https://tools.ietf.org/html/rfc6749) to allow access to the API. You can register your developer account and your applications at our [developer portal](http://developer.jajahub.com/)
+SimiCart uses [OAuth2.0](https://tools.ietf.org/html/rfc6749) to allow access to the API. You can register your developer account and your applications at our [developer portal](https://www.simicart.com/)
 
 SimiCart expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
