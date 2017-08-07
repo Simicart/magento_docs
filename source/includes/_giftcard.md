@@ -29,6 +29,14 @@ history.order_number | int | Order Number
 history.balance_change | int | Amount Balance Change
 history.created_date | date | Created Date
 
+Gift Code Status :
+- 1 - Pending
+- 2 - Active
+- 3 - Disable
+- 4 - Used
+- 5 - Expired
+- 6 - Deleted
+
 
 ## View Customer Giftvoucher Credit Information
 
@@ -269,6 +277,8 @@ curl DELETE : "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/si
   "customer_voucher_id" : "2"
   }"
 ```
+
+> The above command returns JSON structured like this:
 
 ```json
 {
