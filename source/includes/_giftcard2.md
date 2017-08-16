@@ -15,160 +15,66 @@ curl "http://dev-magento19.jajahub.com/simiconnector/rest/v2/simigiftcodes/2" \
 
 ```json
 {
-  "simigiftcode": {
-    "giftvoucher_id": "2",
-    "gift_code": "0711-3CHQF-CTYA",
-    "balance": "0.0000",
-    "currency": "USD",
-    "status": "4",
-    "expired_at": "2018-07-19 00:00:00",
-    "customer_id": "150",
-    "customer_name": "Peter",
-    "customer_email": "peter@simicart.com",
-    "recipient_name": "Cody",
-    "recipient_email": "cody@simicart.com",
-    "recipient_address": "mr Test Simi\r\nsimicart\r\nha noi\r\n\r\n\r\n\r\n\r\nla thanh,  Arkansas, Giojhh\r\nUnited States\r\nT: 56668556\r\n\r\n",
-    "message": "Test Message",
-    "store_id": "1",
-    "conditions_serialized": {
-      "type": "salesrule/rule_condition_combine",
-      "attribute": null,
-      "operator": null,
-      "value": "1",
-      "is_value_processed": null,
-      "aggregator": "all",
-      "conditions": [
-        {
-          "type": "salesrule/rule_condition_address",
-          "attribute": "base_subtotal",
-          "operator": ">=",
-          "value": "100",
-          "is_value_processed": false
-        }
-      ]
-    },
-    "day_to_send": "2017-07-20",
-    "is_sent": "2",
-    "shipped_to_customer": "0",
-    "created_form": null,
-    "template_id": null,
-    "description": "Describe conditions applied to shopping cart when using this gift code",
-    "giftvoucher_comments": "Test Comment",
-    "email_sender": "0",
-    "notify_success": "1",
-    "giftcard_custom_image": "0",
-    "giftcard_template_id": "1",
-    "giftcard_template_image": "default.png",
-    "actions_serialized": {
-      "type": "salesrule/rule_condition_product_combine",
-      "attribute": null,
-      "operator": null,
-      "value": "1",
-      "is_value_processed": null,
-      "aggregator": "all",
-      "conditions": [
-        {
-          "type": "salesrule/rule_condition_product",
-          "attribute": "quote_item_price",
-          "operator": ">=",
-          "value": "100",
-          "is_value_processed": false
-        }
-      ]
-    },
-    "timezone_to_send": "America/Los_Angeles",
-    "day_store": "2017-07-20 00:00:00",
-    "set_id": null,
-    "used": null,
-    "is_deleted": false,
-    "history": [
-      {
-        "history_id": "2",
-        "giftvoucher_id": "2",
-        "action": "1",
-        "created_at": "2017-07-19 08:22:05",
-        "amount": "100.0000",
+    "simigiftcode": {
+        "giftvoucher_id": "30",
+        "gift_code": "1193-8UDMY-BJQK",
+        "balance": "30.0000",
         "currency": "USD",
         "status": "1",
-        "comments": "Created for order 145000428",
-        "order_increment_id": "145000428",
-        "order_item_id": "1284",
-        "order_amount": "90.0000",
-        "extra_content": "Created by customer frank simi",
-        "balance": "100.0000",
+        "expired_at": "Aug 14, 2018",
         "customer_id": "150",
-        "customer_email": "test@simicart.com"
-      },
-      {
-        "history_id": "7",
-        "giftvoucher_id": "2",
-        "action": "2",
-        "created_at": "2017-07-19 08:23:03",
-        "amount": "100.0000",
-        "currency": "USD",
-        "status": "2",
-        "comments": "Active when order is complete",
-        "order_increment_id": "",
-        "order_item_id": "1284",
-        "order_amount": "0.0000",
-        "extra_content": null,
-        "balance": "100.0000",
-        "customer_id": null,
-        "customer_email": null
-      },
-      {
-        "history_id": "14",
-        "giftvoucher_id": "2",
-        "action": "2",
-        "created_at": "2017-07-19 08:47:44",
-        "amount": "100.0000",
-        "currency": "USD",
-        "status": "2",
-        "comments": null,
-        "order_increment_id": "",
-        "order_item_id": null,
-        "order_amount": "0.0000",
-        "extra_content": "Updated by admin",
-        "balance": "100.0000",
-        "customer_id": null,
-        "customer_email": null
-      },
-      {
-        "history_id": "25",
-        "giftvoucher_id": "2",
-        "action": "2",
-        "created_at": "2017-07-24 08:14:32",
-        "amount": "100.0000",
-        "currency": "USD",
-        "status": "2",
-        "comments": "Test Comment",
-        "order_increment_id": "",
-        "order_item_id": null,
-        "order_amount": "0.0000",
-        "extra_content": "Updated by admin",
-        "balance": "100.0000",
-        "customer_id": null,
-        "customer_email": null
-      },
-      {
-        "history_id": "26",
-        "giftvoucher_id": "2",
-        "action": "7",
-        "created_at": "2017-07-25 09:36:41",
-        "amount": "100.0000",
-        "currency": "USD",
-        "status": "2",
-        "comments": "Redeem to Gift Card credit balance",
-        "order_increment_id": null,
-        "order_item_id": null,
-        "order_amount": "0.0000",
-        "extra_content": "Redeemed by Mr frank simi",
-        "balance": "0.0000",
-        "customer_id": "150",
-        "customer_email": "test@simicart.com"
-      }
-    ]
-  }
+        "customer_name": "frank simi",
+        "customer_email": "test@simicart.com",
+        "recipient_name": "",
+        "recipient_email": "",
+        "recipient_address": null,
+        "message": null,
+        "store_id": "1",
+        "conditions_serialized": "a:6:{s:4:\"type\";s:32:\"salesrule/rule_condition_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}",
+        "day_to_send": null,
+        "is_sent": "0",
+        "shipped_to_customer": "0",
+        "created_form": null,
+        "template_id": null,
+        "description": null,
+        "giftvoucher_comments": null,
+        "email_sender": "0",
+        "notify_success": "0",
+        "giftcard_custom_image": "0",
+        "giftcard_template_id": "1",
+        "giftcard_template_image": "default.png",
+        "actions_serialized": "a:6:{s:4:\"type\";s:40:\"salesrule/rule_condition_product_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}",
+        "timezone_to_send": null,
+        "day_store": null,
+        "set_id": null,
+        "used": null,
+        "is_deleted": false,
+        "added_date": "Aug 14, 2017",
+        "currency_symbol": "$",
+        "actions": [
+            "Remove"
+        ],
+        "history": [
+            {
+                "history_id": "66",
+                "giftvoucher_id": "30",
+                "action": "1",
+                "created_at": "Aug 16, 2017",
+                "amount": "30.0000",
+                "currency": "USD",
+                "status": "1",
+                "comments": "Created for order 145000444",
+                "order_increment_id": "145000444",
+                "order_item_id": "1308",
+                "order_amount": "30.0000",
+                "extra_content": "Created by customer frank simi",
+                "balance": "30.0000",
+                "customer_id": "150",
+                "customer_email": "test@simicart.com",
+                "currency_symbol": "$"
+            }
+        ]
+    }
 }
 ```
 
@@ -236,7 +142,7 @@ History Action
 curl POST "http://dev-magento19.jajahub.com/simiconnector/rest/v2/checkgiftcodes" \
   -H "Authorization: Bearer <token>"
   -d "{
-  "giftcode" : "0711-3CHQF-CTYA"
+  "giftcode" : "1193-8UDMY-BJQK"
   }"
 ```
 
@@ -244,50 +150,36 @@ curl POST "http://dev-magento19.jajahub.com/simiconnector/rest/v2/checkgiftcodes
 
 ```json
 {
-    "giftvoucher_id": "2",
-    "gift_code": "0711-3CHQF-CTYA",
-    "balance": "0.0000",
+    "giftvoucher_id": "30",
+    "gift_code": "1193-8UDMY-BJQK",
+    "balance": "30.0000",
     "currency": "USD",
-    "status": "4",
-    "expired_at": "2018-07-19 00:00:00",
+    "status": "1",
+    "expired_at": "Aug 14, 2018",
     "customer_id": "150",
-    "customer_name": "Peter",
-    "customer_email": "peter@simicart.com",
-    "recipient_name": "Cody",
-    "recipient_email": "cody@simicart.com",
-    "recipient_address": "mr Test Simi\r\nsimicart\r\nha noi\r\n\r\n\r\n\r\n\r\nla thanh,  Arkansas, Giojhh\r\nUnited States\r\nT: 56668556\r\n\r\n",
-    "message": "Test Message",
+    "customer_name": "frank simi",
+    "customer_email": "test@simicart.com",
+    "recipient_name": "",
+    "recipient_email": "",
+    "recipient_address": null,
+    "message": null,
     "store_id": "1",
-    "conditions_serialized": {
-        "type": "salesrule/rule_condition_combine",
-        "attribute": null,
-        "operator": null,
-        "value": true,
-        "is_value_processed": null,
-        "aggregator": "all"
-    },
-    "day_to_send": "2017-07-20",
-    "is_sent": "2",
-    "shipped_to_customer": "1",
+    "conditions_serialized": "a:6:{s:4:\"type\";s:32:\"salesrule/rule_condition_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}",
+    "day_to_send": "Aug 16, 2017",
+    "is_sent": "0",
+    "shipped_to_customer": "0",
     "created_form": null,
     "template_id": null,
-    "description": "Describe conditions applied to shopping cart when using this gift code",
-    "giftvoucher_comments": "Test Comment",
+    "description": null,
+    "giftvoucher_comments": null,
     "email_sender": "0",
-    "notify_success": "1",
+    "notify_success": "0",
     "giftcard_custom_image": "0",
     "giftcard_template_id": "1",
     "giftcard_template_image": "default.png",
-    "actions_serialized": {
-        "type": "salesrule/rule_condition_product_combine",
-        "attribute": null,
-        "operator": null,
-        "value": true,
-        "is_value_processed": null,
-        "aggregator": "all"
-    },
-    "timezone_to_send": "America/Los_Angeles",
-    "day_store": "2017-07-20 00:00:00",
+    "actions_serialized": "a:6:{s:4:\"type\";s:40:\"salesrule/rule_condition_product_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}",
+    "timezone_to_send": null,
+    "day_store": "Aug 16, 2017",
     "set_id": null,
     "used": null
 }

@@ -372,8 +372,10 @@ curl "http://dev-magento19.jajahub.com/simiconnector/rest/v2/quoteitems" \
     "amount":"100","giftcard_template_id":"1",
     "giftcard_template_image":"1.jpg",
     "giftcard_use_custom_image":"1",
+    "url_image" : "http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/amazon/default.png"
     "recipient_ship":"Yes","recipient_address":"",
-    "send_friend":"1","customer_name":"Peter",
+    "send_friend":"1",
+    "customer_name":"Peter",
     "recipient_name":"Cody",
     "recipient_email":"cody@simicart.com",
     "message":"Cody Message",
@@ -401,6 +403,7 @@ price_amount | int | Gift Card Price ( required )
 giftcard_template_id | int | Gift Card Template Id ( required )
 giftcard_template_image | string | Gift Card Template Image Name ( required )
 giftcard_use_custom_image | int | Is Use Custom Image ( 1 or 0 )
+url_image | string | Url Template Image or Url Custom Image Upload ( required )
 recipient_ship | int | Send through post office ( 1 or 0 )
 recipient_address | string | Recipient Address
 send_friend | int | Send Gift Card to friend ( 1 or 0 )

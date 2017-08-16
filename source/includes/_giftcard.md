@@ -53,21 +53,27 @@ curl "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustome
     "customer_id": "150",
     "balance": "150.0000",
     "currency": "USD",
+    "currency_symbol": "$",
     "listcode": [
       {
         "customer_voucher_id": "9",
         "customer_id": "150",
         "voucher_id": "14",
-        "added_date": "2017-07-20 04:05:42",
+        "added_date": "Aug 11, 2017",
         "recipient_name": "",
         "gift_code": "6961-D66DA-NXZU",
         "balance": "500.0000",
         "currency": "USD",
         "status": "2",
-        "expired_at": "2018-07-20 04:05:42",
+        "expired_at": "Aug 31, 2017",
         "customer_check_id": "150",
         "recipient_email": "",
-        "customer_email": "test@simicart.com"
+        "customer_email": "test@simicart.com",
+        "currency_symbol": "$",
+        "action": [
+            "Remove"
+        ],
+        "giftvoucher_id": "14"
       }
     ],
     "history": [
@@ -83,7 +89,8 @@ curl "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustome
             "currency": "USD",
             "base_amount": "0.0000",
             "amount": "0.0000",
-            "created_date": "2017-07-19 07:35:00"
+            "created_date": "Jul 19, 2017",
+            "currency_symbol": "$"
           },
           {
             "history_id": "2",
@@ -97,7 +104,8 @@ curl "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustome
             "currency": "USD",
             "base_amount": "0.0000",
             "amount": "0.0000",
-            "created_date": "2017-07-20 02:14:17"
+            "created_date": "Jul 19, 2017",
+            "currency_symbol": "$"
           }
     ] 
   }
@@ -112,7 +120,7 @@ This endpoint retrieves Customer Giftvoucher Credit Information
 curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/addredeem" \
   -H "Authorization: Bearer <token>"
   -d "{
-  "giftcode" : "0711-3CHQF-CTYA"
+  "giftcode" : "GIFT-WMEW-LGR06F"
   }"
 ```
 
@@ -120,89 +128,9 @@ curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicu
 
 ```json
 {
-  "simicustomercredit": {
-      "credit_id": "1",
-      "customer_id": "150",
-      "balance": "150.0000",
-      "currency": "USD",
-      "listcode": [
-          {
-              "customer_voucher_id": "2",
-              "customer_id": "150",
-              "voucher_id": "2",
-              "added_date": "2017-07-19 08:22:05",
-              "recipient_name": "Cody",
-              "gift_code": "0711-3CHQF-CTYA",
-              "balance": "0.0000",
-              "currency": "USD",
-              "status": "4",
-              "expired_at": "2018-07-19 07:00:00",
-              "customer_check_id": "150",
-              "recipient_email": "cody@simicart.com",
-              "customer_email": "peter@simicart.com"
-          },
-          {
-              "customer_voucher_id": "1",
-              "customer_id": "150",
-              "voucher_id": "1",
-              "added_date": "2017-07-19 14:51:46",
-              "recipient_name": "cody@simicart.com",
-              "gift_code": "GIFT-QFYC-8G9YGG",
-              "balance": "0.0000",
-              "currency": "USD",
-              "status": "4",
-              "expired_at": "2017-07-20 07:00:00",
-              "customer_check_id": "0",
-              "recipient_email": "Cody",
-              "customer_email": "Frank"
-          }
-      ],
-      "history": [
-          {
-              "history_id": "1",
-              "customer_id": "150",
-              "action": "Adminupdate",
-              "currency_balance": "100.0000",
-              "giftcard_code": "",
-              "order_id": null,
-              "order_number": "",
-              "balance_change": "100.0000",
-              "currency": "USD",
-              "base_amount": "0.0000",
-              "amount": "0.0000",
-              "created_date": "2017-07-19 07:35:00"
-          },
-          {
-              "history_id": "2",
-              "customer_id": "150",
-              "action": "Redeem",
-              "currency_balance": "150.0000",
-              "giftcard_code": "GIFT-QFYC-8G9YGG",
-              "order_id": null,
-              "order_number": "",
-              "balance_change": "50.0000",
-              "currency": "USD",
-              "base_amount": "0.0000",
-              "amount": "0.0000",
-              "created_date": "2017-07-20 02:14:17"
-          },
-          {
-              "history_id": "3",
-              "customer_id": "150",
-              "action": "Redeem",
-              "currency_balance": "250.0000",
-              "giftcard_code": "0711-3CHQF-CTYA",
-              "order_id": null,
-              "order_number": "",
-              "balance_change": "100.0000",
-              "currency": "USD",
-              "base_amount": "0.0000",
-              "amount": "0.0000",
-              "created_date": "2017-07-25 09:36:41"
-          }
-      ],
-      "message": "Gift card 0711-3CHQF-CTYA was successfully redeemed"
-  }  
+    "message": {
+        "success": "Gift card \"GIFT-WMEW-LGR06F\" was successfully redeemed"
+    }
 }
 ```
 
@@ -212,7 +140,7 @@ curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicu
 curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/addlist" \
   -H "Authorization: Bearer <token>"
   -d "{
-  "giftcode" : "xmas-TZA-8PJXEI"
+  "giftcode" : "GIFT-WMEW-LGR06F"
   }"
 ```
 
@@ -220,31 +148,9 @@ curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicu
 
 ```json
 {
-  "simicustomercredit": {
-      "credit_id": "1",
-      "customer_id": "150",
-      "balance": "250.0000",
-      "currency": "USD",
-      "listcode": [
-          {
-              "customer_voucher_id": "10",
-              "customer_id": "150",
-              "voucher_id": "15",
-              "added_date": "2017-07-25 16:51:52",
-              "recipient_name": "",
-              "gift_code": "xmas-TZA-8PJXEI",
-              "balance": "200.0000",
-              "currency": "USD",
-              "status": "2",
-              "expired_at": "2017-07-26 07:00:00",
-              "customer_check_id": "0",
-              "recipient_email": "",
-              "customer_email": ""
-          }
-      ],
-      "history": [],
-      "message": "The gift code has been added to your list successfully."
-  }
+    "message": {
+        "success": "The gift code has been added to your list successfully."
+    }
 }
 ```
 
@@ -271,19 +177,60 @@ curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicu
 ## Remove Giftcodes from customer's account
 
 ```shell
-curl DELETE : "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits" \
+curl DELETE : "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits"/self/{giftvoucher_id} 
   -H "Authorization: Bearer <token>"
-  -d "{
-  "customer_voucher_id" : "2"
-  }"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "message": {
-        "success": "Gift Code was successfully removed !"
+    "simicustomercredit": {
+        "credit_id": "1",
+        "customer_id": "150",
+        "balance": 1240,
+        "currency": "USD",
+        "currency_symbol": "$",
+        "listcode": [
+            {
+                "customer_voucher_id": "30",
+                "customer_id": "150",
+                "voucher_id": "30",
+                "added_date": "Aug 14, 2017",
+                "recipient_name": "",
+                "gift_code": "1193-8UDMY-BJQK",
+                "balance": "30.0000",
+                "currency": "USD",
+                "status": "1",
+                "expired_at": "Aug 14, 2018",
+                "customer_check_id": "150",
+                "recipient_email": "",
+                "customer_email": "test@simicart.com",
+                "currency_symbol": "$",
+                "action": [
+                    "Remove"
+                ],
+                "giftvoucher_id": "30"
+            }
+        ],
+        "history": [
+            {
+                "history_id": "1",
+                "customer_id": "150",
+                "action": "Admin Update",
+                "currency_balance": "100.0000",
+                "giftcard_code": "",
+                "order_id": null,
+                "order_number": "",
+                "balance_change": "100.0000",
+                "currency": "USD",
+                "base_amount": "0.0000",
+                "amount": "0.0000",
+                "created_date": "Jul 19, 2017",
+                "currency_symbol": "$"
+            }
+        ],
+        "message": "Gift Code was removed successfully !"
     }
 }
 ```
