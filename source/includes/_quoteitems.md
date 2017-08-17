@@ -2560,3 +2560,5 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems?quote_id=729 " \
 }
 ```
 This API is to Continue Cart Session with Quote Id
+
+In case customer is not logged in, quote Id saved before and quote item need to be updated, use PUT request with quote_id added to URL, same to POST and DELETE requests.

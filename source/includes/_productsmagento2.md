@@ -631,8 +631,9 @@ curl "https://abc.com/simiconnector/rest/v2/products/1859" \
    }
 }
 ```
+Before customer selected ALL configurable options, show the price displayed on product.app_prices plus Selected custom option prices, like a normal simple product.
 
-The Simple products created by configurable options mapped on "app_options.index"
+For configurable product, for each bunch of selectable options, a simple product would be created, each Simple products created by configurable options mapped on "app_options.index"
 
 From the Simple product Id got from index array, get the configurable price from "app_options.optionPrices" with value below: 
 
