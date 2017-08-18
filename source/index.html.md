@@ -22,6 +22,7 @@ includes:
   - apps2
   - customers
   - custompayment
+  - dailydeal
   - devices
   - downloadableproducts
   - apps5
