@@ -147,7 +147,7 @@
 <p>Make sure to replace <code class="prettyprint">token</code> with your OAuth2.0 API token.</p>
 </blockquote>
 
-<p>SimiCart uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2.0</a> to allow access to the API. You can register your developer account and your applications at our <a href="http://developer.jajahub.com/">developer portal</a></p>
+<p>SimiCart uses <a href="https://tools.ietf.org/html/rfc6749">OAuth2.0</a> to allow access to the API. You can register your developer account and your applications at our <a href="https://www.simicart.com/">developer portal</a></p>
 
 <p>SimiCart expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
@@ -4241,6 +4241,1878 @@ google_merchant | string | Goole Merchant</p>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /rest/products/&lt;id&gt;</code></p>
+
+          <h1 id="giftvoucher-customer-credit">Giftvoucher (Customer Credit)</h1>
+
+<h2 id="customer-giftvoucher-credit-properties">Customer Giftvoucher Credit Properties</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>credit_id</td>
+<td>int</td>
+<td>Credit Id</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>int</td>
+<td>Credit Balance</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Credit Balance Currency</td>
+</tr>
+<tr>
+<td>listcode</td>
+<td>array</td>
+<td>List Code of Customer</td>
+</tr>
+<tr>
+<td>listcode.customer_voucher_id</td>
+<td>int</td>
+<td>Customer Voucher Id</td>
+</tr>
+<tr>
+<td>listcode.voucher_id</td>
+<td>int</td>
+<td>Giftcode Id</td>
+</tr>
+<tr>
+<td>listcode.added_date</td>
+<td>date</td>
+<td>Added Datetime</td>
+</tr>
+<tr>
+<td>listcode.recipient_name</td>
+<td>string</td>
+<td>Recipient Name</td>
+</tr>
+<tr>
+<td>listcode.gift_code</td>
+<td>string</td>
+<td>Gift Code</td>
+</tr>
+<tr>
+<td>listcode.balance</td>
+<td>int</td>
+<td>Giftcode Balance</td>
+</tr>
+<tr>
+<td>listcode.status</td>
+<td>int</td>
+<td>Giftcode Status</td>
+</tr>
+<tr>
+<td>listcode.expired_at</td>
+<td>date</td>
+<td>Expired At</td>
+</tr>
+<tr>
+<td>listcode.customer_check_id</td>
+<td>int</td>
+<td>Customer Id Owned Giftcode</td>
+</tr>
+<tr>
+<td>listcode.recipient_email</td>
+<td>string</td>
+<td>Recipient Email</td>
+</tr>
+<tr>
+<td>listcode.action</td>
+<td>array</td>
+<td>Actions of Giftcode</td>
+</tr>
+<tr>
+<td>history</td>
+<td>array</td>
+<td>History Change Credit Balance</td>
+</tr>
+<tr>
+<td>history.history_id</td>
+<td>int</td>
+<td>History Id</td>
+</tr>
+<tr>
+<td>history.action</td>
+<td>string</td>
+<td>Action History</td>
+</tr>
+<tr>
+<td>history.currency_balance</td>
+<td>int</td>
+<td>Currency Balance</td>
+</tr>
+<tr>
+<td>history.giftcard_code</td>
+<td>string</td>
+<td>Giftcard Code Used</td>
+</tr>
+<tr>
+<td>history.order_id</td>
+<td>int</td>
+<td>Order Id</td>
+</tr>
+<tr>
+<td>history.order_number</td>
+<td>int</td>
+<td>Order Number</td>
+</tr>
+<tr>
+<td>history.balance_change</td>
+<td>int</td>
+<td>Amount Balance Change</td>
+</tr>
+<tr>
+<td>history.created_date</td>
+<td>date</td>
+<td>Created Date</td>
+</tr>
+</tbody></table>
+
+<p>Gift Code Status :
+- 1 - Pending
+- 2 - Active
+- 3 - Disable
+- 4 - Used
+- 5 - Expired
+- 6 - Deleted</p>
+
+<h2 id="view-customer-giftvoucher-credit-information">View Customer Giftvoucher Credit Information</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/self"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"simicustomercredit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"listcode"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"customer_voucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"voucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"added_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 11, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.0000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 31, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_check_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Remove"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"giftvoucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adminupdate"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"giftcard_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jul 19, 2017"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Redeem"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"giftcard_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFT-QFYC-8G9YGG"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jul 19, 2017"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves Customer Giftvoucher Credit Information</p>
+
+<h2 id="add-redeem-giftcode-to-change-balance-credit">Add Redeem Giftcode to Change Balance Credit</h2>
+<pre class="highlight plaintext"><code>curl PUT: "http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/addredeem" \
+  -H "Authorization: Bearer &lt;token&gt;"
+  -d "{
+  "giftcode" : "GIFT-WMEW-LGR06F"
+  }"
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift card \"GIFT-WMEW-LGR06F\" was successfully redeemed"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="add-giftcode-to-my-list">Add Giftcode to My List</h2>
+<pre class="highlight shell"><code>curl PUT: <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/addlist"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>GIFT-WMEW-LGR06F<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The gift code has been added to your list successfully."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="send-email-giftcode-to-friend">Send Email Giftcode to Friend</h2>
+<pre class="highlight shell"><code>curl PUT: <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits/sendemail"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>voucher_id<span class="s2">" : "</span>2<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Gift Card email has been sent successfully."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="remove-giftcodes-from-customer-39-s-account">Remove Giftcodes from customer&rsquo;s account</h2>
+<pre class="highlight shell"><code>curl DELETE : <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simicustomercredits"</span>/self/<span class="o">{</span>giftvoucher_id<span class="o">}</span> 
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"simicustomercredit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1240</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"listcode"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"customer_voucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"voucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"added_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 14, 2017"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1193-8UDMY-BJQK"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 14, 2018"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_check_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"recipient_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Remove"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"giftvoucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin Update"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"giftcard_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"base_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jul 19, 2017"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift Code was removed successfully !"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id="giftvoucher-gift-card">Giftvoucher (Gift Card)</h1>
+
+<h2 id="view-list-of-gift-card-product">View List of Gift Card Product</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /rest/simigiftcards</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simigiftcards"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"all_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"919"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"925"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"simigiftcards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"919"</span><span class="p">,</span><span class="w">    
+      </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"app_prices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"minimal_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_from_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_to_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"show_from_to_tax_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"from_price_excluding_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"from_price_including_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">108.25</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"to_price_excluding_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"to_price_including_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">541.25</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"from_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">108.25</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"to_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">541.25</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"925"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"app_prices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"minimal_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"price_excluding_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"price_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"price_including_tax"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"price_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.30</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="w">
+    </span><span class="p">}</span><span class="w">    
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a list gift card product</p>
+
+<h3 id="both-exclude-tax-and-include-tax-properties">Both Exclude Tax and Include Tax Properties</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app_prices.minimal_price</td>
+<td>int</td>
+<td>show as low as price (1 or 0)</td>
+</tr>
+<tr>
+<td>app_prices.show_ex_in_price</td>
+<td>int</td>
+<td>show exclude tax and include tax in product</td>
+</tr>
+<tr>
+<td>app_prices.product_from_label</td>
+<td>string</td>
+<td>label from</td>
+</tr>
+<tr>
+<td>app_prices.product_to_label</td>
+<td>string</td>
+<td>label to</td>
+</tr>
+<tr>
+<td>app_prices.from_price_excluding_tax</td>
+<td>json object</td>
+<td>label and price</td>
+</tr>
+<tr>
+<td>app_prices.from_price_including_tax</td>
+<td>json object</td>
+<td>label and price</td>
+</tr>
+<tr>
+<td>app_prices.to_price_excluding_tax</td>
+<td>json object</td>
+<td>label and price</td>
+</tr>
+<tr>
+<td>app_prices.to_price_including_tax</td>
+<td>json object</td>
+<td>label and price</td>
+</tr>
+</tbody></table>
+
+<h2 id="view-a-gift-card-product">View A Gift Card Product</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /rest/simigiftcards/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"http://dev-magento19.jajahub.com/default/simiconnector/rest/v2/simigiftcards/919"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"simigiftcard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"923"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simigiftvoucher"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dsdsadsa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"required_options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-28T20:22:32-07:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-29 03:22:32"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123.0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift Card Dropdown Percent"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"meta_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"meta_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url_key"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_design"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_layout"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options_container"</span><span class="p">:</span><span class="w"> </span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gift_message_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gift_wrapping_available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"simigift_template_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"giftcard_template_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amazon Gift Card Style"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"style_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#DC8C71"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#949392"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"caption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift Card"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/default.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_01.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_02.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_03.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_04.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_05.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_06.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_07.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_08.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_09.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_10.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_11.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_12.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_13.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_14.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_15.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_16.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_17.png"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/giftcard_amazon_18.png"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"design_pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"background_img"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"simigift_code_sets"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"simigift_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dsa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"short_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gfdggd"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"meta_keyword"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_layout_update"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"simigift_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50,60,70,80,90"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"simigift_dropdown"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10,20,30,40,50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"simigift_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"news_from_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"news_to_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_design_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"custom_design_to"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media_gallery"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"stock_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"giftcard_product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"923"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"conditions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"salesrule/rule_condition_combine"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"is_value_processed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"aggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"simigiftcard_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customers can\r\nonly use their Gift Card for orders which have Subtotal equals or is greater than\r\n$200"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"actions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"salesrule/rule_condition_product_combine"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"is_value_processed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"aggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"conditions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"actions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"additional"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"app_prices"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"giftcard_prices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="mi">40</span><span class="p">,</span><span class="w">
+        </span><span class="mi">50</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"type_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prices_dropdown"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"10"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"20"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"30"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"40"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"50"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"app_reviews"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"5_star_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"4_star_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"3_star_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"2_star_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"1_star_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"form_add_reviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Only registered users can write reviews"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"app_options"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"wishlist_item_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"product_label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"product_video"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a gift card product</p>
+
+<h3 id="gift-card-properties">Gift Card Properties</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>simigift_template_ids.giftcard_template_id</td>
+<td>int</td>
+<td>Giftcard Template Image Id</td>
+</tr>
+<tr>
+<td>simigift_template_ids.template_name</td>
+<td>string</td>
+<td>Template name</td>
+</tr>
+<tr>
+<td>simigift_template_ids.style_color</td>
+<td>string</td>
+<td>Template style color</td>
+</tr>
+<tr>
+<td>simigift_template_ids.text_color</td>
+<td>tring</td>
+<td>Text color</td>
+</tr>
+<tr>
+<td>simigift_template_ids.caption</td>
+<td>string</td>
+<td>Template caption</td>
+</tr>
+<tr>
+<td>simigift_template_ids.notes</td>
+<td>string</td>
+<td>Template Comment</td>
+</tr>
+<tr>
+<td>simigift_template_ids.images</td>
+<td>array</td>
+<td>List url image</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>array</td>
+<td>Gift card conditions</td>
+</tr>
+<tr>
+<td>conditions.simigiftcard_description</td>
+<td>string</td>
+<td>Description Gift card condition</td>
+</tr>
+<tr>
+<td>giftcard_prices</td>
+<td>object</td>
+<td>Gift Card prices</td>
+</tr>
+<tr>
+<td>giftcard_prices.type_value</td>
+<td>string</td>
+<td>Type of Gift Card value (fixed or range or dropdown)</td>
+</tr>
+<tr>
+<td>giftcard_prices.type_price</td>
+<td>string</td>
+<td>Type price of Gift Card (fixed or default or percent)</td>
+</tr>
+<tr>
+<td>giftcard_prices.value</td>
+<td>int</td>
+<td>Gift Card value (type_value = fixed )</td>
+</tr>
+<tr>
+<td>giftcard_prices.price</td>
+<td>int</td>
+<td>Gift Card price (type_value = fixed )</td>
+</tr>
+<tr>
+<td>giftcard_prices.percent_value</td>
+<td>int</td>
+<td>Pecent Price of Gift Card value</td>
+</tr>
+<tr>
+<td>giftcard_prices.from</td>
+<td>int</td>
+<td>Minimum Gift Card value (type_value = range)</td>
+</tr>
+<tr>
+<td>giftcard_prices.to</td>
+<td>int</td>
+<td>Maximum Gift Card value (type_value = range)</td>
+</tr>
+<tr>
+<td>giftcard_prices.options</td>
+<td>array</td>
+<td>Gift Card value options (type_value = dropdown)</td>
+</tr>
+<tr>
+<td>giftcard_prices.prices_dropdown</td>
+<td>array</td>
+<td>Gift Card price options (type_value = dropdown)</td>
+</tr>
+</tbody></table>
+
+<p>Type Price of Gift Card</p>
+
+<ul>
+<li><p>fixed : Fixed price</p></li>
+<li><p>default : Same as Gift Card value</p></li>
+<li><p>percent : Percent of Gift Card value</p></li>
+</ul>
+
+<h2 id="upload-custom-image-gift-card">Upload Custom Image Gift Card</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /rest/v2/simigiftcards/uploadimage</code></p>
+
+<p>Use form-data to upload image</p>
+<pre class="highlight shell"><code>curl POST : <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/simigiftcards/uploadimage"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d form-data <span class="o">{</span>
+  <span class="s2">"key"</span> <span class="o">=</span>&gt; <span class="s2">"image"</span>,
+  <span class="s2">"value"</span> <span class="o">=</span>&gt; <span class="s2">"a.png"</span>
+  <span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tmp_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tmp/phpVVZ8to"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">30343</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/data/www/dev/magento1/dev/19/media/tmp/simigiftvoucher/images/"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dev-magento19.jajahub.com/media/tmp/simigiftvoucher/images/a.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sucess"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="add-to-card">Add to Card</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /rest/quoteitems</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/quoteitems"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="o">{</span>    
+    <span class="s2">"product"</span>:<span class="s2">"906"</span>,
+    <span class="s2">"related_product"</span>:<span class="s2">""</span>,
+    <span class="s2">"price_amount"</span>:<span class="s2">"100"</span>,
+    <span class="s2">"amount"</span>:<span class="s2">"100"</span>,<span class="s2">"giftcard_template_id"</span>:<span class="s2">"1"</span>,
+    <span class="s2">"giftcard_template_image"</span>:<span class="s2">"1.jpg"</span>,
+    <span class="s2">"giftcard_use_custom_image"</span>:<span class="s2">"1"</span>,
+    <span class="s2">"url_image"</span> : <span class="s2">"http://dev-magento19.jajahub.com/media/simigiftvoucher/template/images/amazon/default.png"</span>
+    <span class="s2">"recipient_ship"</span>:<span class="s2">"Yes"</span>,<span class="s2">"recipient_address"</span>:<span class="s2">""</span>,
+    <span class="s2">"send_friend"</span>:<span class="s2">"1"</span>,
+    <span class="s2">"customer_name"</span>:<span class="s2">"Peter"</span>,
+    <span class="s2">"recipient_name"</span>:<span class="s2">"Cody"</span>,
+    <span class="s2">"recipient_email"</span>:<span class="s2">"cody@simicart.com"</span>,
+    <span class="s2">"message"</span>:<span class="s2">"Cody Message"</span>,
+    <span class="s2">"notify_success"</span>:<span class="s2">"1"</span>,
+    <span class="s2">"day_to_send"</span>:<span class="s2">"07</span><span class="se">\/</span><span class="s2">31</span><span class="se">\/</span><span class="s2">2017"</span>,
+    <span class="s2">"timezone_to_send"</span>:<span class="s2">"Asia</span><span class="se">\/</span><span class="s2">Hong_Kong"</span>,
+    <span class="s2">"qty"</span>:<span class="s2">"1"</span>  
+  <span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+
+<h3 id="params-properties">Params Properties</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product</td>
+<td>int</td>
+<td>Gift Card Product Id ( required )</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>int</td>
+<td>Qty Product ( required )</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>Gift Card Value ( required )</td>
+</tr>
+<tr>
+<td>price_amount</td>
+<td>int</td>
+<td>Gift Card Price ( required )</td>
+</tr>
+<tr>
+<td>giftcard_template_id</td>
+<td>int</td>
+<td>Gift Card Template Id ( required )</td>
+</tr>
+<tr>
+<td>giftcard_template_image</td>
+<td>string</td>
+<td>Gift Card Template Image Name ( required )</td>
+</tr>
+<tr>
+<td>giftcard_use_custom_image</td>
+<td>int</td>
+<td>Is Use Custom Image ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>url_image</td>
+<td>string</td>
+<td>Url Template Image or Url Custom Image Upload ( required )</td>
+</tr>
+<tr>
+<td>recipient_ship</td>
+<td>int</td>
+<td>Send through post office ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>recipient_address</td>
+<td>string</td>
+<td>Recipient Address</td>
+</tr>
+<tr>
+<td>send_friend</td>
+<td>int</td>
+<td>Send Gift Card to friend ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>customer_name</td>
+<td>string</td>
+<td>Sender Name</td>
+</tr>
+<tr>
+<td>recipient_name</td>
+<td>string</td>
+<td>Recipient Name</td>
+</tr>
+<tr>
+<td>recipient_email</td>
+<td>string</td>
+<td>Recipient Email</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Custom Message</td>
+</tr>
+<tr>
+<td>notify_success</td>
+<td>int</td>
+<td>Get notification email when your friend receives Gift Card ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>day_to_send</td>
+<td>date</td>
+<td>Day to send</td>
+</tr>
+<tr>
+<td>timezone_to_send</td>
+<td>string</td>
+<td>Timezone to send</td>
+</tr>
+</tbody></table>
+
+          <h1 id="giftvoucher-gift-code">Giftvoucher (Gift Code)</h1>
+
+<h2 id="view-a-gift-code">View A Gift Code</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /rest/simigiftcsode/&lt;id&gt;</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/simigiftcodes/2"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"simigiftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"giftvoucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1193-8UDMY-BJQK"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 14, 2018"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frank simi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recipient_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"conditions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a:6:{s:4:\"type\";s:32:\"salesrule/rule_condition_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"day_to_send"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"shipped_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"giftvoucher_comments"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email_sender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notify_success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"giftcard_custom_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"giftcard_template_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"giftcard_template_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"actions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a:6:{s:4:\"type\";s:40:\"salesrule/rule_condition_product_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timezone_to_send"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"day_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"set_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"added_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 14, 2017"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Remove"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"66"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"giftvoucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 16, 2017"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created for order 145000444"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order_increment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145000444"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1308"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"order_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extra_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created by customer frank simi"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency_symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a gift code</p>
+
+<h3 id="gift-code-properties">Gift Code Properties</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>giftvoucher_id</td>
+<td>int</td>
+<td>Gift Code Id</td>
+</tr>
+<tr>
+<td>gift_code</td>
+<td>string</td>
+<td>Gift Code</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>int</td>
+<td>Gift Code Balance</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Gift Code Currency</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>Gift Code Status</td>
+</tr>
+<tr>
+<td>expired_at</td>
+<td>datetime</td>
+<td>Expired At</td>
+</tr>
+<tr>
+<td>customer_name</td>
+<td>string</td>
+<td>Customer Name</td>
+</tr>
+<tr>
+<td>customer_email</td>
+<td>string</td>
+<td>Customer Email</td>
+</tr>
+<tr>
+<td>recipient_name</td>
+<td>string</td>
+<td>Recipicent Name</td>
+</tr>
+<tr>
+<td>recipient_email</td>
+<td>string</td>
+<td>Recipicent Email</td>
+</tr>
+<tr>
+<td>recipient_address</td>
+<td>string</td>
+<td>Recipient Address</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Message Content</td>
+</tr>
+<tr>
+<td>conditions_serialized</td>
+<td>array</td>
+<td>Gift Code Conditions</td>
+</tr>
+<tr>
+<td>day_to_send</td>
+<td>date</td>
+<td>Day to Send</td>
+</tr>
+<tr>
+<td>is_sent</td>
+<td>int</td>
+<td>Send to Customer</td>
+</tr>
+<tr>
+<td>shipped_to_customer</td>
+<td>int</td>
+<td>Shipment Tracking</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Gift Code Description Condition</td>
+</tr>
+<tr>
+<td>giftvoucher_comments</td>
+<td>string</td>
+<td>Gift Code Comment</td>
+</tr>
+<tr>
+<td>giftcard_custom_image</td>
+<td>string</td>
+<td>Gift Card Custom Image</td>
+</tr>
+<tr>
+<td>timezone_to_send</td>
+<td>string</td>
+<td>Timezone to Send</td>
+</tr>
+<tr>
+<td>history</td>
+<td>array</td>
+<td>Gift Code History</td>
+</tr>
+<tr>
+<td>history.history_id</td>
+<td>int</td>
+<td>History Id</td>
+</tr>
+<tr>
+<td>history.action</td>
+<td>int</td>
+<td>History Action</td>
+</tr>
+<tr>
+<td>history.created_at</td>
+<td>date</td>
+<td>Create At</td>
+</tr>
+<tr>
+<td>history.status</td>
+<td>int</td>
+<td>Gift Code Status</td>
+</tr>
+<tr>
+<td>history.order_increment_id</td>
+<td>int</td>
+<td>Order Increment Id</td>
+</tr>
+<tr>
+<td>history.extra_content</td>
+<td>string</td>
+<td>Action Created by</td>
+</tr>
+<tr>
+<td>history.balance</td>
+<td>int</td>
+<td>Gift Code History Balance</td>
+</tr>
+</tbody></table>
+
+<p>Gift Code Status</p>
+
+<ul>
+<li>1 : Pending</li>
+<li>2 : Active</li>
+<li>3 : Disable</li>
+<li>4 : Used</li>
+<li>5 : Expired</li>
+<li>6 : Delete</li>
+</ul>
+
+<p>History Action</p>
+
+<ul>
+<li>1 : Create</li>
+<li>2 : Update</li>
+<li>3 : Mass Update</li>
+<li>4 : Email</li>
+<li>5 : Spen Order</li>
+<li>6 : Refund</li>
+<li>7 : Redeem</li>
+</ul>
+
+<h2 id="check-information-gift-code">Check Information Gift Code</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /rest/checkgiftcodes</code></p>
+<pre class="highlight shell"><code>curl POST <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/checkgiftcodes"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>1193-8UDMY-BJQK<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"giftvoucher_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1193-8UDMY-BJQK"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 14, 2018"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frank simi"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recipient_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recipient_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recipient_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"conditions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a:6:{s:4:\"type\";s:32:\"salesrule/rule_condition_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"day_to_send"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 16, 2017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"shipped_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_form"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giftvoucher_comments"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_sender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"notify_success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giftcard_custom_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giftcard_template_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"giftcard_template_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"actions_serialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a:6:{s:4:\"type\";s:40:\"salesrule/rule_condition_product_combine\";s:9:\"attribute\";N;s:8:\"operator\";N;s:5:\"value\";s:1:\"1\";s:18:\"is_value_processed\";N;s:10:\"aggregator\";s:3:\"all\";}"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timezone_to_send"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"day_store"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug 16, 2017"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"set_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id="giftvoucher-checkout">Giftvoucher Checkout</h1>
+
+<h2 id="giftvoucher-checkout-properties">Giftvoucher Checkout Properties</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>use_giftcard</td>
+<td>int</td>
+<td>Do Use Gift Card ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>customer.credit_id</td>
+<td>int</td>
+<td>Credit Id of Customer</td>
+</tr>
+<tr>
+<td>customer.balance</td>
+<td>int</td>
+<td>Balance Credit of Customer</td>
+</tr>
+<tr>
+<td>customer.currency</td>
+<td>string</td>
+<td>Credit Currency</td>
+</tr>
+<tr>
+<td>customer.list_code</td>
+<td>array</td>
+<td>List Existed Gift Code of Customer</td>
+</tr>
+<tr>
+<td>credit.use_credit</td>
+<td>int</td>
+<td>Do Use Balance Credit ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>credit.use_credit_amount</td>
+<td>int</td>
+<td>Amount Credit Used</td>
+</tr>
+<tr>
+<td>giftcode.use_giftcode</td>
+<td>int</td>
+<td>Do Use Gift Code ( 1 or 0 )</td>
+</tr>
+<tr>
+<td>giftcode.giftcode</td>
+<td>string</td>
+<td>Gift Code Used</td>
+</tr>
+<tr>
+<td>giftcode.amount</td>
+<td>int</td>
+<td>Amount Gift Code Used</td>
+</tr>
+<tr>
+<td>message.success</td>
+<td>string</td>
+<td>Success Message</td>
+</tr>
+<tr>
+<td>message.notice</td>
+<td>string</td>
+<td>Notice Message</td>
+</tr>
+</tbody></table>
+
+<h2 id="use-balance-credit-to-cart-page">Use balance credit to Cart page</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/usecredit</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/usecredit"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>usecredit<span class="s2">" : "</span>1<span class="s2">",
+  "</span>credit_amount<span class="s2">" : 150
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+    </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$100.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$200.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$100.00"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"use_credit_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Credit has been used successfully."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="use-gift-code-from-cart-page">Use Gift Code from Cart page</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/usecode</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/usecode"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftvoucher<span class="s2">" : "</span>1<span class="s2">",
+  "</span>giftcode<span class="s2">" : "</span>3711-A2SGS-JTUB<span class="s2">",
+  "</span>existed_giftcode<span class="s2">" : "</span>xmas-XOU-BEY99G<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$200.00"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift code \"3711-XXXXX-XXXX\" has been applied successfully."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="remove-gift-code-from-cart-page">Remove Gift Code from Cart page</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/remove</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/remove"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>3711-A2SGS-JTUB<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$200.00"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift Card \"3711-XXXXX-XXXX\" has been removed successfully!"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="change-amount-gift-code-from-cart-page">Change amount Gift Code from Cart page</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT : /rest/giftvouchercheckouts/updatecode</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/updatecode"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>xmas-XOU-BEY99G<span class="s2">",
+  "</span>amount<span class="s2">" : "</span>50<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+      </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount gift code \"xmas-XOU-BEY99G\" changed successfully!."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="use-balance-credit-from-checkout">Use Balance Credit from Checkout</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/usecreditcheckout</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/usecreditcheckout"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+    "</span>usecredit<span class="s2">" : "</span>1<span class="s2">",
+    "</span>credit_amount<span class="s2">" : 150
+    }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">  
+      </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$100.00"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$200.00"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                      </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$100.00"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"use_credit_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Credit has been used successfully."</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="change-amount-credit-from-checkout">Change Amount Credit from Checkout</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/updatecredit</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/updatecredit"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>credit_amount<span class="s2">" : "</span>100<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+      </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$150.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$200.00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"credit_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+             </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                 </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount Your credit has been updated successfully."</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="use-gift-code-from-checkout">Use Gift Code from Checkout</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/addcodecheckout</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/addcodecheckout"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftvoucher<span class="s2">" : 1,
+  "</span>existed_giftcode<span class="s2">" : "</span>xmas-TZA-8PJXEI<span class="s2">",
+  "</span>giftcode<span class="s2">" : "</span>6961-D66DA-NXZU<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+      </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"succcess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift code \"xmas-XXX-XXXXXX\" has been applied successfully."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="change-amount-gift-code-from-checkout">Change Amount Gift Code from Checkout</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/updategiftcode</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/updategiftcode"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>xmas-TZA-8PJXEI<span class="s2">",
+  "</span>amount<span class="s2">" : "</span>50<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+      </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount gift code \"xmas-XOU-BEY99G\" changed successfully!."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="remove-gift-code-from-checkout">Remove Gift Code from Checkout</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /rest/giftvouchercheckouts/removegiftcode</code></p>
+<pre class="highlight shell"><code>curl PUT <span class="s2">"http://dev-magento19.jajahub.com/simiconnector/rest/v2/giftvouchercheckouts/removegiftcode"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s2">"{
+  "</span>giftcode<span class="s2">" : "</span>xmas-TZA-8PJXEI<span class="s2">"
+  }"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"gift_card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"use_giftcard"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"credit_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$250.00"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"list_code"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-A2SGS-JTUB"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3711-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-D66DA-NXZU"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6961-XXXXX-XXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$500.00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"gift_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XOU-BEY99G"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"hidden_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$100.00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"use_credit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"giftcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-TZA-8PJXEI"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"giftcode_hidden"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmas-XXX-XXXXXX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"use_giftcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gift card \"xmas-XOU-BEY99G\" is removed successfully."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id="grouped-product-in-app">Grouped Product in App</h1>
 
@@ -11548,7 +13420,9 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The Simple products created by configurable options mapped on &ldquo;app_options.index&rdquo;</p>
+<p>Before customer selected ALL configurable options, show the price displayed on product.app_prices plus Selected custom option prices, like a normal simple product.</p>
+
+<p>For configurable product, for each bunch of selectable options, a simple product would be created, each Simple products created by configurable options mapped on &ldquo;app_options.index&rdquo;</p>
 
 <p>From the Simple product Id got from index array, get the configurable price from &ldquo;app_options.optionPrices&rdquo; with value below: </p>
 
@@ -15976,6 +17850,8 @@ If the Video key is NULL, then it&rsquo;s not a Valid Youtube URL, Use Webview t
 </span></code></pre>
 
 <p>This API is to Continue Cart Session with Quote Id</p>
+
+<p>In case customer is not logged in, quote Id saved before and quote item need to be updated, use PUT request with quote_id added to URL, same to POST and DELETE requests.</p>
 
           <h1 id="reviews-in-app">Reviews in App</h1>
 
