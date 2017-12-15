@@ -12181,6 +12181,25 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 
 <p>Select shipping method and place Order then.</p>
 
+<h2 id="place-order-with-no-shipping-method">Place Order With No Shipping method</h2>
+<pre class="highlight shell"><code>  curl -X POST <span class="s2">"https://abc.com/simiconnector/rest/v2/ppexpressapis/place"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span> <span class="se">\</span>
+  -d <span class="s1">''</span>
+  <span class="s2">"
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for your purchase!"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>While there is no option for shipping method, just place order with no Param</p>
+
           <h1 id="paypal-mobile">PayPal Mobile</h1>
 
 <h2 id="paypal-mobile-properties">PayPal Mobile Properties</h2>
@@ -12711,6 +12730,536 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 </span></code></pre>
 
 <p>On product Detail API, the label would be added the same way with on the Product Listing</p>
+
+<h2 id="multi-label-on-product-list">Multi Label On Product List</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"product"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"906"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2017-06-10T00:33:04-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2017-12-01 12:53:23"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"0.1000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"weight"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_wrapping_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_title"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"small_image"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_key"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_path"</span><span class="p">:</span><span class="s2">"cody.html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"page_layout"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options_container"</span><span class="p">:</span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_of_manufacture"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp_enabled"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp_display_actual_price_type"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_message_available"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_wrapping_available"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_recurring"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"nooo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"short_description"</span><span class="p">:</span><span class="s2">"123213"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_keyword"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_layout_update"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_from_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_to_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"news_from_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"news_to_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design_from"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design_to"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"group_price"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"group_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"media_gallery"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"values"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"tier_price"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"tier_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"stock_item"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"item_id"</span><span class="p">:</span><span class="s2">"1885"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_id"</span><span class="p">:</span><span class="s2">"906"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"qty"</span><span class="p">:</span><span class="s2">"110.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"min_qty"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_min_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_qty_decimal"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"backorders"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_backorders"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"min_sale_qty"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_min_sale_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"max_sale_qty"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_max_sale_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"low_stock_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"notify_stock_qty"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_notify_stock_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"manage_stock"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_manage_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_status_changed_auto"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_qty_increments"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"qty_increments"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_enable_qty_inc"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"enable_qty_increments"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_decimal_divided"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_status_changed_automatically"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_enable_qty_increments"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_name"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_status_changed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_changed_websites"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"additional"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http://localhost.com/magento19/media/catalog/product/cache/1/small_image/600x/040ec09b1e35df139433887a97daa66f/images/catalog/product/placeholder/small_image.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"app_prices"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"has_special_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"price_label"</span><span class="p">:</span><span class="s2">"Regular Price"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">0.1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"app_tier_prices"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"app_reviews"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"5_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"4_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"3_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"2_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"1_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"form_add_reviews"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"rates"</span><span class="p">:[</span><span class="w">  
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Quality"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"3"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"4"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"11"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"12"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"13"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"14"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"15"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Value"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"8"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"9"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"10"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"form_review"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"key_1"</span><span class="p">:</span><span class="s2">"nickname"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"key_2"</span><span class="p">:</span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"key_3"</span><span class="p">:</span><span class="s2">"detail"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"form_key"</span><span class="p">:[</span><span class="w">  
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"nickname"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Nickname"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Title"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"detail"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Detail"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"app_options"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"custom_options"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"wishlist_item_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"product_labels"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Cody"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Sample"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"http://localhost.com/magento19/media/simi/simiconnector/productlabel/49a6898b8a3837679be1a06c5e51e2c3.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"product_video"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>On product Listing API, if there is NO product_label, there could be product_labels which contain multi labels for one product.</p>
+
+<h2 id="multi-label-on-product-detail">Multi Label On Product Detail</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/906"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"product"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"906"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"required_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2017-06-10T00:33:04-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2017-12-01 12:53:23"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"0.1000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"weight"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_wrapping_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_title"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"small_image"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="s2">"no_selection"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_key"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_path"</span><span class="p">:</span><span class="s2">"cody.html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"page_layout"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options_container"</span><span class="p">:</span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country_of_manufacture"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp_enabled"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"msrp_display_actual_price_type"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_message_available"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gift_wrapping_available"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_recurring"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"nooo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"short_description"</span><span class="p">:</span><span class="s2">"123213"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"meta_keyword"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_layout_update"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_from_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"special_to_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"news_from_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"news_to_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design_from"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_design_to"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"group_price"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"group_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"media_gallery"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"values"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"tier_price"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"tier_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"stock_item"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"item_id"</span><span class="p">:</span><span class="s2">"1885"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_id"</span><span class="p">:</span><span class="s2">"906"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"qty"</span><span class="p">:</span><span class="s2">"110.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"min_qty"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_min_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_qty_decimal"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"backorders"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_backorders"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"min_sale_qty"</span><span class="p">:</span><span class="s2">"1.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_min_sale_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"max_sale_qty"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_max_sale_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"low_stock_date"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"notify_stock_qty"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_notify_stock_qty"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"manage_stock"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_manage_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_status_changed_auto"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_qty_increments"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"qty_increments"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_enable_qty_inc"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"enable_qty_increments"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_decimal_divided"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"stock_status_changed_automatically"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"use_config_enable_qty_increments"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_name"</span><span class="p">:</span><span class="s2">"cody"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_type_id"</span><span class="p">:</span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_status_changed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_changed_websites"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"additional"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http://localhost.com/magento19/media/catalog/product/cache/1/small_image/600x/040ec09b1e35df139433887a97daa66f/images/catalog/product/placeholder/small_image.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"app_prices"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"has_special_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"price_label"</span><span class="p">:</span><span class="s2">"Regular Price"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">0.1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"app_tier_prices"</span><span class="p">:[</span><span class="w">  
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"app_reviews"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"5_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"4_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"3_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"2_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"1_star_number"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"form_add_reviews"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"rates"</span><span class="p">:[</span><span class="w">  
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Quality"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"3"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"4"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"5"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Price"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"11"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"12"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"13"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"14"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"15"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">  
+                     </span><span class="nt">"rate_code"</span><span class="p">:</span><span class="s2">"Value"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"rate_options"</span><span class="p">:[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"8"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"9"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">  
+                           </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"10"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">]</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"form_review"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"key_1"</span><span class="p">:</span><span class="s2">"nickname"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"key_2"</span><span class="p">:</span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"key_3"</span><span class="p">:</span><span class="s2">"detail"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"form_key"</span><span class="p">:[</span><span class="w">  
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"nickname"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Nickname"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Title"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">  
+                        </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"detail"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Detail"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"app_options"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"custom_options"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"wishlist_item_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"product_labels"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Cody"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Sample"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"http://localhost.com/magento19/media/simi/simiconnector/productlabel/49a6898b8a3837679be1a06c5e51e2c3.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"product_video"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>On product Detail API, if there is NO product_label, there could be product_labels which contain multi labels for one product.</p>
 
           <h1 id="product-price-on-magento-2">Product Price on Magento 2</h1>
 

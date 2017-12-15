@@ -266,3 +266,23 @@ It's the same with Order screen.
 }
 ```
 Select shipping method and place Order then.
+
+## Place Order With No Shipping method
+
+```shell
+  curl -X POST "https://abc.com/simiconnector/rest/v2/ppexpressapis/place" \
+  -H "Authorization: Bearer <token>" \
+  -d ''
+  "
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "order": {
+        "message": "Thank you for your purchase!"
+    }
+}
+```
+While there is no option for shipping method, just place order with no Param
