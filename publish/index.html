@@ -853,7 +853,9 @@ You must replace <code>token</code> with your OAuth2.0 API token.
         "</span>company<span class="s2">":"</span>Company<span class="s2">",
         "</span>telephone<span class="s2">":"</span>0987123456<span class="s2">",
         "</span>fax<span class="s2">":"</span>123456<span class="s2">",
-        "</span>vat_id<span class="s2">":"</span>123<span class="s2">"
+        "</span>vat_id<span class="s2">":"</span>123<span class="s2">",
+      "</span>is_default_billing<span class="s2">":"</span>1<span class="s2">",
+      "</span>is_default_shipping<span class="s2">":"</span>1<span class="s2">"
 }"</span>
 </code></pre>
 
@@ -884,6 +886,8 @@ You must replace <code>token</code> with your OAuth2.0 API token.
 </span></code></pre>
 
 <p>This API is to add an address.</p>
+
+<p>is_default_billing and  is_default_shipping is to set it to be the default billing/shipping address.</p>
 
 <h2 id="view-addresses">View Addresses</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="s2">"https://abc.com/simiconnector/rest/v2/addresses"</span> <span class="se">\</span>
@@ -1010,7 +1014,9 @@ You must replace <code>token</code> with your OAuth2.0 API token.
         "company":"Company",
         "telephone":"0987123456",
         "fax":"123456",
-        "vat_id":"123"
+        "vat_id":"123",
+      "created_at":"2016-05-27 08:02:23",
+      "updated_at":"2016-05-27 08:02:23"
     }'</span>
   <span class="s2">"
 
@@ -2119,6 +2125,16 @@ google_merchant | string | Goole Merchant</p>
 <td>Category Name</td>
 </tr>
 <tr>
+<td>image_url</td>
+<td>string</td>
+<td>Image URL path</td>
+</tr>
+<tr>
+<td>thumbnail_url</td>
+<td>string</td>
+<td>Thumbnail URL path</td>
+</tr>
+<tr>
 <td>url_path</td>
 <td>string</td>
 <td>Category URL path</td>
@@ -2127,6 +2143,16 @@ google_merchant | string | Goole Merchant</p>
 <td>has_children</td>
 <td>boolean</td>
 <td>Has Chidren Or Not</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>string</td>
+<td>Category Image Url</td>
+</tr>
+<tr>
+<td>thumbnail_url</td>
+<td>string</td>
+<td>Category Thumbnail Url</td>
 </tr>
 </tbody></table>
 
@@ -2180,6 +2206,8 @@ google_merchant | string | Goole Merchant</p>
          </span><span class="nt">"custom_design_from"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="nt">"custom_design_to"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="nt">"filter_price_range"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/cat_2.png"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/cat_1.png"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"has_children"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">  
@@ -2461,6 +2489,564 @@ google_merchant | string | Goole Merchant</p>
 </span></code></pre>
 
 <p>This one return Category list of A Category.</p>
+
+          <h1 id="catalog-category-tree">Catalog Category Tree</h1>
+
+<h2 id="category-tree-properties">Category tree Properties</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity_id</td>
+<td>id</td>
+<td>Category Id</td>
+</tr>
+<tr>
+<td>parent_id</td>
+<td>id</td>
+<td>Parent Category Id</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>Category Level</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Category Name</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td>string</td>
+<td>Image URL path</td>
+</tr>
+<tr>
+<td>thumbnail_url</td>
+<td>string</td>
+<td>Thumbnail URL path</td>
+</tr>
+<tr>
+<td>child_cats</td>
+<td>array</td>
+<td>Child cats</td>
+</tr>
+</tbody></table>
+
+<h2 id="view-category-tree-for-the-root-category">View Category Tree for the Root Category</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/categorytrees"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"categorytrees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:43:31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-05 02:35:48"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/cat_2.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/cat_1.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Women"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:56:08"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-07 22:01:55"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/10"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-w-newarrivals_1.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Arrivals"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:57:32"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-23 06:50:26"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/11"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-w-blouses.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tops &amp; Blouses"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:58:32"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:11:20"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/12"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pants &amp; Denim"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:59:21"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 11:45:24"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/13"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dresses &amp; Skirts"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-05 02:12:32"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-05 02:12:32"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/13/41"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dress"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:44:47"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-08 12:20:07"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Men"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:01:03"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:12:42"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5/14"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-m-newarrivals.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Arrivals"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:01:28"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-23 07:08:20"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5/15"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shirts"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:03:19"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-04-16 15:52:47"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5/16"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tees, Knits and Polos"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:03:48"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 14:15:31"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5/17"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pants &amp; Denim"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-11-04 10:18:58"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-21 09:27:50"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/5/40"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blazers"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:47:41"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-25 19:28:34"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accessories"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:04:27"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 14:16:27"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/6/18"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-eye.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eyewear"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:05:03"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 14:16:42"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/6/19"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewelry"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:06:05"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-08 12:21:45"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/6/20"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-shoes.jpg"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoes"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:07:12"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 14:17:10"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/6/21"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bags &amp; Luggage"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:49:05"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-08 12:26:34"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home &amp; Decor"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:07:52"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-17 03:06:14"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/7/22"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Books &amp; Music"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:08:31"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 14:17:38"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/7/23"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bed &amp; Bath"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:08:54"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-09 02:27:16"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/7/24"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:10:06"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-30 05:54:12"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/7/25"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decorative Accents"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:49:50"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-16 05:49:33"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/8"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sale"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:10:39"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:17:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/8/26"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Women"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:11:07"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:17:12"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/8/27"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Men"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:11:31"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:17:24"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/8/28"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accessories"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 18:12:07"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:17:34"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/8/29"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home &amp; Decor"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:50:47"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-11 00:17:59"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/9"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIP"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This request return the Root category&rsquo;s tree</p>
+
+<h2 id="view-category-tree-of-a-category">View Category Tree of A Category</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/categorytrees/4"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"categorytrees"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:56:08"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-07 22:01:55"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-w-newarrivals_1.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Arrivals"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:57:32"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-23 06:50:26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://codymamp.com/magento19/media/catalog/category/plp-w-blouses.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tops &amp; Blouses"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:58:32"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-05-06 11:11:20"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/12"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pants &amp; Denim"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-25 17:59:21"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-05 11:45:24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/13"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dresses &amp; Skirts"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-05 02:12:32"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-05 02:12:32"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/2/4/13/41"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"children_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dress"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_cats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This one return Category tree of A Category.</p>
 
           <h1 id="ccavenue">CCAvenue</h1>
 
@@ -3281,6 +3867,11 @@ google_merchant | string | Goole Merchant</p>
 <td>datetime</td>
 <td>Date Of Birth</td>
 </tr>
+<tr>
+<td>wishlist_count</td>
+<td>int</td>
+<td>Number of wishlist items</td>
+</tr>
 </tbody></table>
 
 <h2 id="register">Register</h2>
@@ -3364,7 +3955,8 @@ google_merchant | string | Goole Merchant</p>
       </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Cody"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Nguyen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"password_hash"</span><span class="p">:</span><span class="s2">"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"taxvat"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"taxvat"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"wishlist_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3430,7 +4022,8 @@ google_merchant | string | Goole Merchant</p>
       </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Cody"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Nguyen"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"password_hash"</span><span class="p">:</span><span class="s2">"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"taxvat"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"taxvat"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"wishlist_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3703,6 +4296,175 @@ google_merchant | string | Goole Merchant</p>
 </span></code></pre>
 
 <p>Use the URL from key (url_action) if payment method is the one on list Customized Payment.</p>
+
+          <h1 id="daily-deal">Daily Deal</h1>
+
+<h2 id="daily-deal-properties">Daily Deal Properties</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>Deal Id</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Deal Title</td>
+</tr>
+<tr>
+<td>product_id</td>
+<td>int</td>
+<td>Deal Product Id</td>
+</tr>
+<tr>
+<td>product_name</td>
+<td>string</td>
+<td>Deal Product Name</td>
+</tr>
+<tr>
+<td>save</td>
+<td>int</td>
+<td>Deal Discount (%)</td>
+</tr>
+<tr>
+<td>deal_price</td>
+<td>int</td>
+<td>Deal Price</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>int</td>
+<td>Deal Quantity</td>
+</tr>
+<tr>
+<td>sold</td>
+<td>int</td>
+<td>Deal Product Sold</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>datetime</td>
+<td>Deal Start Time</td>
+</tr>
+<tr>
+<td>close_time</td>
+<td>datetime</td>
+<td>Deal Close Time</td>
+</tr>
+<tr>
+<td>deal_time</td>
+<td>int</td>
+<td>Deal Timestamp</td>
+</tr>
+<tr>
+<td>time_left</td>
+<td>int</td>
+<td>Deal Time Left</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>Deal Status</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>int</td>
+<td>Store Id</td>
+</tr>
+<tr>
+<td>is_random</td>
+<td>int</td>
+<td>Is Ramdom</td>
+</tr>
+</tbody></table>
+
+<h2 id="view-list-of-products">View List Of Products</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/simidailydeals"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"all_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"549"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"916"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"549"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simple"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acj0006s"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dailydeal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue Horizons Bracelets sale off 50%"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"549"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue Horizons Bracelets"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"save"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deal_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">27.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-14 08:49:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deal_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1382400</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_left"</span><span class="p">:</span><span class="w"> </span><span class="mi">1033345</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"close_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-30 08:49:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"process"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_random"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"virtual"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"axevituralproduct"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"......"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dailydeal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Axe virtual product sale off 30%"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"product_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Axe virtual product"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"save"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deal_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-14 08:49:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deal_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468800</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_left"</span><span class="p">:</span><span class="w"> </span><span class="mi">1119745</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"close_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-31 08:49:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"process"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_random"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves a list of products.</p>
 
           <h1 id="devices">Devices</h1>
 
@@ -18402,6 +19164,68 @@ If the Video key is NULL, then it&rsquo;s not a Valid Youtube URL, Use Webview t
 
 <p>In case customer is not logged in, quote Id saved before and quote item need to be updated, use PUT request with quote_id added to URL, same to POST and DELETE requests.</p>
 
+<h2 id="move-cart-item-to-wishlist">Move Cart Item to Wishlist</h2>
+<pre class="highlight shell"><code>curl GET <span class="s2">"https://abc.com/simiconnector/rest/v2/quoteitems/2603?move_to_wishlist=1"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"all_ids"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"2603"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"quoteitems"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"item_id"</span><span class="p">:</span><span class="s2">"2603"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"quote_id"</span><span class="p">:</span><span class="s2">"729"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-07-19 03:11:15"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-07-19 03:11:15"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_id"</span><span class="p">:</span><span class="s2">"888"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"parent_item_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_virtual"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"testcustom-option1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Test Custom Option Simple Product"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"applied_rule_ids"</span><span class="p">:</span><span class="s2">"44"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"additional_data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"free_shipping"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"total"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"subtotal_excl_tax"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subtotal_incl_tax"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="mf">0.02</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"grand_total_excl_tax"</span><span class="p">:</span><span class="mf">1.98</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"grand_total_incl_tax"</span><span class="p">:</span><span class="mf">1.98</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_rows"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"You will earn"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value_string"</span><span class="p">:</span><span class="s2">"1 Codypoint"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"page_size"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"from"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cart_total"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"quote_id"</span><span class="p">:</span><span class="s2">"729"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="s2">"Item has been moved to Wishlist"</span><span class="w">
+   </span><span class="p">],</span><span class="w">   
+   </span><span class="nt">"loyalty"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"loyalty_image"</span><span class="p">:</span><span class="s2">"http:\/\/localhost.com\/magento19\/skin\/frontend\/base\/default\/images\/simirewardpoints\/point.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyalty_label"</span><span class="p">:</span><span class="s2">"Checkout now and earn 1 Codypoint in rewards"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This API is to Move Quote item to wishlist with item id specified, Message is added to returning result.</p>
+
           <h1 id="reviews-in-app">Reviews in App</h1>
 
 <h2 id="reviews-in-product-39-s-list-properties">Reviews in product&rsquo;s list Properties</h2>
@@ -19762,6 +20586,21 @@ If the Video key is NULL, then it&rsquo;s not a Valid Youtube URL, Use Webview t
 <td>array</td>
 <td>CMS pages</td>
 </tr>
+<tr>
+<td>is_show_in_row_price</td>
+<td>string</td>
+<td>&lsquo;0&rsquo; to show price nornally, &#39;1&rsquo; to show price in one row</td>
+</tr>
+<tr>
+<td>is_show_price_for_guest</td>
+<td>string</td>
+<td>&#39;0&rsquo; hide price for guest</td>
+</tr>
+<tr>
+<td>connector_version</td>
+<td>string</td>
+<td>version of connector</td>
+</tr>
 </tbody></table>
 
 <h2 id="view-default-store-view">View Default Store View</h2>
@@ -19801,7 +20640,15 @@ If the Video key is NULL, then it&rsquo;s not a Valid Youtube URL, Use Webview t
             </span><span class="p">}</span><span class="w">
          </span><span class="p">],</span><span class="w">
          </span><span class="nt">"is_show_home_title"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"cust_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+         </span><span class="nt">"cust_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customer_identity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"901isaofbl46ce1n8nr9fj8d30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"118.70.146.183"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_support_put"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_support_delete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_show_in_row_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"is_show_price_for_guest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"open_url_in_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"connector_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.2"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"sales"</span><span class="p">:{</span><span class="w">  
          </span><span class="nt">"sales_reorder_allow"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -21279,6 +22126,32 @@ lng, lat</p>
 </span></code></pre>
 
 <p>This request is to add Wishlist Item To Cart, after that the Item would be removed from wishlist, then the result is Wishlist Items List.</p>
+
+<h2 id="add-all-wishlist-product-to-cart">Add All Wishlist Product To Cart</h2>
+<pre class="highlight shell"><code>curl GET <span class="s2">"https://abc.com/simiconnector/rest/v2/wishlistitems/add_all_tocart"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"all_ids"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"wishlistitems"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"total"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"page_size"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"from"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1 product(s) have been added to shopping cart: \"Elizabeth Knit Top\"."</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This request is to add All Wishlist Item To cart, Need to get wishlist again after this request.</p>
 
       </div>
       <div class="dark-box">
