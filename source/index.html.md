@@ -16,6 +16,7 @@ includes:
   - braintree
   - totals
   - categories
+  - categorytrees
   - ccavenue
   - checkoutcom
   - cmspages

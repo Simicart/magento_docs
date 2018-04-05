@@ -171,7 +171,9 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/addresses" \
 		"company":"Company",
 		"telephone":"0987123456",
 		"fax":"123456",
-		"vat_id":"123"
+		"vat_id":"123",
+      "is_default_billing":"1",
+      "is_default_shipping":"1"
 }"
 ```
 
@@ -201,6 +203,8 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/addresses" \
 }
 ```
 This API is to add an address.
+
+is_default_billing and  is_default_shipping is to set it to be the default billing/shipping address.
 
 
 
@@ -335,7 +339,9 @@ curl -X PUT "https://abc.com/simiconnector/rest/v2/addresses" \
 		"company":"Company",
 		"telephone":"0987123456",
 		"fax":"123456",
-		"vat_id":"123"
+		"vat_id":"123",
+      "created_at":"2016-05-27 08:02:23",
+      "updated_at":"2016-05-27 08:02:23"
 	}'
   "
 

@@ -8,8 +8,12 @@ entity_id | id | Category Id
 parent_id | id | Parent Category Id
 level | int | Category Level
 name | string | Category Name
+image_url | string | Image URL path
+thumbnail_url | string | Thumbnail URL path
 url_path | string | Category URL path
 has_children | boolean | Has Chidren Or Not
+image_url | string | Category Image Url
+thumbnail_url | string | Category Thumbnail Url
 
 
 ## View Children Categoríe of Root Category
@@ -64,6 +68,8 @@ curl "https://abc.com/simiconnector/rest/v2/categories" \
          "custom_design_from":null,
          "custom_design_to":null,
          "filter_price_range":null,
+         "image_url": "http://codymamp.com/magento19/media/catalog/category/cat_2.png",
+         "thumbnail_url": "http://codymamp.com/magento19/media/catalog/category/cat_1.png",
          "has_children":true
       },
       {  

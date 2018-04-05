@@ -19,6 +19,7 @@ lastname | string | Last Name
 password_hash | string | Pasword hash
 taxvat | string | Tax Vat Number
 dob | datetime | Date Of Birth
+wishlist_count | int | Number of wishlist items
 
 
 
@@ -106,7 +107,8 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/customers/login?email=test@si
       "firstname":"Cody",
       "lastname":"Nguyen",
       "password_hash":"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ",
-      "taxvat":null
+      "taxvat":null,
+      "wishlist_count": 1
    }
 }
 ```
@@ -178,7 +180,8 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/customers/profile" \
       "firstname":"Cody",
       "lastname":"Nguyen",
       "password_hash":"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ",
-      "taxvat":null
+      "taxvat":null,
+      "wishlist_count": 1
    }
 }
 ```

@@ -2562,3 +2562,66 @@ curl GET "https://abc.com/simiconnector/rest/v2/quoteitems?quote_id=729 " \
 This API is to Continue Cart Session with Quote Id
 
 In case customer is not logged in, quote Id saved before and quote item need to be updated, use PUT request with quote_id added to URL, same to POST and DELETE requests.
+
+## Move Cart Item to Wishlist
+
+```shell
+curl GET "https://abc.com/simiconnector/rest/v2/quoteitems/2603?move_to_wishlist=1" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "all_ids":[  
+      "2603"
+   ],
+   "quoteitems":[  
+      {  
+         "item_id":"2603",
+         "quote_id":"729",
+         "created_at":"2016-07-19 03:11:15",
+         "updated_at":"2016-07-19 03:11:15",
+         "product_id":"888",
+         "store_id":"1",
+         "parent_item_id":null,
+         "is_virtual":"0",
+         "sku":"testcustom-option1",
+         "name":"Test Custom Option Simple Product",
+         "description":null,
+         "applied_rule_ids":"44",
+         "additional_data":null,
+         "free_shipping":false
+      }
+   ],
+   "total":{  
+      "subtotal_excl_tax":2,
+      "subtotal_incl_tax":2,
+      "tax":0,
+      "discount":0.02,
+      "grand_total_excl_tax":1.98,
+      "grand_total_incl_tax":1.98,
+      "custom_rows":[  
+         {  
+            "title":"You will earn",
+            "sort_order":6,
+            "value":1,
+            "value_string":"1 Codypoint"
+         }
+      ]
+   },
+   "page_size":15,
+   "from":0,
+   "cart_total":1,
+   "quote_id":"729",
+   "message": [
+     "Item has been moved to Wishlist"
+   ],   
+   "loyalty":{  
+      "loyalty_image":"http:\/\/localhost.com\/magento19\/skin\/frontend\/base\/default\/images\/simirewardpoints\/point.png",
+      "loyalty_label":"Checkout now and earn 1 Codypoint in rewards"
+   }
+}
+```
+This API is to Move Quote item to wishlist with item id specified, Message is added to returning result.

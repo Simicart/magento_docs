@@ -267,4 +267,31 @@ This request is to add Wishlist Item To Cart, after that the Item would be remov
 
 
 
+## Add All Wishlist Product To Cart
+
+```shell
+curl GET "https://abc.com/simiconnector/rest/v2/wishlistitems/add_all_tocart" \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "all_ids":[  
+
+   ],
+   "wishlistitems":[  
+
+   ],
+   "total":0,
+   "page_size":15,
+   "from":0,
+   "message": [
+      "1 product(s) have been added to shopping cart: \"Elizabeth Knit Top\"."
+   ]
+}
+```
+
+This request is to add All Wishlist Item To cart, Need to get wishlist again after this request.
 

@@ -22,6 +22,9 @@ customer | array | Customer Address and Account configuration
 wishlist | array | Website Wishlist configuration
 catalog | array | Catalog frontend display and review configuration values
 cms | array | CMS pages
+is_show_in_row_price | string | '0' to show price nornally, '1' to show price in one row
+is_show_price_for_guest | string | '0' hide price for guest
+connector_version | string | version of connector
 
 
 ## View Default Store View
@@ -63,7 +66,15 @@ curl "https://abc.com/simiconnector/rest/v2/storeviews/default" \
             }
          ],
          "is_show_home_title":"1",
-         "cust_group": "1"
+         "cust_group": "1",
+         "customer_identity": "901isaofbl46ce1n8nr9fj8d30",
+         "customer_ip": "118.70.146.183",
+         "is_support_put": "1",
+         "is_support_delete": "1",
+         "is_show_in_row_price": "0",
+         "is_show_price_for_guest": "1",
+         "open_url_in_app": "1",
+         "connector_version": "0.1.2"
       },
       "sales":{  
          "sales_reorder_allow":"1",
