@@ -1080,6 +1080,93 @@ curl POST "https://abc.com/simiconnector/rest/v2/quoteitems " \
 ```
 Add Products with Custom Options (Simple/Downloadable/Virtual Products)
 
+
+
+## Add Product with file as custom option (Step 1)
+
+```shell
+curl POST "http://codymamp.com/magento2/simiconnector/rest/v2/uploadfiles" \
+  -H "Authorization: Bearer <token>"
+  -d form-data {
+  "key" => "file",
+  "value" => "a.png"
+  }
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "uploadfile": {
+        "title": "1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "type": "image/png",
+        "full_path": "/Applications/MAMP/htdocs/magento2/pub/media/Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "quote_path": "Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "secret_key": "286f28f6a89dff4e9f7e"
+    }
+}
+```
+Upload file to server before sumbmitting option. Should do it right after customer selected file.
+
+
+## Add Product with file as custom option (Step 2)
+
+```shell
+curl POST "http://codymamp.com/magento2/simiconnector/rest/v2/quoteitems" \
+  -H "Authorization: Bearer <token>"
+  -d "
+  {
+"product":"22",
+"qty":"1",
+"options":{
+   "1": {
+      "title": "1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "type": "image/png",
+        "full_path": "/Applications/MAMP/htdocs/magento2/pub/media/Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "quote_path": "Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "secret_key": "286f28f6a89dff4e9f7e"
+     }
+    },
+   "2": {
+      "title": "1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "type": "image/png",
+        "full_path": "/Applications/MAMP/htdocs/magento2/pub/media/Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "quote_path": "Simiconnector/tmp/1625040745fb56ffea086d622e9967d2527daa1e42image-select.png",
+        "secret_key": "286f28f6a89dff4e9f7e"
+   }
+}
+"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "all_ids": [
+        "14"
+    ],
+    "quoteitems": [
+        {
+            "store_id": 1,
+            "quote_id": "10",
+            "option": [
+                {
+                    "option_title": "Image 1",
+                    "option_value": "1625040745fb56ffea086d622e9967d2527daa1e42image-select.png "
+                }
+            ],
+            "image": "http://codymamp.com/magento2/pub/media/catalog/product/cache/a237138a07ed0dd2cc8a6fa440635ea6/l/u/luma-foam-roller.jpg"
+        }
+    ],
+    "total": {
+        "tax": 0,
+        "subtotal_excl_tax": 23,
+    }
+}
+```
+Use the returned data from step 1 as value for custom option while adding product to quote.
+
+
 ## Add Configurable Product To Quote
 
 ```shell
