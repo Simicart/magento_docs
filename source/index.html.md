@@ -55,6 +55,7 @@ includes:
   - storeviews
   - storelocations
   - stores
+  - urldicts
   - wishlistitems
 
 search: true

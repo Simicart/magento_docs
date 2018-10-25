@@ -277,6 +277,29 @@ curl -X GET "https://abc.com/simiconnector/rest/v2/customers/forgetpassword?emai
 
 This API is to Send Password reset Email
 
+
+## Create Password (Reset password)
+
+```shell
+curl -X GET "https://abc.com/simiconnector/rest/v2/customers/createpassword?password=123456&rptoken=mIUKneTlRwJIIQVKL9TYPdeUkVhvahXs" \
+  -H "Authorization: Bearer <token>" 
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "customer":{  
+      "website_id":"1"
+   },
+   "message":[  
+      "You updated your password."
+   ]
+}
+```
+
+This API is to Reset password, with new password filled by user, and rptoken get from the email sent to user after user clicked reset password button.
+
 ## Renew Customer Session
 
 ```shell
