@@ -1,4 +1,4 @@
-# Product Price on Magento 2
+# Product on Magento 2
 
 ## Product Price Properties
 
@@ -121,7 +121,68 @@ curl "https://abc.com/simiconnector/rest/v2/products/1" \
 }
 ```
 
-It's the same with 1.x version
+It's the same with 1.x version:
+
+-- 1. If has_special_price = 0, then there is no special price. If price_excluding_tax and price_including_tax returned, use storeview config to decide to show include tax / excluded tax or both.
+
+Sample API with tax (price_excluding_tax and price_including_tax);
+
+"app_prices":{  
+      "has_special_price":0,
+      "show_ex_in_price":1,
+      "price_excluding_tax":{  
+         "label":"Excl. Tax",
+         "price":34
+      },
+      "price_including_tax":{  
+         "label":"Incl. Tax",
+         "price":34
+      }
+}
+
+-- 2. If has_special_price = 1, then there is special price. If price_excluding_tax and price_including_tax returned, use storeview config to decide to show include tax / excluded tax or both and add the special price with value from price and label from special_price_label.
+
+Sample API:
+
+"app_prices": {
+
+      "has_special_price": 1,
+
+      "price_label": "Normalpreis",
+
+      "regular_price": 35,
+
+      "show_ex_in_price": 0,
+
+      "special_price_label": "Special Price",
+
+      "price": 29.97
+}
+
+-- 3. If is_low_price = 1, then ONLY show label from low_price_label with value from low_price
+
+Sample API:
+
+"app_prices": {
+
+      "has_special_price": 1,
+
+      "price_label": "Regular Price",
+
+      "regular_price": 45,
+
+      "show_ex_in_price": 0,
+
+      "special_price_label": "Special Price",
+
+      "price": 22,
+
+      "is_low_price": 1,
+
+      "low_price_label": "As low as",
+
+      "low_price": 22
+}
 
 ## View Configurable Product
 
@@ -136,150 +197,6 @@ curl "https://abc.com/simiconnector/rest/v2/products/1859" \
 {  
    "product":{  
       "entity_id":"1859",
-      "attribute_set_id":"10",
-      "type_id":"configurable",
-      "sku":"WP06",
-      "has_options":"1",
-      "required_options":"1",
-      "created_at":"2016-08-24 04:58:18",
-      "updated_at":"2016-09-12 03:51:52",
-      "name":"Diana Tights",
-      "image":"\/w\/p\/wp06-black_main.jpg",
-      "small_image":"\/w\/p\/wp06-black_main.jpg",
-      "thumbnail":"\/w\/p\/wp06-black_main.jpg",
-      "options_container":"container2",
-      "url_key":"diana-tights",
-      "msrp_display_actual_price_type":"0",
-      "gift_message_available":"2",
-      "material":"150,38,151",
-      "style_bottom":"107,109",
-      "pattern":"197",
-      "climate":"202,204,205,206,208,209",
-      "description":"<p>Perfect for hot bikram session or cool-down stretching. 8-percent stretch means you'll feel like anything is possible in the capri-style Diana Tights.<\/p>\r\n<p>&bull; Black legging with slate details.<br \/>&bull; Flat-lock, chafe-free side seams.<br \/>&bull; Vented gusset.<br \/>&bull; Secret interior pocket.<br \/>&bull; Sustainable and recycled fabric.<\/p>",
-      "price":"59.0000",
-      "status":"1",
-      "visibility":"4",
-      "quantity_and_stock_status":{  
-         "is_in_stock":true,
-         "qty":0
-      },
-      "tax_class_id":"2",
-      "eco_collection":"0",
-      "performance_fabric":"0",
-      "erin_recommends":"1",
-      "new":"0",
-      "sale":"0",
-      "options":[  
-         {  
-
-         }
-      ],
-      "media_gallery":{  
-         "images":{  
-            "3115":{  
-               "value_id":"3115",
-               "file":"\/w\/p\/wp06-black_alt1.jpg",
-               "media_type":"image",
-               "entity_id":"1859",
-               "label":"",
-               "position":"1",
-               "disabled":"0",
-               "label_default":null,
-               "position_default":"1",
-               "disabled_default":"0"
-            },
-            "3118":{  
-               "value_id":"3118",
-               "file":"\/w\/p\/wp06-black_main.jpg",
-               "media_type":"image",
-               "entity_id":"1859",
-               "label":"",
-               "position":"1",
-               "disabled":"0",
-               "label_default":null,
-               "position_default":"1",
-               "disabled_default":"0"
-            },
-            "3116":{  
-               "value_id":"3116",
-               "file":"\/w\/p\/wp06-black_back.jpg",
-               "media_type":"image",
-               "entity_id":"1859",
-               "label":"",
-               "position":"2",
-               "disabled":"0",
-               "label_default":null,
-               "position_default":"2",
-               "disabled_default":"0"
-            },
-            "3117":{  
-               "value_id":"3117",
-               "file":"\/w\/p\/wp06-black_outfit.jpg",
-               "media_type":"image",
-               "entity_id":"1859",
-               "label":"",
-               "position":"3",
-               "disabled":"0",
-               "label_default":null,
-               "position_default":"3",
-               "disabled_default":"0"
-            }
-         }
-      },
-      "extension_attributes":{  
-
-      },
-      "category_ids":[  
-         "27",
-         "32",
-         "34",
-         "2"
-      ],
-      "tier_price":[  
-
-      ],
-      "tier_price_changed":0,
-      "is_salable":"1",
-      "additional":{  
-         "style_bottom":{  
-            "label":"Style",
-            "value":"Capri, Leggings",
-            "code":"style_bottom"
-         },
-         "material":{  
-            "label":"Material",
-            "value":"Microfiber, Polyester, Spandex",
-            "code":"material"
-         },
-         "pattern":{  
-            "label":"Pattern",
-            "value":"Solid",
-            "code":"pattern"
-         },
-         "climate":{  
-            "label":"Climate",
-            "value":"All-Weather, Cool, Indoor, Mild, Spring, Warm",
-            "code":"climate"
-         }
-      },
-      "images":[  
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_alt1.jpg",
-            "position":"1"
-         },
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_main.jpg",
-            "position":"1"
-         },
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_back.jpg",
-            "position":"2"
-         },
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_outfit.jpg",
-            "position":"3"
-         }
-      ],
       "app_prices":{  
          "has_special_price":1,
          "price_label":"Regular Price",
@@ -667,112 +584,16 @@ curl "https://abc.com/simiconnector/rest/v2/products/51" \
 {  
    "product":{  
       "entity_id":"51",
-      "attribute_set_id":"11",
-      "type_id":"bundle",
-      "sku":"24-WG080",
-      "has_options":"1",
-      "required_options":"1",
-      "created_at":"2016-08-24 04:56:52",
-      "updated_at":"2016-08-24 04:56:52",
-      "name":"Sprite Yoga Companion Kit",
-      "image":"\/l\/u\/luma-yoga-kit-2.jpg",
-      "small_image":"\/l\/u\/luma-yoga-kit-2.jpg",
-      "thumbnail":"\/l\/u\/luma-yoga-kit-2.jpg",
-      "options_container":"container2",
-      "url_key":"sprite-yoga-companion-kit",
-      "activity":"8,11",
-      "gender":"80,81,84",
-      "category_gear":"87",
-      "description":"<p>A well-rounded yoga workout takes more than a mat. The Sprite Yoga Companion Kit helps stock your studio with the basics you need for a full-range workout. The kit is composed of four best-selling Luma Sprite accessories in one easy bundle: statis ball, foam block, yoga strap, and foam roller. Choose sizes and colors and leave the rest to us. The kit includes:<\/p>\n<ul>\n<li> Sprite Statis Ball\n<li> Sprite Foam Yoga Brick\n<li> Sprite Yoga Strap\n<li> Sprite Foam Roller\n<\/ul>",
-      "status":"1",
-      "visibility":"4",
-      "quantity_and_stock_status":{  
-         "is_in_stock":true,
-         "qty":0
-      },
-      "price_type":"0",
-      "tax_class_id":"2",
-      "options":[  
-
-      ],
-      "media_gallery":{  
-         "images":{  
-            "57":{  
-               "value_id":"57",
-               "file":"\/l\/u\/luma-yoga-kit-2.jpg",
-               "media_type":"image",
-               "entity_id":"51",
-               "label":"Image",
-               "position":"1",
-               "disabled":"0",
-               "label_default":"Image",
-               "position_default":"1",
-               "disabled_default":"0"
-            }
-         }
-      },
-      "_cache_instance_store_filter":"1",
-      "_cache_instance_options_collection":{  
-
-      },
-      "_cache_instance_selections_collection1":{  
-
-      },
-      "_cache_instance_selections_collection2":{  
-
-      },
-      "_cache_instance_selections_collection3":{  
-
-      },
-      "_cache_instance_selections_collection4":{  
-
-      },
-      "extension_attributes":{  
-
-      },
-      "category_ids":[  
-         "3",
-         "5"
-      ],
-      "tier_price":[  
-
-      ],
-      "tier_price_changed":0,
-      "is_salable":"1",
-      "additional":{  
-         "activity":{  
-            "label":"Activity",
-            "value":"Yoga, Gym",
-            "code":"activity"
-         },
-         "gender":{  
-            "label":"Gender",
-            "value":"Men, Women, Unisex",
-            "code":"gender"
-         },
-         "category_gear":{  
-            "label":"Category",
-            "value":"Exercise",
-            "code":"category_gear"
-         }
-      },
-      "images":[  
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/l\/u\/luma-yoga-kit-2.jpg",
-            "position":"1"
-         }
-      ],
       "app_prices":{  
-         "minimal_price":0,
-         "show_from_to_tax_price":0,
-         "show_ex_in_price":1,
-         "product_from_label":"From",
-         "product_to_label":"To",
-         "from_price":0,
-         "to_price":0,
-         "configure":{  
-            "product_label":"Price as configured",
-            "show_ex_in_price":1
+         "minimal_price": 0,
+         "product_from_label": "From",
+         "product_to_label": "To",
+         "show_from_to_tax_price": 1,
+         "show_ex_in_price": 0,
+         "from_price": 56.2,
+         "to_price": 72.2,
+         "configure": {
+            "product_label": "Price as configured"
          }
       },
       "app_options":{  
@@ -1032,8 +853,81 @@ curl "https://abc.com/simiconnector/rest/v2/products/51" \
 
 Similar with 1.x version, under app_options.bundle_options.
 
-Price values for each options are oldPrice (no discount, excluded tax), basePrice (applied discount, excluded tax), finalPrice (applied discount, tax included)
+Price values for each options are oldPrice (no discount, excluded tax), basePrice (applied discount, excluded tax), finalPrice (applied discount, tax included).
 
+For pricing display before selecting options:
+
+-- 1. If show_from_to_tax_price = 1, show 'from price' and 'to price' with value from from_price and to_price with label from product_from_label and product_to_label
+
+Example API
+
+"app_prices": {
+   "minimal_price": 0,
+   "product_from_label": "From",
+   "product_to_label": "To",
+   "show_from_to_tax_price": 1,
+   "show_ex_in_price": 0,
+   "from_price": 56.2,
+   "to_price": 72.2,
+   "configure": {
+      "product_label": "Price as configured"
+   }
+}
+
+-- 2. If show_from_to_tax_price = 1, which mean the from and to price is the same, use price from key 'price' for value. If minimal_price = 1, add the label from price_label
+
+Example API
+
+"app_prices": {
+   "minimal_price": 0,
+   "show_from_to_tax_price": 0,
+   "price": 56.2,
+   "configure": {
+      "product_label": "Price as configured"
+   }
+}
+
+
+"app_prices": {
+   "price_label": "As low as",
+   "minimal_price": 1,
+   "show_ex_in_price": 0,
+   "price": 56.2,
+   "configure": {
+      "product_label": "Price as configured"
+   }
+}
+
+-- 3. With from_price_excluding_tax, from_price_including_tax, to_price_excluding_tax, to_price_including_tax included in the API, use the configuration from storeview to show the price.
+
+Sample API:
+
+"app_prices": {
+   "minimal_price": 0,
+   "product_from_label": "From",
+   "product_to_label": "To",
+   "show_from_to_tax_price": 1,
+   "show_ex_in_price": 1,
+   "from_price_excluding_tax": {
+      "label": "Excl. Tax",
+      "price": 56.2
+   },
+   "from_price_including_tax": {
+      "label": "Incl. Tax",
+      "price": 56.2
+   },
+   "to_price_excluding_tax": {
+      "label": "Excl. Tax",
+      "price": 72.2
+   },
+   "to_price_including_tax": {
+      "label": "Incl. Tax",
+      "price": 72.2
+   },
+   "configure": {
+      "product_label": "Price as configured"
+   }
+}
 
 ## View Grouped Product
 
@@ -1186,223 +1080,7 @@ curl "https://abc.com/simiconnector/rest/v2/products/2046" \
    }
 }
 ```
-The same with 1.x version.
+Same with Simple product.
 
-
-
-## View Downloadable Product
-
-```shell
-curl "https://abc.com/simiconnector/rest/v2/products/2046" \
-  -H "Authorization: Bearer <token>"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "product":{  
-      "entity_id":"50",
-      "attribute_set_id":"14",
-      "type_id":"downloadable",
-      "sku":"240-LV09",
-      "has_options":"0",
-      "required_options":"0",
-      "created_at":"2016-08-24 04:56:50",
-      "updated_at":"2016-08-24 04:56:50",
-      "name":"Luma Yoga For Life",
-      "meta_description":"You'll learn to use yoga to relax, control stress and increase your calorie-burning capacity, all while exploring traditional and new yoga poses that lengthen and strengthen your full muscular structure.",
-      "image":"\/l\/t\/lt06.jpg",
-      "small_image":"\/l\/t\/lt06.jpg",
-      "thumbnail":"\/l\/t\/lt06.jpg",
-      "options_container":"container2",
-      "url_key":"luma-yoga-for-life",
-      "samples_title":"Trailers",
-      "links_title":"Downloads",
-      "activity":"8,16",
-      "description":"<ul><li>Increase strength + flexibility + metabolism<\/li><li>Burn calories + feel great<\/li><li>Gain energy + youthfulness + mental wellness<\/li> <\/ul><h3 style=\"margin-top: 30px;\">Download description<\/h3><p><strong style=\"display: block; margin: 20px 0 5px;\">Tone up mind and body<\/strong>Pro Yoga Instructor and Master Practitioner Marie Peale helps tone and sculpt your physique with her invigorating yet gentle approach.<\/p><p>You'll learn to use yoga to relax, control stress and increase your calorie-burning capacity, all while exploring traditional and new yoga poses that lengthen and strengthen your full muscular structure.  <\/p><ul><li>Easy download<\/li><li>Audio options: Music and instruction or instruction only<\/li><li>Heart rate techniques explained<\/li><li>Breathing techniques explained<\/li><li>Move through exercises at your own pace<\/li><\/ul><p>Two 25-minute workout episodes and one 40-minute workout episode with warm-up and cool down:<\/p><p><strong style=\"display: block; margin: 20px 0 5px;\">Episode 1<\/strong>Creative, fun session geared toward opening your lungs. Combines stretching and breathing with a focus on hips and shoulders. <\/p><p><strong style=\"display: block; margin: 20px 0 5px;\">Episode 2<\/strong>Ramp up the tempo and energy with calorie-burning flows. A stimulating workout introducing the body-sculpting power of yoga.<\/p><p><strong style=\"display: block; margin: 20px 0 5px;\">Episode 3<\/strong>Push your fitness reach and stamina with an intense series of standing and floor exercises and poses. End this extra-length session with a meditative cool down.<\/p><h3 style=\"margin-top: 30px;\">instructor bio<\/h3><p><strong style=\"display: block; margin: 20px 0 5px;\">About Marie<\/strong>Marie is a trained martial artist and dancer with a BS in Biological Engineering and over 10 years as a certified yoga teacher. Marie has studied yoga in England, India and, in 2009, at the Ashraqat Ashram Yoga Farm in the United States. She has been teaching full time since then. Her focus on strength and wellness combines a deep knowledge of human biology and motivation guided by unconditional love for her audience.<\/p>",
-      "short_description":"<p>\nLuma founder Erin Renny on yoga and longevity: \"I won't promise you'll live longer with yoga. No one can promise that. But your life will be healthier, less stressful, and more physically in tune when you focus on connecting your mind and body or a regular basis. Yoga is my favorite way to express this connection. I want to share the secrets of lifelong yoga with anyone willing to breathe and learn with me.\"\n<\/p>",
-      "price":"0.0000",
-      "status":"1",
-      "visibility":"4",
-      "quantity_and_stock_status":{  
-         "is_in_stock":true,
-         "qty":null
-      },
-      "links_purchased_separately":"1",
-      "tax_class_id":"2",
-      "format":"102",
-      "options":[  
-
-      ],
-      "media_gallery":{  
-         "images":{  
-            "56":{  
-               "value_id":"56",
-               "file":"\/l\/t\/lt06.jpg",
-               "media_type":"image",
-               "entity_id":"50",
-               "label":"Image",
-               "position":"1",
-               "disabled":"0",
-               "label_default":"Image",
-               "position_default":"1",
-               "disabled_default":"0"
-            }
-         }
-      },
-      "downloadable_links":{  
-         "6":{  
-
-         },
-         "7":{  
-
-         },
-         "8":{  
-
-         }
-      },
-      "extension_attributes":{  
-
-      },
-      "downloadable_samples":{  
-
-      },
-      "category_ids":[  
-         "9",
-         "10"
-      ],
-      "tier_price":[  
-
-      ],
-      "tier_price_changed":0,
-      "is_salable":"1",
-      "additional":{  
-         "format":{  
-            "label":"Format",
-            "value":"Download",
-            "code":"format"
-         },
-         "activity":{  
-            "label":"Activity",
-            "value":"Yoga, Athletic",
-            "code":"activity"
-         }
-      },
-      "images":[  
-         {  
-            "url":"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/l\/t\/lt06.jpg",
-            "position":"1"
-         }
-      ],
-      "app_prices":{  
-         "has_special_price":0,
-         "show_ex_in_price":1,
-         "price_excluding_tax":{  
-            "label":"Excl. Tax",
-            "price":0
-         },
-         "price_including_tax":{  
-            "label":"Incl. Tax",
-            "price":0
-         }
-      },
-      "app_options":{  
-         "download_sample":[  
-            {  
-               "title":"Trailers",
-               "value":[  
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/",
-                     "title":"Trailer #1"
-                  }
-               ]
-            },
-            {  
-               "title":"Trailers",
-               "value":[  
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/",
-                     "title":"Trailer #1"
-                  },
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/17\/",
-                     "title":"Trailer #2"
-                  }
-               ]
-            },
-            {  
-               "title":"Trailers",
-               "value":[  
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/",
-                     "title":"Trailer #1"
-                  },
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/17\/",
-                     "title":"Trailer #2"
-                  },
-                  {  
-                     "url":"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/18\/",
-                     "title":"Trailer #3"
-                  }
-               ]
-            }
-         ],
-         "download_options":[  
-            {  
-               "title":"Downloads",
-               "type":"checkbox",
-               "position":"0",
-               "links_purchased_separately":"1",
-               "isRequired":"1",
-               "value":[  
-                  {  
-                     "id":"6",
-                     "title":"Episode 1",
-                     "price_excluding_tax":{  
-                        "label":"Excl. Tax",
-                        "price":9
-                     },
-                     "price_including_tax":{  
-                        "label":"Incl. Tax",
-                        "price":9.74
-                     }
-                  },
-                  {  
-                     "id":"7",
-                     "title":"Episode 2",
-                     "price_excluding_tax":{  
-                        "label":"Excl. Tax",
-                        "price":9
-                     },
-                     "price_including_tax":{  
-                        "label":"Incl. Tax",
-                        "price":9.74
-                     }
-                  },
-                  {  
-                     "id":"8",
-                     "title":"Episode 3",
-                     "price_excluding_tax":{  
-                        "label":"Excl. Tax",
-                        "price":9
-                     },
-                     "price_including_tax":{  
-                        "label":"Incl. Tax",
-                        "price":9.74
-                     }
-                  }
-               ]
-            }
-         ]
-      },
-      "app_reviews":{  
-         "rate":0,
-         "number":0
-      }
-   }
-}
-```
-The same with 1.x version.
+For option prices, each group product item has it own pricing values and configurations, there is 2 cases: show both included and excluded tax or just show one, with each case, there would be special price or not.
 

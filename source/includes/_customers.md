@@ -303,7 +303,7 @@ This API is to Reset password, with new password filled by user, and rptoken get
 ## Renew Customer Session
 
 ```shell
-curl -X POST "https://abc.com/simiconnector/rest/v2/addresses?email=test@simicart.com&password=123456" \
+curl -X POST "https://abc.com/simiconnector/rest/v2/addresses?email=test@simicart.com&simi_hash=123456" \
   -H "Authorization: Bearer <token>" \
 ```
 
@@ -313,80 +313,69 @@ curl -X POST "https://abc.com/simiconnector/rest/v2/addresses?email=test@simicar
 
 ```
 
-Add customer email and password to request to renew customer session with any request.
-
-## Get Customer By Email
-
-```shell
-curl -X GET "https://abc.com/simiconnector/rest/v2/customers/test@simicart.com" \
-  -H "Authorization: Bearer <token>" 
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "customer":{  
-      "website_id":"1",
-      "entity_id":"137",
-      "entity_type_id":"1",
-      "attribute_set_id":"0",
-      "email":"test@simicart.com",
-      "group_id":"1",
-      "increment_id":null,
-      "store_id":"1",
-      "created_at":"2016-05-23T20:22:30-07:00",
-      "updated_at":"2016-06-16 04:47:22",
-      "is_active":"1",
-      "disable_auto_group_change":"0",
-      "created_in":"English",
-      "firstname":"Cody",
-      "lastname":"Nguyen",
-      "password_hash":"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ",
-      "default_billing":"93",
-      "default_shipping":"93",
-      "gender":"2",
-      "dob":"2016-05-18 00:00:00"
-   }
-}
-```
-
-This API is to Get Customer by Email (Check if Customer with that email is Existed or Not)
+Add customer email and simi_hash (get from login/register/profile/social login APIs) to renew customer session with any request.
 
 ## Social Platform Login/Register
 
 
 ```shell
-curl -X GET "https://abc.com/simiconnector/rest/v2/customers/sociallogin?email=test15@simicart.com&firstname=InputFirstname&lastname=InputLastname&password=f5bb0c8de146c67b44babbf4e6584cc0" \
+curl -X GET "https://abc.com/simiconnector/rest/v2/sociallogins?email=cody@gmail.com&uid=11771924354773903187&firstname=Hai&lastname=Nguyen&providerId=google.com&hash=UzqZwpV6WMXzuP2GhnHF3sgcbS92" \
   -H "Authorization: Bearer <token>" 
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
-   "customer":{  
-      "firstname":"InputFirstname",
-      "lastname":"InputLastname",
-      "email":"test15@simicart.com",
-      "password":"Nq27_eQH",
-      "password_hash":"630b71585d737391417a9cb2afc8e579:DPVroAo3PdHdHwxMDwzJtKRC6LkABA70",
-      "password_confirmation":null,
-      "store_id":"1",
-      "group_id":"1",
-      "entity_type_id":"1",
-      "parent_id":0,
-      "created_at":"2016-06-18 03:34:41",
-      "updated_at":"2016-06-18 03:34:41",
-      "created_in":"English",
-      "website_id":"1",
-      "disable_auto_group_change":"0",
-      "confirmation":null,
-      "entity_id":"151"
+{
+   "customer": {
+      "entity_id": "6",
+      "website_id": "1",
+      "email": "life4dieth2@gmail.com",
+      "group_id": "1",
+      "increment_id": null,
+      "store_id": "1",
+      "created_at": "2019-04-02 04:35:17",
+      "updated_at": "2019-04-02 04:35:17",
+      "is_active": "1",
+      "disable_auto_group_change": "0",
+      "created_in": "Default Store View",
+      "prefix": null,
+      "firstname": "Hai Nguyen",
+      "middlename": null,
+      "lastname": "Hai Nguyen",
+      "suffix": null,
+      "dob": null,
+      "password_hash": "3605332a87f069006a5effb6af51a610b32779b030b9fde3ab4d54b54962b6be:oqmOXwB1EHuVo8XMU5r0Lmxsg9jMp5hj:1",
+      "rp_token": null,
+      "rp_token_created_at": null,
+      "default_billing": null,
+      "default_shipping": null,
+      "taxvat": null,
+      "confirmation": null,
+      "gender": null,
+      "failures_num": "0",
+      "first_failure": null,
+      "lock_expires": null,
+      "news_letter": "0",
+      "simi_hash": "tk_9ee6152f2eb4c7c14556c38b4133454a80340f42969d34c89d1f2dae698f9fad"
    }
 }
 ```
 
-This API is to Login Customer By Email get From Social Platforms
+This API is to Login and Register Customer By Email get From Social Platforms
 
+Required params:
 
+uid - string - User Id of the social network account
+
+providerId - social network provider - string - eg. google, google.com, facebook, ...
+
+Optional params:
+
+email - Customer email
+
+firstname - Customer First name
+
+lastname - Customer Last name
+
+hash - Customer password

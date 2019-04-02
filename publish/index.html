@@ -4133,7 +4133,7 @@ google_merchant | string | Goole Merchant</p>
 <p>This API is to Reset password, with new password filled by user, and rptoken get from the email sent to user after user clicked reset password button.</p>
 
 <h2 id="renew-customer-session">Renew Customer Session</h2>
-<pre class="highlight shell"><code>curl -X POST <span class="s2">"https://abc.com/simiconnector/rest/v2/addresses?email=test@simicart.com&amp;password=123456"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s2">"https://abc.com/simiconnector/rest/v2/addresses?email=test@simicart.com&amp;simi_hash=123456"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span> <span class="se">\</span>
 </code></pre>
 
@@ -4143,76 +4143,69 @@ google_merchant | string | Goole Merchant</p>
 <pre class="highlight json"><code><span class="w">
 </span></code></pre>
 
-<p>Add customer email and password to request to renew customer session with any request.</p>
-
-<h2 id="get-customer-by-email">Get Customer By Email</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://abc.com/simiconnector/rest/v2/customers/test@simicart.com"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span> 
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
-   </span><span class="nt">"customer"</span><span class="p">:{</span><span class="w">  
-      </span><span class="nt">"website_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"137"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test@simicart.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"increment_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-05-23T20:22:30-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-06-16 04:47:22"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_active"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"disable_auto_group_change"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_in"</span><span class="p">:</span><span class="s2">"English"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Cody"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Nguyen"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"password_hash"</span><span class="p">:</span><span class="s2">"2bb46761550eeb075761d00eae4e839c:zwtnSXgqdnHdoveyhsmAfrJPfZhAhxVQ"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"default_billing"</span><span class="p">:</span><span class="s2">"93"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"default_shipping"</span><span class="p">:</span><span class="s2">"93"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"dob"</span><span class="p">:</span><span class="s2">"2016-05-18 00:00:00"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This API is to Get Customer by Email (Check if Customer with that email is Existed or Not)</p>
+<p>Add customer email and simi_hash (get from login/register/profile/social login APIs) to renew customer session with any request.</p>
 
 <h2 id="social-platform-login-register">Social Platform Login/Register</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://abc.com/simiconnector/rest/v2/customers/sociallogin?email=test15@simicart.com&amp;firstname=InputFirstname&amp;lastname=InputLastname&amp;password=f5bb0c8de146c67b44babbf4e6584cc0"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://abc.com/simiconnector/rest/v2/sociallogins?email=cody@gmail.com&amp;uid=11771924354773903187&amp;firstname=Hai&amp;lastname=Nguyen&amp;providerId=google.com&amp;hash=UzqZwpV6WMXzuP2GhnHF3sgcbS92"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span> 
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
-   </span><span class="nt">"customer"</span><span class="p">:{</span><span class="w">  
-      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"InputFirstname"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"InputLastname"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test15@simicart.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"Nq27_eQH"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"password_hash"</span><span class="p">:</span><span class="s2">"630b71585d737391417a9cb2afc8e579:DPVroAo3PdHdHwxMDwzJtKRC6LkABA70"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"password_confirmation"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"entity_type_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-06-18 03:34:41"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-06-18 03:34:41"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_in"</span><span class="p">:</span><span class="s2">"English"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"website_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"disable_auto_group_change"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"confirmation"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"151"</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"website_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"life4dieth2@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"increment_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-02 04:35:17"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-02 04:35:17"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"disable_auto_group_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_in"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Store View"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hai Nguyen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"middlename"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hai Nguyen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dob"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"password_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3605332a87f069006a5effb6af51a610b32779b030b9fde3ab4d54b54962b6be:oqmOXwB1EHuVo8XMU5r0Lmxsg9jMp5hj:1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rp_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rp_token_created_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"default_billing"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"default_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxvat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"confirmation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"failures_num"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_failure"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lock_expires"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"news_letter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"simi_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_9ee6152f2eb4c7c14556c38b4133454a80340f42969d34c89d1f2dae698f9fad"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This API is to Login Customer By Email get From Social Platforms</p>
+<p>This API is to Login and Register Customer By Email get From Social Platforms</p>
+
+<p>Required params:</p>
+
+<p>uid - string - User Id of the social network account</p>
+
+<p>providerId - social network provider - string - eg. google, google.com, facebook, &hellip;</p>
+
+<p>Optional params:</p>
+
+<p>email - Customer email</p>
+
+<p>firstname - Customer First name</p>
+
+<p>lastname - Customer Last name</p>
+
+<p>hash - Customer password</p>
 
           <h1 id="customize-payment">Customize Payment</h1>
 
@@ -14043,7 +14036,7 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 
 <p>On product Detail API, if there is NO product_label, there could be product_labels which contain multi labels for one product.</p>
 
-          <h1 id="product-price-on-magento-2">Product Price on Magento 2</h1>
+          <h1 id="product-on-magento-2">Product on Magento 2</h1>
 
 <h2 id="product-price-properties">Product Price Properties</h2>
 
@@ -14242,7 +14235,68 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>It&rsquo;s the same with 1.x version</p>
+<p>It&rsquo;s the same with 1.x version:</p>
+
+<p>&ndash; 1. If has_special_price = 0, then there is no special price. If price_excluding_tax and price_including_tax returned, use storeview config to decide to show include tax / excluded tax or both.</p>
+
+<p>Sample API with tax (price_excluding_tax and price_including_tax);</p>
+
+<p>&ldquo;app_prices&rdquo;:{<br>
+      &ldquo;has_special_price&rdquo;:0,
+      &ldquo;show_ex_in_price&rdquo;:1,
+      &ldquo;price_excluding_tax&rdquo;:{<br>
+         &ldquo;label&rdquo;:&ldquo;Excl. Tax&rdquo;,
+         &ldquo;price&rdquo;:34
+      },
+      &ldquo;price_including_tax&rdquo;:{<br>
+         &ldquo;label&rdquo;:&ldquo;Incl. Tax&rdquo;,
+         &ldquo;price&rdquo;:34
+      }
+}</p>
+
+<p>&ndash; 2. If has_special_price = 1, then there is special price. If price_excluding_tax and price_including_tax returned, use storeview config to decide to show include tax / excluded tax or both and add the special price with value from price and label from special_price_label.</p>
+
+<p>Sample API:</p>
+
+<p>&ldquo;app_prices&rdquo;: {</p>
+
+<p>&ldquo;has_special_price&rdquo;: 1,</p>
+
+<p>&ldquo;price_label&rdquo;: &ldquo;Normalpreis&rdquo;,</p>
+
+<p>&ldquo;regular_price&rdquo;: 35,</p>
+
+<p>&ldquo;show_ex_in_price&rdquo;: 0,</p>
+
+<p>&ldquo;special_price_label&rdquo;: &ldquo;Special Price&rdquo;,</p>
+
+<p>&ldquo;price&rdquo;: 29.97
+}</p>
+
+<p>&ndash; 3. If is_low_price = 1, then ONLY show label from low_price_label with value from low_price</p>
+
+<p>Sample API:</p>
+
+<p>&ldquo;app_prices&rdquo;: {</p>
+
+<p>&ldquo;has_special_price&rdquo;: 1,</p>
+
+<p>&ldquo;price_label&rdquo;: &ldquo;Regular Price&rdquo;,</p>
+
+<p>&ldquo;regular_price&rdquo;: 45,</p>
+
+<p>&ldquo;show_ex_in_price&rdquo;: 0,</p>
+
+<p>&ldquo;special_price_label&rdquo;: &ldquo;Special Price&rdquo;,</p>
+
+<p>&ldquo;price&rdquo;: 22,</p>
+
+<p>&ldquo;is_low_price&rdquo;: 1,</p>
+
+<p>&ldquo;low_price_label&rdquo;: &ldquo;As low as&rdquo;,</p>
+
+<p>&ldquo;low_price&rdquo;: 22
+}</p>
 
 <h2 id="view-configurable-product">View Configurable Product</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/1859"</span> <span class="se">\</span>
@@ -14255,150 +14309,6 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 <pre class="highlight json"><code><span class="p">{</span><span class="w">  
    </span><span class="nt">"product"</span><span class="p">:{</span><span class="w">  
       </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"1859"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"configurable"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"WP06"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"required_options"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-08-24 04:58:18"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-12 03:51:52"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Diana Tights"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_main.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"small_image"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_main.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_main.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options_container"</span><span class="p">:</span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url_key"</span><span class="p">:</span><span class="s2">"diana-tights"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"msrp_display_actual_price_type"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gift_message_available"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"material"</span><span class="p">:</span><span class="s2">"150,38,151"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"style_bottom"</span><span class="p">:</span><span class="s2">"107,109"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"pattern"</span><span class="p">:</span><span class="s2">"197"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"climate"</span><span class="p">:</span><span class="s2">"202,204,205,206,208,209"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"&lt;p&gt;Perfect for hot bikram session or cool-down stretching. 8-percent stretch means you'll feel like anything is possible in the capri-style Diana Tights.&lt;\/p&gt;\r\n&lt;p&gt;&amp;bull; Black legging with slate details.&lt;br \/&gt;&amp;bull; Flat-lock, chafe-free side seams.&lt;br \/&gt;&amp;bull; Vented gusset.&lt;br \/&gt;&amp;bull; Secret interior pocket.&lt;br \/&gt;&amp;bull; Sustainable and recycled fabric.&lt;\/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"59.0000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity_and_stock_status"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"eco_collection"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"performance_fabric"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"erin_recommends"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"new"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sale"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options"</span><span class="p">:[</span><span class="w">  
-         </span><span class="p">{</span><span class="w">  
-
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"media_gallery"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"images"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"3115"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"3115"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_alt1.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"1859"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"3118"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"3118"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_main.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"1859"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"3116"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"3116"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_back.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"1859"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"3117"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"3117"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/w\/p\/wp06-black_outfit.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"1859"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"extension_attributes"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"category_ids"</span><span class="p">:[</span><span class="w">  
-         </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"32"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"2"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price"</span><span class="p">:[</span><span class="w">  
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"additional"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"style_bottom"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Style"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Capri, Leggings"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"style_bottom"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"material"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Material"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Microfiber, Polyester, Spandex"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"material"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"pattern"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Pattern"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Solid"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"pattern"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"climate"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Climate"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"All-Weather, Cool, Indoor, Mild, Spring, Warm"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"climate"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_alt1.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_main.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_back.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/w\/p\/wp06-black_outfit.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"3"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"app_prices"</span><span class="p">:{</span><span class="w">  
          </span><span class="nt">"has_special_price"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
          </span><span class="nt">"price_label"</span><span class="p">:</span><span class="s2">"Regular Price"</span><span class="p">,</span><span class="w">
@@ -14784,112 +14694,16 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 <pre class="highlight json"><code><span class="p">{</span><span class="w">  
    </span><span class="nt">"product"</span><span class="p">:{</span><span class="w">  
       </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"51"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"11"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"bundle"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"24-WG080"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"required_options"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-08-24 04:56:52"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-08-24 04:56:52"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Sprite Yoga Companion Kit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"\/l\/u\/luma-yoga-kit-2.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"small_image"</span><span class="p">:</span><span class="s2">"\/l\/u\/luma-yoga-kit-2.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="s2">"\/l\/u\/luma-yoga-kit-2.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options_container"</span><span class="p">:</span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url_key"</span><span class="p">:</span><span class="s2">"sprite-yoga-companion-kit"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"activity"</span><span class="p">:</span><span class="s2">"8,11"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"80,81,84"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"category_gear"</span><span class="p">:</span><span class="s2">"87"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"&lt;p&gt;A well-rounded yoga workout takes more than a mat. The Sprite Yoga Companion Kit helps stock your studio with the basics you need for a full-range workout. The kit is composed of four best-selling Luma Sprite accessories in one easy bundle: statis ball, foam block, yoga strap, and foam roller. Choose sizes and colors and leave the rest to us. The kit includes:&lt;\/p&gt;\n&lt;ul&gt;\n&lt;li&gt; Sprite Statis Ball\n&lt;li&gt; Sprite Foam Yoga Brick\n&lt;li&gt; Sprite Yoga Strap\n&lt;li&gt; Sprite Foam Roller\n&lt;\/ul&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity_and_stock_status"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"price_type"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options"</span><span class="p">:[</span><span class="w">  
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"media_gallery"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"images"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"57"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"57"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/l\/u\/luma-yoga-kit-2.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"51"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="s2">"Image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_cache_instance_store_filter"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"_cache_instance_options_collection"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_cache_instance_selections_collection1"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_cache_instance_selections_collection2"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_cache_instance_selections_collection3"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"_cache_instance_selections_collection4"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"extension_attributes"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"category_ids"</span><span class="p">:[</span><span class="w">  
-         </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"5"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price"</span><span class="p">:[</span><span class="w">  
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"additional"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"activity"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Activity"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Yoga, Gym"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"activity"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"gender"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Gender"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Men, Women, Unisex"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"gender"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"category_gear"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Category"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Exercise"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"category_gear"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/l\/u\/luma-yoga-kit-2.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
       </span><span class="nt">"app_prices"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"minimal_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"show_from_to_tax_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"product_from_label"</span><span class="p">:</span><span class="s2">"From"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"product_to_label"</span><span class="p">:</span><span class="s2">"To"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"from_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"to_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"configure"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"product_label"</span><span class="p">:</span><span class="s2">"Price as configured"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+         </span><span class="nt">"minimal_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_from_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"product_to_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"show_from_to_tax_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"from_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">56.2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"to_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">72.2</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"configure"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"product_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price as configured"</span><span class="w">
          </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"app_options"</span><span class="p">:{</span><span class="w">  
@@ -15149,7 +14963,80 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 
 <p>Similar with 1.x version, under app_options.bundle_options.</p>
 
-<p>Price values for each options are oldPrice (no discount, excluded tax), basePrice (applied discount, excluded tax), finalPrice (applied discount, tax included)</p>
+<p>Price values for each options are oldPrice (no discount, excluded tax), basePrice (applied discount, excluded tax), finalPrice (applied discount, tax included).</p>
+
+<p>For pricing display before selecting options:</p>
+
+<p>&ndash; 1. If show_from_to_tax_price = 1, show &lsquo;from price&rsquo; and &#39;to price&rsquo; with value from from_price and to_price with label from product_from_label and product_to_label</p>
+
+<p>Example API</p>
+
+<p>&ldquo;app_prices&rdquo;: {
+   &ldquo;minimal_price&rdquo;: 0,
+   &ldquo;product_from_label&rdquo;: &ldquo;From&rdquo;,
+   &ldquo;product_to_label&rdquo;: &ldquo;To&rdquo;,
+   &ldquo;show_from_to_tax_price&rdquo;: 1,
+   &ldquo;show_ex_in_price&rdquo;: 0,
+   &ldquo;from_price&rdquo;: 56.2,
+   &ldquo;to_price&rdquo;: 72.2,
+   &ldquo;configure&rdquo;: {
+      &ldquo;product_label&rdquo;: &ldquo;Price as configured&rdquo;
+   }
+}</p>
+
+<p>&ndash; 2. If show_from_to_tax_price = 1, which mean the from and to price is the same, use price from key &#39;price&rsquo; for value. If minimal_price = 1, add the label from price_label</p>
+
+<p>Example API</p>
+
+<p>&ldquo;app_prices&rdquo;: {
+   &ldquo;minimal_price&rdquo;: 0,
+   &ldquo;show_from_to_tax_price&rdquo;: 0,
+   &ldquo;price&rdquo;: 56.2,
+   &ldquo;configure&rdquo;: {
+      &ldquo;product_label&rdquo;: &ldquo;Price as configured&rdquo;
+   }
+}</p>
+
+<p>&ldquo;app_prices&rdquo;: {
+   &ldquo;price_label&rdquo;: &ldquo;As low as&rdquo;,
+   &ldquo;minimal_price&rdquo;: 1,
+   &ldquo;show_ex_in_price&rdquo;: 0,
+   &ldquo;price&rdquo;: 56.2,
+   &ldquo;configure&rdquo;: {
+      &ldquo;product_label&rdquo;: &ldquo;Price as configured&rdquo;
+   }
+}</p>
+
+<p>&ndash; 3. With from_price_excluding_tax, from_price_including_tax, to_price_excluding_tax, to_price_including_tax included in the API, use the configuration from storeview to show the price.</p>
+
+<p>Sample API:</p>
+
+<p>&ldquo;app_prices&rdquo;: {
+   &ldquo;minimal_price&rdquo;: 0,
+   &ldquo;product_from_label&rdquo;: &ldquo;From&rdquo;,
+   &ldquo;product_to_label&rdquo;: &ldquo;To&rdquo;,
+   &ldquo;show_from_to_tax_price&rdquo;: 1,
+   &ldquo;show_ex_in_price&rdquo;: 1,
+   &ldquo;from_price_excluding_tax&rdquo;: {
+      &ldquo;label&rdquo;: &ldquo;Excl. Tax&rdquo;,
+      &ldquo;price&rdquo;: 56.2
+   },
+   &ldquo;from_price_including_tax&rdquo;: {
+      &ldquo;label&rdquo;: &ldquo;Incl. Tax&rdquo;,
+      &ldquo;price&rdquo;: 56.2
+   },
+   &ldquo;to_price_excluding_tax&rdquo;: {
+      &ldquo;label&rdquo;: &ldquo;Excl. Tax&rdquo;,
+      &ldquo;price&rdquo;: 72.2
+   },
+   &ldquo;to_price_including_tax&rdquo;: {
+      &ldquo;label&rdquo;: &ldquo;Incl. Tax&rdquo;,
+      &ldquo;price&rdquo;: 72.2
+   },
+   &ldquo;configure&rdquo;: {
+      &ldquo;product_label&rdquo;: &ldquo;Price as configured&rdquo;
+   }
+}</p>
 
 <h2 id="view-grouped-product">View Grouped Product</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/2046"</span> <span class="se">\</span>
@@ -15301,222 +15188,9 @@ if paypal_express_config.show_on_cart = 1, then show on cart screen, hide it oth
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The same with 1.x version.</p>
+<p>Same with Simple product.</p>
 
-<h2 id="view-downloadable-product">View Downloadable Product</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://abc.com/simiconnector/rest/v2/products/2046"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
-   </span><span class="nt">"product"</span><span class="p">:{</span><span class="w">  
-      </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attribute_set_id"</span><span class="p">:</span><span class="s2">"14"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type_id"</span><span class="p">:</span><span class="s2">"downloadable"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"240-LV09"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"has_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"required_options"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-08-24 04:56:50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-08-24 04:56:50"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Luma Yoga For Life"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"meta_description"</span><span class="p">:</span><span class="s2">"You'll learn to use yoga to relax, control stress and increase your calorie-burning capacity, all while exploring traditional and new yoga poses that lengthen and strengthen your full muscular structure."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image"</span><span class="p">:</span><span class="s2">"\/l\/t\/lt06.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"small_image"</span><span class="p">:</span><span class="s2">"\/l\/t\/lt06.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"thumbnail"</span><span class="p">:</span><span class="s2">"\/l\/t\/lt06.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options_container"</span><span class="p">:</span><span class="s2">"container2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url_key"</span><span class="p">:</span><span class="s2">"luma-yoga-for-life"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"samples_title"</span><span class="p">:</span><span class="s2">"Trailers"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"links_title"</span><span class="p">:</span><span class="s2">"Downloads"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"activity"</span><span class="p">:</span><span class="s2">"8,16"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"&lt;ul&gt;&lt;li&gt;Increase strength + flexibility + metabolism&lt;\/li&gt;&lt;li&gt;Burn calories + feel great&lt;\/li&gt;&lt;li&gt;Gain energy + youthfulness + mental wellness&lt;\/li&gt; &lt;\/ul&gt;&lt;h3 style=\"margin-top: 30px;\"&gt;Download description&lt;\/h3&gt;&lt;p&gt;&lt;strong style=\"display: block; margin: 20px 0 5px;\"&gt;Tone up mind and body&lt;\/strong&gt;Pro Yoga Instructor and Master Practitioner Marie Peale helps tone and sculpt your physique with her invigorating yet gentle approach.&lt;\/p&gt;&lt;p&gt;You'll learn to use yoga to relax, control stress and increase your calorie-burning capacity, all while exploring traditional and new yoga poses that lengthen and strengthen your full muscular structure.  &lt;\/p&gt;&lt;ul&gt;&lt;li&gt;Easy download&lt;\/li&gt;&lt;li&gt;Audio options: Music and instruction or instruction only&lt;\/li&gt;&lt;li&gt;Heart rate techniques explained&lt;\/li&gt;&lt;li&gt;Breathing techniques explained&lt;\/li&gt;&lt;li&gt;Move through exercises at your own pace&lt;\/li&gt;&lt;\/ul&gt;&lt;p&gt;Two 25-minute workout episodes and one 40-minute workout episode with warm-up and cool down:&lt;\/p&gt;&lt;p&gt;&lt;strong style=\"display: block; margin: 20px 0 5px;\"&gt;Episode 1&lt;\/strong&gt;Creative, fun session geared toward opening your lungs. Combines stretching and breathing with a focus on hips and shoulders. &lt;\/p&gt;&lt;p&gt;&lt;strong style=\"display: block; margin: 20px 0 5px;\"&gt;Episode 2&lt;\/strong&gt;Ramp up the tempo and energy with calorie-burning flows. A stimulating workout introducing the body-sculpting power of yoga.&lt;\/p&gt;&lt;p&gt;&lt;strong style=\"display: block; margin: 20px 0 5px;\"&gt;Episode 3&lt;\/strong&gt;Push your fitness reach and stamina with an intense series of standing and floor exercises and poses. End this extra-length session with a meditative cool down.&lt;\/p&gt;&lt;h3 style=\"margin-top: 30px;\"&gt;instructor bio&lt;\/h3&gt;&lt;p&gt;&lt;strong style=\"display: block; margin: 20px 0 5px;\"&gt;About Marie&lt;\/strong&gt;Marie is a trained martial artist and dancer with a BS in Biological Engineering and over 10 years as a certified yoga teacher. Marie has studied yoga in England, India and, in 2009, at the Ashraqat Ashram Yoga Farm in the United States. She has been teaching full time since then. Her focus on strength and wellness combines a deep knowledge of human biology and motivation guided by unconditional love for her audience.&lt;\/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"short_description"</span><span class="p">:</span><span class="s2">"&lt;p&gt;\nLuma founder Erin Renny on yoga and longevity: \"I won't promise you'll live longer with yoga. No one can promise that. But your life will be healthier, less stressful, and more physically in tune when you focus on connecting your mind and body or a regular basis. Yoga is my favorite way to express this connection. I want to share the secrets of lifelong yoga with anyone willing to breathe and learn with me.\"\n&lt;\/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"0.0000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity_and_stock_status"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"is_in_stock"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"qty"</span><span class="p">:</span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"links_purchased_separately"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tax_class_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"format"</span><span class="p">:</span><span class="s2">"102"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options"</span><span class="p">:[</span><span class="w">  
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"media_gallery"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"images"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"56"</span><span class="p">:{</span><span class="w">  
-               </span><span class="nt">"value_id"</span><span class="p">:</span><span class="s2">"56"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"file"</span><span class="p">:</span><span class="s2">"\/l\/t\/lt06.jpg"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"media_type"</span><span class="p">:</span><span class="s2">"image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="s2">"50"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"label_default"</span><span class="p">:</span><span class="s2">"Image"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position_default"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"disabled_default"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"downloadable_links"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"6"</span><span class="p">:{</span><span class="w">  
-
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"7"</span><span class="p">:{</span><span class="w">  
-
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"8"</span><span class="p">:{</span><span class="w">  
-
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"extension_attributes"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"downloadable_samples"</span><span class="p">:{</span><span class="w">  
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"category_ids"</span><span class="p">:[</span><span class="w">  
-         </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"10"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price"</span><span class="p">:[</span><span class="w">  
-
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"tier_price_changed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_salable"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"additional"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"format"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Format"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Download"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"format"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"activity"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Activity"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Yoga, Athletic"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"activity"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"images"</span><span class="p">:[</span><span class="w">  
-         </span><span class="p">{</span><span class="w">  
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/pub\/media\/catalog\/product\/cache\/1\/image\/600x600\/beff4985b56e3afdbeabfc89641a4582\/l\/t\/lt06.jpg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"app_prices"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"has_special_price"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"show_ex_in_price"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"price_excluding_tax"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"price"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"price_including_tax"</span><span class="p">:{</span><span class="w">  
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"price"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"app_options"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"download_sample"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailers"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:[</span><span class="w">  
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #1"</span><span class="w">
-                  </span><span class="p">}</span><span class="w">
-               </span><span class="p">]</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailers"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:[</span><span class="w">  
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/17\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #2"</span><span class="w">
-                  </span><span class="p">}</span><span class="w">
-               </span><span class="p">]</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailers"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:[</span><span class="w">  
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/16\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/17\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #2"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">"http:\/\/magento2.jajahub.com\/downloadable\/download\/sample\/sample_id\/18\/"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Trailer #3"</span><span class="w">
-                  </span><span class="p">}</span><span class="w">
-               </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"download_options"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Downloads"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"position"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"links_purchased_separately"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:[</span><span class="w">  
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Episode 1"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"price_excluding_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mi">9</span><span class="w">
-                     </span><span class="p">},</span><span class="w">
-                     </span><span class="nt">"price_including_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">9.74</span><span class="w">
-                     </span><span class="p">}</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Episode 2"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"price_excluding_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mi">9</span><span class="w">
-                     </span><span class="p">},</span><span class="w">
-                     </span><span class="nt">"price_including_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">9.74</span><span class="w">
-                     </span><span class="p">}</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="w">  
-                     </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"8"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Episode 3"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"price_excluding_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Excl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mi">9</span><span class="w">
-                     </span><span class="p">},</span><span class="w">
-                     </span><span class="nt">"price_including_tax"</span><span class="p">:{</span><span class="w">  
-                        </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Incl. Tax"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">9.74</span><span class="w">
-                     </span><span class="p">}</span><span class="w">
-                  </span><span class="p">}</span><span class="w">
-               </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"app_reviews"</span><span class="p">:{</span><span class="w">  
-         </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"number"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>The same with 1.x version.</p>
+<p>For option prices, each group product item has it own pricing values and configurations, there is 2 cases: show both included and excluded tax or just show one, with each case, there would be special price or not.</p>
 
           <h1 id="product-videos">Product Videos</h1>
 
@@ -16035,13 +15709,11 @@ If the Video key is NULL, then it&rsquo;s not a Valid Youtube URL, Use Webview t
         </span><span class="nt">"cost"</span><span class="p">:</span><span class="s2">"20.0000"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"weight"</span><span class="p">:</span><span class="s2">"3.2000"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"minimal_price"</span><span class="p">:</span><span class="s2">"149.9900"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"The Nokia 2610 is an easy to use device that combines multiple messaging options including email, instant messaging, and more. You can even download MP3 ringtones, graphics, and games straight to the phone, or surf the Internet with Cingular's MEdia Net service. It's the perfect complement to Cingular service for those even remotely interested in mobile Web capabilities in an affordable handset.&lt;br&gt;&lt;br&gt;\r\n\r\n&lt;b&gt;Design&lt;\/b&gt;&lt;br&gt;\r\nCompact and stylish, the 2610 features a candybar design sporting a bright 128 x 128 pixel display capable of displaying over 65,000 colors. Most of the phone's features and on-screen menus are controlled by a center toggle on the control pad. A standard hands-free headphone jack is provided, as are volume control keys, and there's even a \"Go-To\" button that can be assigned by the user for quick access to favorite applications. Lastly, the included speakerphone allows you to talk handsfree, and because the phone sports an internal antenna, there's nothing to snag or break off.\r\n\r\n"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"meta_keyword"</span><span class="p">:</span><span class="s2">"Nokia 2610, cell, phone, "</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"in_depth"</span><span class="p">:</span><span class="s2">"&lt;ul&gt;\r\n&lt;ul class\"disc\"&gt;\r\n&lt;li&gt;Integrated camera with video recorder to capture those special moments&lt;br&gt;&lt;\/li&gt;\r\n&lt;li&gt;Enriched data connections for complete mobile access via Email, MMS, and MEdia Net&lt;br&gt;&lt;\/li&gt;\r\n&lt;li&gt; Personalize with downloadable MP3 and polyphonic Ring tones, Games, and Graphics&lt;br&gt;&lt;\/li&gt;\r\n&lt;li&gt;Use AIM, Yahoo! and MSN Messenger to stay in touch on the go&lt;br&gt;&lt;\/li&gt;\r\n&lt;li&gt;Mobile Internet browser and email&lt;\/li&gt;\r\n&lt;\/ul&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"The Nokia 2610"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"dimension"</span><span class="p">:</span><span class="s2">"4.1 x 1.7 x 0.7 inches "</span><span class="p">,</span><span class="w">
         </span><span class="nt">"model"</span><span class="p">:</span><span class="s2">"2610"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"activation_information"</span><span class="p">:</span><span class="s2">"Conditional $250 Equipment Discount Included: Your price paid includes an equipment discount of $250 that has been provided to you in exchange for either activating a new, non-substitute line of service or renewing an existing line of service with AT&amp;T and your agreement that for the 181-day period following such activation or renewal you will: (1) pay your balance due to AT&amp;T each month and otherwise maintain your account in good standing; (2) not disconnect this AT&amp;T line of service; (3) not transfer this equipment to another AT&amp;T line of service; (4) not change your AT&amp;T service rate plan to a lower monthly service rate--this includes canceling or removing required PDA, BlackBerry, or smartphone features after your product has shipped; (5) not use this line of service to replace an existing account with AT&amp;T. If these conditions are not met, you hereby authorize Magento to charge your credit card $250 as reimbursement of this equipment discount without need for further approval."</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"short_description"</span><span class="p">:</span><span class="s2">"The words \"entry level\" no longer mean \"low-end,\" especially when it comes to the Nokia 2610. Offering advanced media and calling features without breaking the bank"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"activation_information"</span><span class="p">:</span><span class="s2">"Conditional $250 Equipment Discount Included."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"short_description"</span><span class="p">:</span><span class="s2">"The words"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom_layout_update"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"color"</span><span class="p">:</span><span class="s2">"24"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
